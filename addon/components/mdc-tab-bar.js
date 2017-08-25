@@ -12,11 +12,6 @@ const { strings } = MDCTabBarFoundation;
 export default Ember.Component.extend(MDCComponent, {
   //region Attributes
   /**
-   * @private
-   * @type {Boolean}
-   */
-  scrolling: false,
-  /**
    * @type {Boolean}
    */
   links: true,
@@ -48,13 +43,13 @@ export default Ember.Component.extend(MDCComponent, {
   },
   didInsertElement() {
     this._super(...arguments);
-    if (get(this, 'scrolling')) {
+    if (get(this, 'register-tab-bar')) {
       get(this, 'register-tab-bar')(this);
     }
   },
   willDestroyElement() {
     this._super(...arguments);
-    if (get(this, 'scrolling')) {
+    if (get(this, 'deregister-tab-bar')) {
       get(this, 'deregister-tab-bar')();
     }
   },
