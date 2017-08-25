@@ -1,0 +1,50 @@
+import Ember from 'ember';
+import layout from '../templates/components/mdc-switch';
+
+const { get } = Ember;
+
+export default Ember.Component.extend({
+  //region Attributes
+  /**
+   * This property is considered read-only by the component, and will not be
+   * updated by user action. Please see `onchange` to handle user actions.
+   * @type {Boolean}
+   */
+  checked: false,
+  /**
+   * @type {Boolean}
+   */
+  disabled: false,
+  /**
+   * This will be called when the user indicates they want to change the value
+   * of the switch. If you want to simulate two-way binding, you can use the
+   * switch like this:
+   *
+   * {{mdc-switch checked=(eq switchValue "one") onchange=(action "setSwitchValue" "one")}}
+   *
+   * @type {Function}
+   * @param {Boolean} checked
+   */
+  onchange: x => x,
+  /**
+   * @type {?String}
+   */
+  'input-id': null,
+  //endregion
+
+  //region Ember Hooks
+  layout,
+  classNames: 'mdc-switch',
+  classNameBindings: ['disabled:mdc-switch--disabled'],
+  attributeBindings: ['disabled'],
+  //endregion
+
+  //region Actions
+  actions: {
+    inputChanged(ev) {
+      const checked = ev.target.checked;
+      get(this, 'onchange')(checked);
+    }
+  }
+  //endregion
+});

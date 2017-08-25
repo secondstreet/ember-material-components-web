@@ -278,6 +278,19 @@
   {{outlet}}
 </section>
 
+<section class="component-doc">
+  <h2 class="mdc-typography--title">Switch</h2>
+  <h3 class="mdc-typography--subheading2">Active Switch</h3>
+  {{mdc-switch checked=isFirstSwitchOn onchange=(action (mut isFirstSwitchOn))}}
+  <h3 class="mdc-typography--subheading2">Switch with Toggle Label</h3>
+  <label>
+    {{mdc-switch checked=isSecondSwitchOn onchange=(action (mut isSecondSwitchOn))}}
+    On/Off
+  </label>
+  <h3 class="mdc-typography--subheading2">Disabled Switch</h3>
+  {{mdc-switch disabled=true}}
+</section>
+
 {{/if}}
 
 {{#mdc-button class="toggle-demo-visibility" click=(action (toggle "isDemoVisible" this))}}Toggle visibility{{/mdc-button}}
