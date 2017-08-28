@@ -87,7 +87,7 @@ export default Ember.Component.extend(MDCComponent, {
       removeClassFromForwardIndicator: (className) => run(() => get(this, 'forwardIndicatorClasses').removeObject(className)),
       addClassToBackIndicator: (className) => run(() => get(this, 'backIndicatorClasses').addObject(className)),
       removeClassFromBackIndicator: (className) => run(() => get(this, 'backIndicatorClasses').removeObject(className)),
-      isRTL: () => getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
+      isRTL: () => !!this && !get(this, 'isDestroyed') && !!get(this, 'element') && getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
       registerBackIndicatorClickHandler: (handler) => get(this, 'backIndicatorElement').addEventListener('click', handler),
       deregisterBackIndicatorClickHandler: (handler) => get(this, 'backIndicatorElement').removeEventListener('click', handler),
       registerForwardIndicatorClickHandler: (handler) => get(this, 'forwardIndicatorElement').addEventListener('click', handler),

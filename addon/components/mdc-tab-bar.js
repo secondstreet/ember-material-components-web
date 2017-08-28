@@ -29,6 +29,14 @@ export default Ember.Component.extend(MDCComponent, {
    * @param {Object} evtData
    */
   onchange: x => x,
+  /**
+   * @type {Function}
+   */
+  'register-tab-bar': x => x,
+  /**
+   * @type {Function}
+   */
+  'deregister-tab-bar': x => x,
   //endregion
 
   //region Ember Hooks
@@ -43,15 +51,11 @@ export default Ember.Component.extend(MDCComponent, {
   },
   didInsertElement() {
     this._super(...arguments);
-    if (get(this, 'register-tab-bar')) {
-      get(this, 'register-tab-bar')(this);
-    }
+    get(this, 'register-tab-bar')(this);
   },
   willDestroyElement() {
     this._super(...arguments);
-    if (get(this, 'deregister-tab-bar')) {
-      get(this, 'deregister-tab-bar')();
-    }
+    get(this, 'deregister-tab-bar')();
   },
   //endregion
 
