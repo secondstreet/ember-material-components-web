@@ -33,6 +33,7 @@ export const MDCComponent = Ember.Mixin.create({
     // tend to happen in their own didInsertElement hooks that run _after_ the
     // parent's didInsertElement.
     Ember.run.scheduleOnce('afterRender', this, () => {
+      this._attachMdcInteractionHandlers();
       if (get(this, 'createFoundation')) {
         const foundation = this.createFoundation();
         set(this, 'foundation', foundation);
@@ -47,16 +48,6 @@ export const MDCComponent = Ember.Mixin.create({
         rippleFoundation.init();
       }
     });
-  },
-
-  didUpdateAttrs() {
-    this._super(...arguments);
-    this._detachMdcInteractionHandlers();
-  },
-
-  didRender() {
-    this._super(...arguments);
-    this._attachMdcInteractionHandlers();
   },
 
   willDestroyElement() {
