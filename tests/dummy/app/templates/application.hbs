@@ -310,6 +310,21 @@
     {{/scroller.tab-bar}}
   {{/mdc-tab-bar-scroller}}
 
+  <h3 class="mdc-typography--subheading2">Dark-themed tabs</h3>
+  <div style="background:black">
+    {{#mdc-tab-bar dark=true links=false as |bar|}}
+      {{#bar.tab active=isFirstActive become-active=(action (mut isFirstActive))}}
+        Fruits
+      {{/bar.tab}}
+      {{#bar.tab active=isSecondActive become-active=(action (mut isSecondActive))}}
+        Vegetables
+      {{/bar.tab}}
+      {{#bar.tab active=isThirdActive become-active=(action (mut isThirdActive))}}
+        Meats
+      {{/bar.tab}}
+    {{/mdc-tab-bar}}
+  </div>
+
   {{outlet}}
 </section>
 

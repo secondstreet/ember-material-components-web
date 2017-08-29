@@ -21,6 +21,11 @@ export default Ember.Component.extend(MDCComponent, {
    */
   icons: null,
   /**
+   * Pass as true for white text on a darker background
+   * @type {Boolean}
+   */
+  dark: false,
+  /**
    * @type {String}
    */
   'additional-indicator-classes': '',
@@ -42,7 +47,7 @@ export default Ember.Component.extend(MDCComponent, {
   //region Ember Hooks
   layout,
   classNames: ['mdc-tab-bar'],
-  classNameBindings: ['isIconsOnly:mdc-tab-bar--icon-tab-bar', 'isIconsWithText:mdc-tab-bar--icons-with-text', 'mdcClassNames'],
+  classNameBindings: ['isIconsOnly:mdc-tab-bar--icon-tab-bar', 'isIconsWithText:mdc-tab-bar--icons-with-text', 'mdcClassNames', 'dark:mdc-theme--dark'],
   attributeBindings: ['style'],
   init() {
     this._super(...arguments);

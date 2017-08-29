@@ -11,8 +11,17 @@ const { get, computed, set, run } = Ember;
 const { cssClasses, strings } = MDCTabBarScrollerFoundation;
 
 export default Ember.Component.extend(MDCComponent, {
+  //region Attributes
+  /**
+   * Pass as true for white text on a darker background
+   * @type {Boolean}
+   */
+  dark: false,
+  //endregion
+
   //region Ember Hooks
   classNames: ['mdc-tab-bar-scroller'],
+  classNameBindings: ['dark:mdc-theme--dark'],
   layout,
   init() {
     this._super(...arguments);
