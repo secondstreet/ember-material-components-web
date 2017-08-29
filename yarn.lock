@@ -18,6 +18,10 @@
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.3.0.tgz#57b13c75e705eba9686ec5e9fd03a361738ce76a"
 
+"@material/animation@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.3.1.tgz#229de6927d0590d6d6b20157d778d264ef02229a"
+
 "@material/base@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@material/base/-/base-0.1.0.tgz#aae23050425f3c8d2b67b370ffc667dc042db352"
@@ -67,6 +71,12 @@
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.1.10.tgz#f0250c97c81663534b83c3428e764c9026d41ba1"
   dependencies:
     "@material/animation" "^0.3.0"
+
+"@material/elevation@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.1.11.tgz#195815648697f2fbad20666a4c232dc9b6f1189b"
+  dependencies:
+    "@material/animation" "^0.3.1"
 
 "@material/fab@0.3.9":
   version "0.3.9"
@@ -154,6 +164,14 @@
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.1.7.tgz#b38b771af183bcf34d643f600f17fc433698535a"
 
+"@material/switch@0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@material/switch/-/switch-0.1.12.tgz#ec41cf737567f503b63c620f6124646a202a548f"
+  dependencies:
+    "@material/animation" "^0.3.1"
+    "@material/elevation" "^0.1.11"
+    "@material/theme" "^0.2.0"
+
 "@material/tabs@0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@material/tabs/-/tabs-0.2.4.tgz#ddc8ebe7f9aeccdf8dcb296a14c0af2c38d48668"
@@ -182,6 +200,10 @@
 "@material/theme@^0.1.0", "@material/theme@^0.1.1", "@material/theme@^0.1.5", "@material/theme@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.1.6.tgz#a2044973590a68f608b439d2ce33c17707bc000c"
+
+"@material/theme@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.2.0.tgz#f54a62e8bcd2a63818419c02f7ec61d9968eff07"
 
 "@material/toolbar@0.4.1":
   version "0.4.1"
