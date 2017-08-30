@@ -57,6 +57,11 @@
   </label>
   {{mdc-checkbox input-id="checkbox-for" checked=isCheckboxTwoChecked onchange=(action (mut isCheckboxTwoChecked))}}
   <label for="checkbox-for">Disassociated Label Checkbox</label>
+
+  <div class="test-action-bubbling" {{action "alert" "Stop the bubbling"}}>
+    {{mdc-checkbox input-id="checkbox-for" checked=isCheckboxThreeChecked onchange=(action (mut isCheckboxThreeChecked)) bubbles=false}}
+    <div>Checkbox event propagation is disableable: click outside of the checkbox to test</div>
+  </div>
 </section>
 
 <section class="component-doc">
@@ -86,6 +91,10 @@
       C
     </label>
   </fieldset>
+  <div class="test-action-bubbling" {{action "alert" "Stop the bubbling"}}>
+    {{mdc-radio checked=isRadioFourChecked onchange=(action (mut isRadioFourChecked)) bubbles=false}}
+    <div>Radio button event propagation is disableable: click outside of the checkbox to test</div>
+  </div>
 </section>
 
 <section class="component-doc">
@@ -339,6 +348,13 @@
   </label>
   <h3 class="mdc-typography--subheading2">Disabled Switch</h3>
   {{mdc-switch disabled=true}}
+
+
+  <h3 class="mdc-typography--subheading2">Stops Bubbling</h3>
+  <div class="test-action-bubbling" {{action "alert" "Stop the bubbling"}}>
+    {{mdc-switch bubbles=false}}
+    <div>Switch event propagation is disableable: click outside of the checkbox to test</div>
+  </div>
 </section>
 
 {{/if}}

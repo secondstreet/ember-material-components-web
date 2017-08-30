@@ -3,11 +3,12 @@ import layout from '../templates/components/mdc-checkbox';
 import { addClass, removeClass, MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCCheckboxFoundation } from '@material/checkbox';
+import SupportsBubblesFalse from '../mixins/supports-bubbles-false';
 
 const { ANIM_END_EVENT_NAME } = MDCCheckboxFoundation.strings;
 const { get, set, run } = Ember;
 
-export default Ember.Component.extend(MDCComponent, {
+export default Ember.Component.extend(MDCComponent, SupportsBubblesFalse, {
   //region Attributes
   /**
    * This property is considered read-only by the component, and will not be

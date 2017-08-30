@@ -3,10 +3,11 @@ import layout from '../templates/components/mdc-radio';
 import getElementProperty from '../utils/get-element-property';
 import { MDCComponent } from '../mixins/mdc-component';
 import { MDCRadioFoundation } from '@material/radio';
+import SupportsBubblesFalse from '../mixins/supports-bubbles-false';
 
 const { get } = Ember;
 
-export default Ember.Component.extend(MDCComponent, {
+export default Ember.Component.extend(MDCComponent, SupportsBubblesFalse, {
   //region Attributes
   /**
    * This property is considered read-only by the component, and will not be

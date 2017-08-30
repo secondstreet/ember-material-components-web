@@ -15,3 +15,8 @@ label {
 .component-doc .mdc-card {
   width: 480px;
 }
+
+.test-action-bubbling {
+  border: 1px solid black;
+  padding: 20px;
+}
