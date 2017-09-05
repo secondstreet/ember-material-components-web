@@ -26,12 +26,6 @@ export default Ember.Component.extend(MDCComponent, {
    */
   dark: false,
   /**
-   * Indicates the route that is currently active. This should be passed in when using tabs as links
-   * so that the tabs are informed when the URL is changed.
-   * @type {String}
-   */
-  'current-route': null,
-  /**
    * @type {String}
    */
   'additional-indicator-classes': '',

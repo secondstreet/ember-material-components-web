@@ -6,16 +6,6 @@ import layout from '../templates/components/mdc-tab-bar/tab';
 const { get } = Ember;
 
 export default Ember.Mixin.create(MDCComponent, {
-  //region Attributes
-  /**
-   * Indicates the route that is currently active. This is passed from inside the mdc-tab-bar handlebars.
-   * When the route changes, this attribute gets triggered and the indicator adjusts accordingly.
-   * @private
-   * @type {String}
-   */
-  'current-route': null,
-  //endregion
-
   //region Ember Hooks
   layout,
   classNames: ['mdc-tab'],
