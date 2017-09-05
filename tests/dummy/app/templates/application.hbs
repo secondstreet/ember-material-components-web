@@ -57,11 +57,12 @@
   </label>
   {{mdc-checkbox input-id="checkbox-for" checked=isCheckboxTwoChecked onchange=(action (mut isCheckboxTwoChecked))}}
   <label for="checkbox-for">Disassociated Label Checkbox</label>
-
   <div class="test-action-bubbling" {{action "alert" "Stop the bubbling"}}>
     {{mdc-checkbox input-id="checkbox-for" checked=isCheckboxThreeChecked onchange=(action (mut isCheckboxThreeChecked)) bubbles=false}}
     <div>Checkbox event propagation is disableable: click outside of the checkbox to test</div>
   </div>
+  {{mdc-checkbox checked=isCheckBoxFourChecked}}
+  <button {{action (toggle "isCheckBoxFourChecked" this)}}>Press to Toggle Checkbox</button>
 </section>
 
 <section class="component-doc">
@@ -95,6 +96,8 @@
     {{mdc-radio checked=isRadioFourChecked onchange=(action (mut isRadioFourChecked)) bubbles=false}}
     <div>Radio button event propagation is disableable: click outside of the checkbox to test</div>
   </div>
+  {{mdc-radio checked=isRadioFiveChecked}}
+  <button {{action (toggle "isRadioFiveChecked" this)}}>Press to Toggle Radio</button>
 </section>
 
 <section class="component-doc">
@@ -341,6 +344,7 @@
   <h2 class="mdc-typography--title">Switch</h2>
   <h3 class="mdc-typography--subheading2">Active Switch</h3>
   {{mdc-switch checked=isFirstSwitchOn onchange=(action (mut isFirstSwitchOn))}}
+  <button {{action (toggle "isFirstSwitchOn" this)}}>Press to Toggle Switch</button>
   <h3 class="mdc-typography--subheading2">Switch with Toggle Label</h3>
   <label>
     {{mdc-switch checked=isSecondSwitchOn onchange=(action (mut isSecondSwitchOn))}}
@@ -348,8 +352,6 @@
   </label>
   <h3 class="mdc-typography--subheading2">Disabled Switch</h3>
   {{mdc-switch disabled=true}}
-
-
   <h3 class="mdc-typography--subheading2">Stops Bubbling</h3>
   <div class="test-action-bubbling" {{action "alert" "Stop the bubbling"}}>
     {{mdc-switch bubbles=false}}
