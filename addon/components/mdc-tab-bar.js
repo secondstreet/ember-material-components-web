@@ -6,7 +6,7 @@ import getElementProperty from '../utils/get-element-property';
 import getComponentProperty from '../utils/get-component-property';
 import styleComputed from '../utils/style-computed';
 
-const { computed, get, set } = Ember;
+const { computed, observer, get, set } = Ember;
 const { strings } = MDCTabBarFoundation;
 
 export default Ember.Component.extend(MDCComponent, {
@@ -80,6 +80,15 @@ export default Ember.Component.extend(MDCComponent, {
   indicatorStyle: styleComputed('mdcIndicatorStyles'),
   isIconsOnly: computed.equal('icons', 'only'),
   isIconsWithText: computed.equal('icons', 'with-text'),
+  //endregion
+
+  //region Observers
+  tabsChanged: observer('tabs.@each.foundation', function() {
+    // When a tab is first rendered, its computed measurements are zero. It relies on the tab bar to tell it to find
+    // its correct measurements. When the tabs swap out however, they don't know to go find their measurements. So
+    // we must trigger the tab bar to inform its new tabs of their measurements.
+    get(this, 'tabs').forEach(tab => tab.measureSelf());
+  }),
   //endregion
 
   //region Method
