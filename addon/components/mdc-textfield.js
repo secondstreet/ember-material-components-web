@@ -99,7 +99,7 @@ export default Ember.Component.extend(MDCComponent, {
       'inputFocusHandlers',
       'inputBlurHandlers',
       'inputInputHandlers',
-      'inputKeydownHandlers',
+      'inputKeydownHandlers'
     ].forEach(prop => set(this, prop, Ember.A([])));
     this._super(...arguments);
   },
@@ -136,8 +136,10 @@ export default Ember.Component.extend(MDCComponent, {
    */
   CLASS_NAMES: cssClasses,
   rippleOptions() {
+    const fallbackHasMatches = () => ({ [MATCHES]: () => false });
     return {
-      isSurfaceActive: () => getElementProperty(this, 'querySelector', () => [{[MATCHES]: () => false}])('input, textarea')[0][MATCHES](':active')
+      isSurfaceActive: () =>
+        getElementProperty(this, 'querySelector', fallbackHasMatches)('input, textarea')[MATCHES](':active')
     };
   },
   //endregion
@@ -230,7 +232,7 @@ export default Ember.Component.extend(MDCComponent, {
         get(component, 'inputKeydownHandlers').removeObject(handler);
       },
       getNativeInput() {
-        return getElementProperty(component, 'querySelector', () => [null])('input, textarea')[0];
+        return getElementProperty(component, 'querySelector', () => null)('input, textarea');
       }
     });
   },
