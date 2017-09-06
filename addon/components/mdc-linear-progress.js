@@ -29,7 +29,7 @@ export default Ember.Component.extend(MDCComponent, {
   /**
    * @type {Boolean}
    */
-  accent: false,
+  secondary: false,
 
   /**
    * @type {Number}
@@ -45,7 +45,7 @@ export default Ember.Component.extend(MDCComponent, {
     `indeterminate:${cssClasses.INDETERMINATE_CLASS}`,
     `closed:${cssClasses.CLOSED_CLASS}`,
     `reversed:${cssClasses.REVERSED_CLASS}`,
-    'accent:mdc-linear-progress--accent'
+    'secondary:mdc-linear-progress--accent'
   ],
   attributeBindings: ['role'],
   init() {

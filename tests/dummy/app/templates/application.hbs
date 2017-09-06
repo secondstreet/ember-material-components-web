@@ -6,9 +6,14 @@
   <h2 class="mdc-typography--title">Buttons</h2>
   {{#mdc-button}}Standard Button{{/mdc-button}}
   {{#mdc-button disabled=true click=(action "alert" "Should not see this.")}}Disabled Button{{/mdc-button}}
-  {{#mdc-button accent=true}}Accent Button{{/mdc-button}}
+  {{#mdc-button secondary=true}}Secondary Button{{/mdc-button}}
   {{#mdc-button raised=true}}Raised Button{{/mdc-button}}
-  {{#mdc-button raised=true accent=true}}Raised Accent Button{{/mdc-button}}
+  {{#mdc-button raised=true secondary=true}}Raised Secondary Button{{/mdc-button}}
+  {{#mdc-button unelevated=true}}Unelevated Button{{/mdc-button}}
+  {{#mdc-button unelevated=true secondary=true}}Unelevated Secondary Button{{/mdc-button}}
+  {{#mdc-button stroked=true}}Stroked Button{{/mdc-button}}
+  {{#mdc-button unelevated=true compact=true}}Unelevated Compact Button{{/mdc-button}}
+  {{#mdc-button unelevated=true dense=true}}Unelevated Dense Button{{/mdc-button}}
   {{#mdc-button click=(action "alert" "Action button clicked")}}Action Button{{/mdc-button}}
   <form class="tiny-form" onsubmit={{action "alert" "Form Submitted"}}>
     {{#mdc-button type="submit"}}Submit Button{{/mdc-button}}
@@ -124,7 +129,13 @@
 <section class="component-doc">
   <h2 class="mdc-typography--title">Text Fields</h2>
 
-  TODO: Bug with placeholder + label.
+  {{mdc-textfield
+    label="Box Textfield"
+    box=true
+    value=textfieldBoxValue
+    onchange=(action (mut textfieldBoxValue))
+    type="text"
+  }}
 
   {{mdc-textfield
     label="Email Address"
@@ -134,6 +145,7 @@
     type="email"
     helptext="This will not be sent to any server"
   }}
+  TODO: Bug with placeholder + label.
 
   {{mdc-textfield
     label="Recipient Email"
@@ -224,8 +236,8 @@
   <h3 class="mdc-typography--subheading2">Linear Progress Indeterminate</h3>
   {{mdc-linear-progress indeterminate=true}}
 
-  <h3 class="mdc-typography--subheading2">Linear Progress Determinate Accented</h3>
-  {{mdc-linear-progress accent=true}}
+  <h3 class="mdc-typography--subheading2">Linear Progress Determinate Secondary</h3>
+  {{mdc-linear-progress secondary=true}}
 
 </section>
 

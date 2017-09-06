@@ -1,8 +1,11 @@
 import Ember from 'ember';
 import layout from '../templates/components/mdc-textfield';
 import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
+import getElementProperty from '../utils/get-element-property';
 import { MDCTextfieldFoundation } from '@material/textfield';
+import { util } from '@material/ripple';
 
+const MATCHES = util.getMatchesProperty(HTMLElement.prototype);
 const { cssClasses } = MDCTextfieldFoundation;
 const { get, set, computed } = Ember;
 
@@ -28,6 +31,11 @@ export default Ember.Component.extend(MDCComponent, {
    */
   type: 'text',
   /**
+   * Render as a box instead of a bare textfield
+   * @type {Boolean}
+   */
+  box: false,
+  /**
    * This will be called when the user indicates they want to change the value
    * of the input. If you want to simulate two-way binding, you can use the
    * input like this:
@@ -42,6 +50,10 @@ export default Ember.Component.extend(MDCComponent, {
    * @type {Boolean}
    */
   valid: true,
+  /**
+   * @type {Boolean}
+   */
+  'bad-input': false,
   /**
    * @type {?String}
    */
@@ -123,12 +135,18 @@ export default Ember.Component.extend(MDCComponent, {
    * @type {Object}
    */
   CLASS_NAMES: cssClasses,
+  rippleOptions() {
+    return {
+      isSurfaceActive: () => getElementProperty(this, 'querySelector', () => [{[MATCHES]: () => false}])('input, textarea')[0][MATCHES](':active')
+    };
+  },
   //endregion
 
   //region Computed Properties
   /**
    * @type {String}
    */
+  ripple: computed.bool('box'),
   labelClassnames: computed('value', 'labelClasses.[]', function() {
     const classnames = Ember.A([]);
     if (get(this, 'value')) {
@@ -212,12 +230,7 @@ export default Ember.Component.extend(MDCComponent, {
         get(component, 'inputKeydownHandlers').removeObject(handler);
       },
       getNativeInput() {
-        const  value = get(component, 'value');
-        return {
-          value,
-          disabled: get(component, 'disabled'),
-          checkValidity: () => get(component, 'valid')
-        };
+        return getElementProperty(component, 'querySelector', () => [null])('input, textarea')[0];
       }
     });
   },

@@ -1,4 +1,4 @@
-<label class="{{CLASS_NAMES.ROOT}} {{mdcClassNames}} {{unless valid CLASS_NAMES.INVALID}} {{if fullwidth "mdc-textfield--fullwidth"}} {{if disabled CLASS_NAMES.DISABLED}} {{if value CLASS_NAMES.UPGRADED}} {{if multiline "mdc-textfield--multiline"}}">
+<label class="{{CLASS_NAMES.ROOT}} {{mdcClassNames}} {{unless valid CLASS_NAMES.INVALID}} {{if fullwidth "mdc-textfield--fullwidth"}} {{if disabled CLASS_NAMES.DISABLED}} {{if value CLASS_NAMES.UPGRADED}} {{if multiline "mdc-textfield--multiline"}} {{if box "mdc-textfield--box"}}">
   {{#if multiline}}
     {{mdc-textfield/textarea
       value=value
@@ -24,6 +24,9 @@
       readonly=readonly
       type=type
     }}
+    {{#if box}}
+      <div class="mdc-textfield__bottom-line"></div>
+    {{/if}}
   {{/if}}
   {{#mdc-textfield/label class-names=labelClassnames}}
     {{label}}

@@ -2,11 +2,11 @@ import Ember from 'ember';
 import layout from '../templates/components/mdc-menu';
 import { MDCComponent } from '../mixins/mdc-component';
 import styleComputed from '../utils/style-computed';
-import { MDCSimpleMenuFoundation } from '@material/menu';
+import { MDCSimpleMenuFoundation, util } from '@material/menu';
 
 const { get, set } = Ember;
 const { strings } = MDCSimpleMenuFoundation;
-const TRANSFORM_PROPERTY = ('transform' in document.createElement('span')) ? 'transform' : 'webkitTransform';
+const TRANSFORM_PROPERTY = util.getTransformPropertyName(window);
 
 /**
  * @typedef {Ember.Component} MDCMenuComponent

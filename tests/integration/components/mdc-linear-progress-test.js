@@ -10,7 +10,7 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.set('isAccent', false);
+  this.set('isSecondary', false);
   this.set('myProgress', 0.5);
   this.set('isIndeterminate', false);
   this.set('mdcFoundation', {
@@ -18,7 +18,7 @@ test('it renders', function(assert) {
       assert.equal(x, this.get('myProgress'));
     }
   });
-  this.render(hbs`{{mdc-linear-progress accent=isAccent progress=myProgress indeterminate=isIndeterminate foundation=mdcFoundation}}`);
+  this.render(hbs`{{mdc-linear-progress secondary=isSecondary progress=myProgress indeterminate=isIndeterminate foundation=mdcFoundation}}`);
 
   assert.equal(this.$().text().trim(), '');
 
@@ -26,8 +26,8 @@ test('it renders', function(assert) {
 
   this.set('myProgress', 0.8);
 
-  this.set('isAccent', true);
+  this.set('isSecondary', true);
   this.set('isIndeterminate', true);
   assert.ok(this.$('.mdc-linear-progress').hasClass('mdc-linear-progress--indeterminate'), 'Progress bar is in indeterminate state');
-  assert.ok(this.$('.mdc-linear-progress').hasClass('mdc-linear-progress--accent'), 'Progress bar is in accented variation');
+  assert.ok(this.$('.mdc-linear-progress').hasClass('mdc-linear-progress--accent'), 'Progress bar is in secondary variation');
 });
