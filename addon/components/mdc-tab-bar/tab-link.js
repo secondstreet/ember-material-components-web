@@ -9,10 +9,10 @@ export default Ember.LinkComponent.extend(MDCTabComponent, {
   //endregion
 
   //region Observers
-  activeStateChanged: observer('active', function() {
-    if (get(this, 'active')) {
-      get(this, 'switch-to-tab')(this);
-    }
-  }),
+  // activeStateChanged: observer('active', function() {
+  //   if (get(this, 'active')) {
+  //     get(this, 'switch-to-tab')(this);
+  //   }
+  // }),
   //endregion
 });
