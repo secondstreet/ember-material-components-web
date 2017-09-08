@@ -144,6 +144,10 @@ export default Ember.Component.extend(MDCComponent, {
     },
     deregisterTabBar() {
       set(this, 'tab-bar', null);
+    },
+    scrollActiveTabIntoView(index) {
+      // TODO: when/if Google MDC makes this method public we will need to change this line
+      get(this, 'foundation').scrollToTabAtIndex_(index);
     }
   }
   //endregion

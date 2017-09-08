@@ -6,6 +6,12 @@ const { get, observer } = Ember;
 export default Ember.LinkComponent.extend(MDCTabComponent, {
   //region Ember Hooks
   activeClass: 'mdc-tab--active',
+  didInsertElement() {
+    this._super(...arguments);
+    if (get(this, 'active')) {
+      get(this, 'scroll-into-view')(this);
+    }
+  },
   //endregion
 
   //region Observers

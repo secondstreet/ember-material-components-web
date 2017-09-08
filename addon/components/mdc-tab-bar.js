@@ -121,6 +121,9 @@ export default Ember.Component.extend(MDCComponent, {
     if (get(this, 'links')) {
       if (this.tabAt(index) && isActive) {
         this.tabAt(index)._invoke({ stopPropagation() {}, preventDefault() {} }); // TODO: Probably shouldn't be calling private APIs or stubbing events
+        if (get(this, 'scroll-active-tab-into-view')) {
+          get(this, 'scroll-active-tab-into-view')(index);
+        }
       }
     }
     else {
@@ -146,6 +149,9 @@ export default Ember.Component.extend(MDCComponent, {
     },
     switchToTab(tab) {
       Ember.run.next(() => get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true));
+    },
+    scrollTabIntoView(tab) {
+      Ember.run.next(() => get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)));
     }
   }
   //endregion
