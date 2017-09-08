@@ -88,6 +88,11 @@ export default Ember.Component.extend(MDCComponent, {
     // its correct measurements. When the tabs swap out however, they don't know to go find their measurements. So
     // we must trigger the tab bar to inform its new tabs of their measurements.
     get(this, 'tabs').forEach(tab => tab.measureSelf());
+    // then we need to reset the indicator styles
+    if (get(this, 'foundation')) {
+      //TODO: submit a PR to Google asking to have this method made public
+      get(this, 'foundation').layoutIndicator_();
+    }
   }),
   //endregion
 
@@ -151,7 +156,9 @@ export default Ember.Component.extend(MDCComponent, {
       Ember.run.next(() => get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true));
     },
     scrollTabIntoView(tab) {
-      Ember.run.next(() => get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)));
+      if (get(this, 'scroll-active-tab-into-view')) {
+        Ember.run.next(() => get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)));
+      }
     }
   }
   //endregion
