@@ -49,7 +49,7 @@
     "@material/list": "0.2.17",
     "@material/menu": "0.4.5",
     "@material/radio": "0.2.12",
-    "@material/ripple": "0.8.5",
+    "@material/ripple": "0.8.6",
     "@material/switch": "0.1.12",
     "@material/tabs": "0.2.8",
     "@material/textfield": "0.3.6",
