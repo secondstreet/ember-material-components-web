@@ -153,13 +153,11 @@ export default Ember.Component.extend(MDCComponent, {
       get(this, 'tabs').removeObject(tab);
     },
     switchToTab(tab) {
-      if (get(this, 'tabs.length')) {
-        Ember.run.next(() => get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true));
-      }
+      Ember.run.next(() => get(this, 'tabs.length') ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true) : null);
     },
     scrollTabIntoView(tab) {
-      if (get(this, 'scroll-active-tab-into-view') && get(this, 'tabs.length')) {
-        Ember.run.next(() => get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)));
+      if (get(this, 'scroll-active-tab-into-view')) {
+        Ember.run.next(() => get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null);
       }
     }
   }
