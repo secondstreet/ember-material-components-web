@@ -139,7 +139,7 @@ export const MDCComponent = Ember.Mixin.create({
   },
 
   setStyleFor(key, property, value) {
-    Ember.run(() => {
+    Ember.run.next(() => {
       if (get(this, 'isDestroyed')) { return; }
 
       set(this, `${key}.${property}`, value);
