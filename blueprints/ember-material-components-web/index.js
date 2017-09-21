@@ -19,7 +19,7 @@ module.exports = {
       { name: '@material/textfield', target: '0.3.6' },
       { name: '@material/menu', target: '0.4.5' },
       { name: '@material/toolbar', target: '0.4.7'},
-      { name: '@material/tabs', target: '0.2.8'},
+      { name: '@material/tabs', target: '0.3.0'},
       { name: '@material/ripple', target: '0.8.6'},
       { name: '@material/linear-progress', target: '0.1.8'},
       { name: '@material/switch', target: '0.1.12'}

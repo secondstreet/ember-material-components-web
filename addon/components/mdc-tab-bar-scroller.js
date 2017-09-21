@@ -152,8 +152,7 @@ export default Ember.Component.extend(MDCComponent, {
       const tabRightBoundary = get(this, 'tab-bar').tabAt(index).$()[0].getBoundingClientRect().right;
       const tabLeftBoundary = get(this, 'tab-bar').tabAt(index).$()[0].getBoundingClientRect().left;
       if ((tabRightBoundary > scrollerRightBoundary) || (tabLeftBoundary < scrollerLeftBoundary)) {
-        // TODO: when/if Google MDC makes this method public we will need to change this line
-        get(this, 'foundation').scrollToTabAtIndex_(index);
+        get(this, 'foundation').scrollToTabAtIndex(index);
       }
     }
   }

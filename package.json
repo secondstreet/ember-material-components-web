@@ -51,7 +51,7 @@
     "@material/radio": "0.2.12",
     "@material/ripple": "0.8.6",
     "@material/switch": "0.1.12",
-    "@material/tabs": "0.2.8",
+    "@material/tabs": "0.3.0",
     "@material/textfield": "0.3.6",
     "@material/theme": "0.2.0",
     "@material/toolbar": "0.4.7",
