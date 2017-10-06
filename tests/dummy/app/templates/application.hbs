@@ -566,6 +566,17 @@
         </div>
       {{/freestyle-usage}}
     {{/freestyle-section}}
+    {{#freestyle-section name="Toolbar" as |section|}}
+      {{#freestyle-usage "toolbar-basic" name="Basic usage"}}
+        {{#mdc-toolbar as |toolbar|}}
+          {{#toolbar.row as |row|}}
+            {{#row.section align="start" as |section|}}
+              {{#section.title}}Toolbar{{/section.title}}
+            {{/row.section}}
+          {{/toolbar.row}}
+        {{/mdc-toolbar}}
+      {{/freestyle-usage}}
+    {{/freestyle-section}}
   {{/freestyle-guide}}
 {{/if}}
 {{outlet}}
