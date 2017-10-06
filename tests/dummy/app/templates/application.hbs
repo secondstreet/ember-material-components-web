@@ -204,6 +204,91 @@
 </section>
 
 <section class="component-doc">
+  <h2 class="mdc-typography--title">Lists</h2>
+
+  <h3 class="mdc-typography--subheading2">Single-Line List</h3>
+
+  <h4 class="mdc-typography--subheading3">Text only</h4>
+  {{#mdc-list theme="dark" as |list|}}
+    {{#list.item}}Single-line item{{/list.item}}
+    {{#list.item}}Single-line item{{/list.item}}
+    {{#list.item}}Single-line item{{/list.item}}
+  {{/mdc-list}}
+
+  <h4 class="mdc-typography--subheading3">Text only (dense)</h4>
+  {{#mdc-list dense=true as |list|}}
+    {{#list.item}}Single-line item{{/list.item}}
+    {{#list.item}}Single-line item{{/list.item}}
+    {{#list.item}}Single-line item{{/list.item}}
+  {{/mdc-list}}
+
+  <h4 class="mdc-typography--subheading3">Start Detail</h4>
+  {{#mdc-list as |list|}}
+    {{#list.item as |item|}}
+      {{#item.start-detail as |class|}}
+        <i class="material-icons {{class}}" aria-hidden="true">network_wifi</i>
+      {{/item.start-detail}}
+      Wi-Fi
+    {{/list.item}}
+    {{#list.item as |item|}}
+      {{#item.start-detail as |class|}}
+        <i class="material-icons {{class}}" aria-hidden="true">bluetooth</i>
+      {{/item.start-detail}}
+      Bluetooth
+    {{/list.item}}
+    {{#list.item as |item|}}
+      {{#item.start-detail as |class|}}
+        <i class="material-icons {{class}}" aria-hidden="true">data_usage</i>
+      {{/item.start-detail}}
+      Data Usage
+    {{/list.item}}
+  {{/mdc-list}}
+
+  <h4 class="mdc-typography--subheading3">End Detail</h4>
+  {{#mdc-list as |list|}}
+    {{#list.item as |item|}}
+      Single-line item
+      {{#item.end-detail as |class|}}
+        <i class="material-icons {{class}}" aria-hidden="true">information</i>
+      {{/item.end-detail}}
+    {{/list.item}}
+    {{#list.item as |item|}}
+      Single-line item
+      {{#item.end-detail as |class|}}
+        <i class="material-icons {{class}}" aria-hidden="true">information</i>
+      {{/item.end-detail}}
+    {{/list.item}}
+    {{#list.item as |item|}}
+      Single-line item
+      {{#item.end-detail as |class|}}
+        <i class="material-icons {{class}}" aria-hidden="true">information</i>
+      {{/item.end-detail}}
+    {{/list.item}}
+  {{/mdc-list}}
+
+  <h3 class="mdc-typography--subheading2">Two-line List</h3>
+
+  <h4 class="mdc-typography--subheading3">Text only</h4>
+  {{#mdc-list two-line=true as |list|}}
+    {{#list.item as |item|}}
+      {{#item.text as |text|}}Two-line item
+        {{#text.secondary}}Secondary text{{/text.secondary}}
+      {{/item.text}}
+    {{/list.item}}
+    {{#list.item as |item|}}
+      {{#item.text as |text|}}Two-line item
+        {{#text.secondary}}Secondary text{{/text.secondary}}
+      {{/item.text}}
+    {{/list.item}}
+    {{#list.item as |item|}}
+      {{#item.text as |text|}}Two-line item
+        {{#text.secondary}}Secondary text{{/text.secondary}}
+      {{/item.text}}
+    {{/list.item}}
+  {{/mdc-list}}
+</section>
+
+<section class="component-doc">
   <h2 class="mdc-typography--title">Menu</h2>
 
   {{#mdc-menu-anchor as |anchor|}}

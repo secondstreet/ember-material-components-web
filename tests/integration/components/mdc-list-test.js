@@ -6,20 +6,15 @@ moduleForComponent('mdc-list', 'Integration | Component | mdc list', {
 });
 
 test('it renders', function(assert) {
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{mdc-list}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
   // Template block usage:
   this.render(hbs`
-    {{#mdc-list}}
-      template block text
+    {{#mdc-list as |list|}}
+      {{#list.item}}Item 1{{/list.item}}
+      {{#list.item}}Item 2{{/list.item}}
+      {{#list.item}}Item 3{{/list.item}}
     {{/mdc-list}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.mdc-list-item').length, 3);
+  assert.equal(this.$('.mdc-list-item:first-of-type').text().trim(), 'Item 1');
 });
