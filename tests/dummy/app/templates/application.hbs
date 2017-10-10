@@ -138,6 +138,20 @@
   }}
 
   {{mdc-textfield
+    label="Full width with on event actions"
+    fullwidth=true
+    value=fullWidthValue
+    onchange=(action (mut fullWidthValue))
+    onfocus=(action 'logToConsole' 'focus')
+    onblur=(action 'logToConsole' 'blur')
+    onkeydown=(action 'logToConsole' 'keydown')
+    oninput=(action (pipe (action 'logToConsole' 'input')))
+    helptext=(concat "Received event for: " (if eventType eventType 'not triggered yet'))
+    helptext-persistent=true
+    type="text"
+  }}
+
+  {{mdc-textfield
     label="Email Address"
     placeholder="something@example.com"
     value=textfieldOneValue

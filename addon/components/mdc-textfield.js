@@ -7,7 +7,7 @@ import { util } from '@material/ripple';
 
 const MATCHES = util.getMatchesProperty(HTMLElement.prototype);
 const { cssClasses } = MDCTextfieldFoundation;
-const { get, set, computed } = Ember;
+const { get, set, computed, isPresent } = Ember;
 
 export default Ember.Component.extend(MDCComponent, {
   //region Attributes
@@ -46,6 +46,26 @@ export default Ember.Component.extend(MDCComponent, {
    * @param {Boolean} checked
    */
   onchange: x => x,
+  /**
+   * @type {Function}
+   * @param {jQuery.Event}
+   */
+  onfocus: x => x,
+  /**
+   * @type {Function}
+   * @param {jQuery.Event}
+   */
+  onblur: x => x,
+  /**
+   * @type {Function}
+   * @param {jQuery.Event}
+   */
+  oninput: x => x,
+  /**
+   * @type {Function}
+   * @param {jQuery.Event}
+   */
+  onkeydown: x => x,
   /**
    * @type {Boolean}
    */
@@ -100,7 +120,7 @@ export default Ember.Component.extend(MDCComponent, {
       'inputBlurHandlers',
       'inputInputHandlers',
       'inputKeydownHandlers'
-    ].forEach(prop => set(this, prop, get(this, prop) || Ember.A([])));
+    ].forEach(prop => set(this, prop, Ember.A([])));
     this._super(...arguments);
   },
   //endregion
@@ -240,6 +260,10 @@ export default Ember.Component.extend(MDCComponent, {
   //region Actions
   actions: {
     handle(type, ev) {
+      const eventHandler = get(this, `on${type}`.toLowerCase());
+      if (isPresent(eventHandler)) {
+        eventHandler(ev);
+      }
       get(this, Ember.String.camelize(`input ${type} handlers`)).forEach(handler => handler(ev));
     },
     handleInput(ev) {

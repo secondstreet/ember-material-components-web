@@ -10,6 +10,9 @@ export default Ember.Controller.extend({
         window.alert(what);
       }, 300);
       return false;
+    },
+    logToConsole(eventType) {
+      Ember.set(this, 'eventType', eventType);
     }
   }
 });
