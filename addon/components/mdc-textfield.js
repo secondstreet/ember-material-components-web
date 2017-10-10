@@ -100,7 +100,7 @@ export default Ember.Component.extend(MDCComponent, {
       'inputBlurHandlers',
       'inputInputHandlers',
       'inputKeydownHandlers'
-    ].forEach(prop => set(this, prop, Ember.A([])));
+    ].forEach(prop => set(this, prop, get(this, prop) || Ember.A([])));
     this._super(...arguments);
   },
   //endregion
