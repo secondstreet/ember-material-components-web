@@ -82,6 +82,10 @@
     "@material/ripple" "^0.8.5"
     "@material/theme" "^0.2.0"
 
+"@material/layout-grid@0.4.4":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/@material/layout-grid/-/layout-grid-0.4.4.tgz#f87daee5ad45ec27de91c61538d8410bb12d5429"
+
 "@material/linear-progress@0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@material/linear-progress/-/linear-progress-0.1.8.tgz#e9090b64f685ecbc7db5a3e15f4ec352620be9fc"

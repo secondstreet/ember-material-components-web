@@ -11,6 +11,7 @@ module.exports = {
       { name: '@material/fab', target: '0.3.16' },
       { name: '@material/card', target: '0.2.7' },
       { name: '@material/icon-toggle', target: '0.1.19' },
+      { name: '@material/layout-grid', target: '0.4.4' },
       { name: '@material/elevation', target: '0.1.11' },
       { name: '@material/list', target: '0.2.17' },
       { name: '@material/form-field', target: '0.2.14' },

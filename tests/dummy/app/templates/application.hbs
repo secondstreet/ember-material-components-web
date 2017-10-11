@@ -279,6 +279,94 @@
         }}
       {{/freestyle-usage}}
     {{/freestyle-section}}
+    {{#freestyle-section name="Layout Grids" as |section|}}
+      {{#freestyle-usage "lg-column-spans" title="Column spans"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell span=6}}
+              Span 6
+            {{/inner.cell}}
+            {{#inner.cell span=4}}
+              Span 4
+            {{/inner.cell}}
+            {{#inner.cell span=2}}
+              Span 2
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-column-spans-specific" title="Column spans for specific screen sizes"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell span=6 span-tablet=8}}
+              6 (8 tablet)
+            {{/inner.cell}}
+            {{#inner.cell span=4 span-tablet=6}}
+              4 (6 tablet)
+            {{/inner.cell}}
+            {{#inner.cell span=2 span-phone=4}}
+              2 (4 phone)
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-cell-reordering" title="Cell reordering"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell order=3}}
+              Cell 3
+            {{/inner.cell}}
+            {{#inner.cell order=1}}
+              Cell 1
+            {{/inner.cell}}
+            {{#inner.cell order=2}}
+              Cell 2
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-cell-alignment" title="Cell alignment"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell align="top"}}
+              Top aligned
+            {{/inner.cell}}
+            {{#inner.cell align="middle"}}
+              Middle aligned
+            {{/inner.cell}}
+            {{#inner.cell align="bottom"}}
+              Bottom aligned
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-fixed-width-alignment" title="Fixed column width grid, alignment of grid"}}
+        {{#mdc-layout-grid fixed-column-width=true align="left" as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell}}
+              ...
+            {{/inner.cell}}
+            {{#inner.cell}}
+              ...
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-nested-grid" title="Nested grid"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell}}
+              {{#grid.inner as |inner2|}}
+                {{#inner2.cell}}Second Level{{/inner2.cell}}
+                {{#inner2.cell}}Second Level{{/inner2.cell}}
+              {{/grid.inner}}
+            {{/inner.cell}}
+            {{#inner.cell}}First Level{{/inner.cell}}
+            {{#inner.cell}}First Level{{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+    {{/freestyle-section}}
     {{#freestyle-section name="Icon Toggles" as |section|}}
       {{#freestyle-usage 'icon-attrs' title="Attributes"}}
         TODO: The ripple looks odd here. <br/>
