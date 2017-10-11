@@ -30,3 +30,15 @@ It's advisable to run `ember g ember-material-components-web` between upgrades a
 Also please note that independently upgrading any of the `@material/[...]` packages in your `package.json`'s `devDependencies` _may_ introduce bugs, as Google is quickly iterating and introducing breaking chanegs on [MDC-Web](https://material.io/components/web/).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+## Contributors
+
+Thank you to all of our wonderful contributors! Want to be on this list? [Check out our contributing guide!](https://github.com/secondstreet/ember-material-components-web/blob/master/CONTRIBUTING.md)
+
+[![Kerrick Long](https://avatars1.githubusercontent.com/u/552093?v=4&s=120)](https://github.com/Kerrick) | [![danielraggs](https://avatars1.githubusercontent.com/u/9326399?v=4&s=120)](https://github.com/danielraggs) | [![Vladic](https://avatars1.githubusercontent.com/u/20466869?v=4&s=120)](https://github.com/vkkostin) | [![Matt Thouvenot](https://avatars1.githubusercontent.com/u/6677376?v=4&s=120)](https://github.com/mthouve)
+-- | -- | -- | --
+[Kerrick Long](https://github.com/Kerrick) | [danielraggs](https://github.com/danielraggs) | [Vladic](https://github.com/vkkostin) | [Matt Thouvenot](https://github.com/mthouve)
+
+[![Nathan Dauber](https://avatars1.githubusercontent.com/u/948512?v=4&s=120)](https://github.com/KnownSubset) | [![Jack Anderson](https://avatars1.githubusercontent.com/u/296167?v=4&s=120)](https://github.com/JackCA)
+-- | -- |
+[Nathan Dauber](https://github.com/KnownSubset) | [Jack Anderson](https://github.com/JackCA)
