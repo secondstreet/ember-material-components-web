@@ -23,29 +23,28 @@
 <section class="component-doc">
   <h2 class="mdc-typography--title">Cards</h2>
   {{#mdc-card as |card|}}
-    {{#card.primary}}
-      {{#card.title}}
-        Card Title
-      {{/card.title}}
-      {{#card.subtitle}}
-        Card Subtitle
-      {{/card.subtitle}}
+    {{#card.primary as |primary|}}
+      {{#primary.title large=true}}
+        Title goes here
+      {{/primary.title}}
+      {{#primary.subtitle}}
+        Subtitle here
+      {{/primary.subtitle}}
     {{/card.primary}}
     {{card.media-item src="http://placekitten.com/960/480" size=3 width=480 alt="Kitten"}}
     {{#card.supporting-text}}
-      Please note that the API for cards is planned to change. Currently, every sub-component is
-      a property on the hash yielded from <code>\{{#mdc-card}}</code>. This does not follow the newer
-      convention of yielding from the component or sub-component it should be directly nested within.
-      For example, <code>card.title</code> should be on the hash yielded by <code>card.primary</code>,
-      not on the hash yielded by <code>mdc-card</code> directly.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
     {{/card.supporting-text}}
-    {{#card.actions}}
-      {{#card.action}}
+    {{#card.actions as |actions|}}
+      {{#actions.action}}
         Example Action
-      {{/card.action}}
-      {{#card.action click=(action "alert" "Alert action clicked")}}
+      {{/actions.action}}
+      {{#actions.action click=(action "alert" "Alert action clicked")}}
         Alert Action
-      {{/card.action}}
+      {{/actions.action}}
     {{/card.actions}}
   {{/mdc-card}}
 </section>

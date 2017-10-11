@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../../templates/components/mdc-card/title';
+import layout from '../../../templates/components/mdc-card/primary/title';
 
 export default Ember.Component.extend({
   //region Attributes
