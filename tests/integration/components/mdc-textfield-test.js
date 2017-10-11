@@ -14,3 +14,14 @@ test('it renders', function(assert) {
 
   assert.equal(this.$().text().trim(), '');
 });
+
+test('it detects if it is focused based upon classnames', function(assert) {
+  const placeholderText='Hi I am the placeholder';
+  this.set('placeholderText', placeholderText);
+
+  this.render(hbs`{{mdc-textfield placeholder=placeholderText label='This is a Label'}}`);
+
+  assert.notOk(this.$('input').attr('placeholder'), 'Without focus the placeholder is NOT displayed');
+  this.$('input').trigger('focusin');
+  assert.equal(this.$('input').attr('placeholder'), placeholderText, 'With focus the placeholder IS displayed');
+});

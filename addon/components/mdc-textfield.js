@@ -165,6 +165,12 @@ export default Ember.Component.extend(MDCComponent, {
   //endregion
 
   //region Computed Properties
+  isFocused: computed('mdcClassNames', function (){
+    const mdcClassNames = get(this, 'mdcClassNames').split(' ');
+    const focusedClassName = get(this, 'CLASS_NAMES.FOCUSED');
+    return mdcClassNames.includes(focusedClassName);
+  }),
+
   /**
    * @type {String}
    */
