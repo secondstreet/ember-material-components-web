@@ -91,7 +91,7 @@ export default Ember.Component.extend(MDCComponent, {
     // then we need to reset the indicator styles
     if (get(this, 'foundation')) {
       //TODO: submit a PR to Google asking to have this method made public
-      get(this, 'foundation').layoutIndicator_();
+      get(this, 'foundation').layout();
     }
   }),
   //endregion
