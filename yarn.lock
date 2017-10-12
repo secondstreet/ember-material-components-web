@@ -14,6 +14,10 @@
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@material/base/-/base-0.2.5.tgz#d721a8add68bbfa8ed6759c6bbd9107cd272a2b0"
 
+"@material/base@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@material/base/-/base-0.2.6.tgz#3003f3df2c06d172151d4160b8c8b2e6c65e7c01"
+
 "@material/button@0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@material/button/-/button-0.5.0.tgz#a4382b8c4f1773c95020830318d566dffe8c4f4c"
@@ -71,6 +75,15 @@
     "@material/rtl" "^0.1.7"
     "@material/selection-control" "^0.1.0"
     "@material/theme" "^0.2.0"
+    "@material/typography" "^0.3.0"
+
+"@material/grid-list@0.2.13":
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/@material/grid-list/-/grid-list-0.2.13.tgz#04ce198d23c710c67316f1ec5f0409829fd6bead"
+  dependencies:
+    "@material/base" "^0.2.6"
+    "@material/rtl" "^0.1.8"
+    "@material/theme" "^0.4.0"
     "@material/typography" "^0.3.0"
 
 "@material/icon-toggle@0.1.19":
@@ -137,6 +150,10 @@
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.1.7.tgz#b38b771af183bcf34d643f600f17fc433698535a"
 
+"@material/rtl@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.1.8.tgz#2462db15e2d4e041666485559c028382872b01fb"
+
 "@material/selection-control@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@material/selection-control/-/selection-control-0.1.1.tgz#974822771d61da1034737236c5dc20e63a9c52d3"
@@ -184,6 +201,10 @@
 "@material/theme@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.3.0.tgz#d0e7622c77aebbd9416e6561c31ff4a8338d1f06"
+
+"@material/theme@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.4.0.tgz#0aef1a0279b65c15990584fb8b8eca095c734641"
 
 "@material/toolbar@0.4.7":
   version "0.4.7"
