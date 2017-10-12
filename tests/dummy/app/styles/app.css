@@ -6,14 +6,28 @@ label {
   cursor: pointer;
 }
 
+.shields a {
+  text-decoration: none;
+}
+
 .component-doc {
   border-bottom: 1px solid var(--mdc-theme-primary, black);
   padding-bottom: 2em;
   margin-bottom: 1em;
 }
 
-.component-doc .mdc-card {
-  width: 480px;
+.FreestyleUsage-rendered .mdc-card {
+  max-width: 480px;
+}
+
+.FreestyleUsage-rendered [class*="mdc-elevation--z"] {
+  margin: 2rem;
+  min-height: 3em;
+  padding: 1rem;
+}
+
+.FreestyleUsage-rendered .mdc-list {
+  max-width: 320px;
 }
 
 .test-action-bubbling {
