@@ -98,8 +98,8 @@ export default Ember.Component.extend(MDCComponent, {
   //region Method
   createFoundation() {
     return new MDCTabBarFoundation({
-      addClass: (className) => Ember.run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: (className) => Ember.run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
       bindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
       unbindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
       registerResizeHandler: (handler) => window.addEventListener('resize', handler),
@@ -112,7 +112,7 @@ export default Ember.Component.extend(MDCComponent, {
       isTabActiveAtIndex: (index) => this.isTabActiveAtIndex(index),
       setTabActiveAtIndex: (index, isActive) => this.setTabActiveAtIndex(index, isActive),
       isDefaultPreventedOnClickForTabAtIndex: (index) => get(this.tabAt(index), 'preventDefaultOnClick'),
-      setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) => Ember.run(() => set(this.tabAt(index), 'preventDefaultOnClick', preventDefaultOnClick)),
+      setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) => run(() => set(this.tabAt(index), 'preventDefaultOnClick', preventDefaultOnClick)),
       measureTabAtIndex: (index) => this.tabAt(index).measureSelf(),
       getComputedWidthForTabAtIndex: (index) => getComponentProperty(this.tabAt(index), 'computedWidth', 0),
       getComputedLeftForTabAtIndex: (index) => getComponentProperty(this.tabAt(index), 'computedLeft', 0)
@@ -143,7 +143,7 @@ export default Ember.Component.extend(MDCComponent, {
   actions: {
     tabSelected({ tab }, shouldNotifyChange) {
       const index = get(this, 'tabs').indexOf(tab);
-      Ember.run(() => get(this, 'foundation').switchToTabAtIndex(index, shouldNotifyChange));
+      run(() => get(this, 'foundation').switchToTabAtIndex(index, shouldNotifyChange));
     },
     registerTab(tab) {
       get(this, 'tabs').addObject(tab);
@@ -152,11 +152,11 @@ export default Ember.Component.extend(MDCComponent, {
       get(this, 'tabs').removeObject(tab);
     },
     switchToTab(tab) {
-      Ember.run.next(() => get(this, 'tabs.length') ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true) : null);
+      run.next(() => get(this, 'tabs.length') ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true) : null);
     },
     scrollTabIntoView(tab) {
       if (get(this, 'scroll-active-tab-into-view')) {
-        Ember.run.next(() => get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null);
+        run.next(() => get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null);
       }
     }
   }

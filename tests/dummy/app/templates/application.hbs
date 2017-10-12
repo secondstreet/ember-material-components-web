@@ -5,6 +5,19 @@
 </a>
 
 {{#if isDemoVisible}}
+{{#mdc-drawer as |drawer|}}
+  {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
+  {{#drawer.content}}
+    <nav id="icon-with-text-demo" class="mdc-list">
+      <a class="mdc-list-item mdc-permanent-drawer--selected" href="#">
+        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+      </a>
+      <a class="mdc-list-item" href="#">
+        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+      </a>
+    </nav>
+  {{/drawer.content}}
+{{/mdc-drawer}}
 
   {{#freestyle-guide title="MDC-Ember Demos"}}
     {{#freestyle-section name="Repo info" as |section|}}

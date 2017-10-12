@@ -6,6 +6,7 @@ module.exports = {
       { name: '@material/animation', target: '0.3.1' },
       { name: '@material/theme', target: '0.2.0' },
       { name: '@material/checkbox', target: '0.4.5' },
+      { name: '@material/drawer', target: '0.5.9'},
       { name: '@material/radio', target: '0.2.12' },
       { name: '@material/button', target: '0.5.0' },
       { name: '@material/fab', target: '0.3.16' },
