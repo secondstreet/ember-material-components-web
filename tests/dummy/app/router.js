@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('one');
   this.route('two');
+  this.route('freestyle');
 });
 
 export default Router;
