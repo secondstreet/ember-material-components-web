@@ -90,7 +90,6 @@ export default Ember.Component.extend(MDCComponent, {
     get(this, 'tabs').forEach(tab => tab.measureSelf());
     // then we need to reset the indicator styles
     if (get(this, 'foundation')) {
-      //TODO: submit a PR to Google asking to have this method made public
       get(this, 'foundation').layout();
     }
   }),
