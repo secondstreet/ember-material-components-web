@@ -199,6 +199,109 @@
         {{#mdc-elevation z=9}}Elevation Depth 9{{/mdc-elevation}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
+    {{#freestyle-section name="Grid Lists" as |section|}}
+      {{#freestyle-usage "gl-basic-usage" title="Basic Usage"}}
+        {{#mdc-grid-list as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/200"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-secondary-content" title="Add support text to secondary content (caption)"}}
+        {{#mdc-grid-list twoline-caption=true as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+                {{#secondary.support-text}}
+                  Support Text
+                {{/secondary.support-text}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-secondary-content-icon" title="Add icon to secondary content (caption)"}}
+        {{#mdc-grid-list icon-align="start" as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.icon as |class|}}
+                  <i class="material-icons {{class}}">star_border</i>
+                {{/secondary.icon}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-tile-aspect" title="Change aspect ratio of tile"}}
+        {{#mdc-grid-list tile-aspect="16x9" as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  16x9
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-div" title="Using a div in place of an img"}}
+        <style>
+          .my-tile-image {
+            background-image: url('http://placekitten.com/g/200/250');
+          }
+        </style>
+        {{#mdc-grid-list as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content tagName="div" class="my-tile-image"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+    {{/freestyle-section}}
     {{#freestyle-section name="Text Fields" as |section|}}
       {{#freestyle-usage "txt-attrs" title="Attributes"}}
         {{mdc-textfield
@@ -277,6 +380,94 @@
           rows=3
           cols=80
         }}
+      {{/freestyle-usage}}
+    {{/freestyle-section}}
+    {{#freestyle-section name="Layout Grids" as |section|}}
+      {{#freestyle-usage "lg-column-spans" title="Column spans"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell span=6}}
+              Span 6
+            {{/inner.cell}}
+            {{#inner.cell span=4}}
+              Span 4
+            {{/inner.cell}}
+            {{#inner.cell span=2}}
+              Span 2
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-column-spans-specific" title="Column spans for specific screen sizes"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell span=6 span-tablet=8}}
+              6 (8 tablet)
+            {{/inner.cell}}
+            {{#inner.cell span=4 span-tablet=6}}
+              4 (6 tablet)
+            {{/inner.cell}}
+            {{#inner.cell span=2 span-phone=4}}
+              2 (4 phone)
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-cell-reordering" title="Cell reordering"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell order=3}}
+              Cell 3
+            {{/inner.cell}}
+            {{#inner.cell order=1}}
+              Cell 1
+            {{/inner.cell}}
+            {{#inner.cell order=2}}
+              Cell 2
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-cell-alignment" title="Cell alignment"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell align="top"}}
+              Top aligned
+            {{/inner.cell}}
+            {{#inner.cell align="middle"}}
+              Middle aligned
+            {{/inner.cell}}
+            {{#inner.cell align="bottom"}}
+              Bottom aligned
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-fixed-width-alignment" title="Fixed column width grid, alignment of grid"}}
+        {{#mdc-layout-grid fixed-column-width=true align="left" as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell}}
+              ...
+            {{/inner.cell}}
+            {{#inner.cell}}
+              ...
+            {{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "lg-nested-grid" title="Nested grid"}}
+        {{#mdc-layout-grid as |grid|}}
+          {{#grid.inner as |inner|}}
+            {{#inner.cell}}
+              {{#grid.inner as |inner2|}}
+                {{#inner2.cell}}Second Level{{/inner2.cell}}
+                {{#inner2.cell}}Second Level{{/inner2.cell}}
+              {{/grid.inner}}
+            {{/inner.cell}}
+            {{#inner.cell}}First Level{{/inner.cell}}
+            {{#inner.cell}}First Level{{/inner.cell}}
+          {{/grid.inner}}
+        {{/mdc-layout-grid}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
     {{#freestyle-section name="Icon Toggles" as |section|}}
@@ -564,6 +755,17 @@
           {{mdc-switch bubbles=false}}
           <div>Switch event propagation is disableable: click outside of the checkbox to test</div>
         </div>
+      {{/freestyle-usage}}
+    {{/freestyle-section}}
+    {{#freestyle-section name="Toolbar" as |section|}}
+      {{#freestyle-usage "toolbar-basic" name="Basic usage"}}
+        {{#mdc-toolbar as |toolbar|}}
+          {{#toolbar.row as |row|}}
+            {{#row.section align="start" as |section|}}
+              {{#section.title}}Toolbar{{/section.title}}
+            {{/row.section}}
+          {{/toolbar.row}}
+        {{/mdc-toolbar}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
   {{/freestyle-guide}}

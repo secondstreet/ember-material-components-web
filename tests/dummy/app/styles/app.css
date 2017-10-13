@@ -34,3 +34,16 @@ label {
   border: 1px solid black;
   padding: 20px;
 }
+
+.FreestyleUsage-rendered .mdc-layout-grid {
+  background-color: #DDDDDD;
+}
+
+.FreestyleUsage-rendered .mdc-layout-grid__cell {
+  box-sizing: border-box;
+  background-color: #666666;
+  height: 200px;
+  padding: 8px;
+  color: white;
+  font-size: 1.5em;
+}

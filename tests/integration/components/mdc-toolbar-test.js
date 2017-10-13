@@ -10,12 +10,14 @@ test('it renders', function(assert) {
   this.render(hbs`
     {{#mdc-toolbar as |toolbar|}}
       {{#toolbar.row as |row|}}
-        {{#row.section}}
-          template block text
+        {{#row.section as |section|}}
+          {{#section.title}}
+            Title text
+          {{/section.title}}
         {{/row.section}}
       {{/toolbar.row}}
     {{/mdc-toolbar}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.mdc-toolbar__title').text().trim(), 'Title text');
 });
