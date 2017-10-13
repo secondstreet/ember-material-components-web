@@ -10,6 +10,7 @@ module.exports = {
       { name: '@material/button', target: '0.5.0' },
       { name: '@material/fab', target: '0.3.16' },
       { name: '@material/card', target: '0.2.7' },
+      { name: '@material/grid-list', target: '0.2.13' },
       { name: '@material/icon-toggle', target: '0.1.19' },
       { name: '@material/layout-grid', target: '0.4.4' },
       { name: '@material/elevation', target: '0.1.11' },

@@ -199,6 +199,109 @@
         {{#mdc-elevation z=9}}Elevation Depth 9{{/mdc-elevation}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
+    {{#freestyle-section name="Grid Lists" as |section|}}
+      {{#freestyle-usage "gl-basic-usage" title="Basic Usage"}}
+        {{#mdc-grid-list as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/200"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-secondary-content" title="Add support text to secondary content (caption)"}}
+        {{#mdc-grid-list twoline-caption=true as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+                {{#secondary.support-text}}
+                  Support Text
+                {{/secondary.support-text}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-secondary-content-icon" title="Add icon to secondary content (caption)"}}
+        {{#mdc-grid-list icon-align="start" as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.icon as |class|}}
+                  <i class="material-icons {{class}}">star_border</i>
+                {{/secondary.icon}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-tile-aspect" title="Change aspect ratio of tile"}}
+        {{#mdc-grid-list tile-aspect="16x9" as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  16x9
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "gl-div" title="Using a div in place of an img"}}
+        <style>
+          .my-tile-image {
+            background-image: url('http://placekitten.com/g/200/250');
+          }
+        </style>
+        {{#mdc-grid-list as |list|}}
+          {{#list.tiles as |tiles|}}
+            {{#tiles.tile as |tile|}}
+              {{#tile.primary as |primary|}}
+                {{primary.primary-content tagName="div" class="my-tile-image"}}
+              {{/tile.primary}}
+              {{#tile.secondary as |secondary|}}
+                {{#secondary.title}}
+                  Title
+                {{/secondary.title}}
+              {{/tile.secondary}}
+            {{/tiles.tile}}
+          {{/list.tiles}}
+        {{/mdc-grid-list}}
+      {{/freestyle-usage}}
+    {{/freestyle-section}}
     {{#freestyle-section name="Text Fields" as |section|}}
       {{#freestyle-usage "txt-attrs" title="Attributes"}}
         {{mdc-textfield
@@ -652,6 +755,17 @@
           {{mdc-switch bubbles=false}}
           <div>Switch event propagation is disableable: click outside of the checkbox to test</div>
         </div>
+      {{/freestyle-usage}}
+    {{/freestyle-section}}
+    {{#freestyle-section name="Toolbar" as |section|}}
+      {{#freestyle-usage "toolbar-basic" name="Basic usage"}}
+        {{#mdc-toolbar as |toolbar|}}
+          {{#toolbar.row as |row|}}
+            {{#row.section align="start" as |section|}}
+              {{#section.title}}Toolbar{{/section.title}}
+            {{/row.section}}
+          {{/toolbar.row}}
+        {{/mdc-toolbar}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
   {{/freestyle-guide}}
