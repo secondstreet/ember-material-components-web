@@ -10,6 +10,10 @@
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.3.0.tgz#57b13c75e705eba9686ec5e9fd03a361738ce76a"
 
+"@material/animation@^0.4.0":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.4.1.tgz#bf8b50aedad4cffce8a5b428fdca8f1abbaf176e"
+
 "@material/base@0.2.5", "@material/base@^0.2.5":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@material/base/-/base-0.2.5.tgz#d721a8add68bbfa8ed6759c6bbd9107cd272a2b0"
@@ -136,19 +140,19 @@
     "@material/selection-control" "^0.1.0"
     "@material/theme" "^0.2.0"
 
-"@material/ripple@0.8.5":
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.8.5.tgz#8e3d6f3161894e2dbc2e11952cb4b6add442a7dd"
-  dependencies:
-    "@material/base" "^0.2.5"
-    "@material/theme" "^0.2.0"
-
-"@material/ripple@^0.8.5", "@material/ripple@^0.8.6":
+"@material/ripple@0.8.6", "@material/ripple@^0.8.5", "@material/ripple@^0.8.6":
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.8.6.tgz#039ec22937f78bcfefa330d3533c77852466d8d8"
   dependencies:
     "@material/base" "^0.2.5"
     "@material/theme" "^0.3.0"
+
+"@material/ripple@^0.8.7":
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.8.8.tgz#22b89ed9e63883f17fa4f00d12370e32e0c459b7"
+  dependencies:
+    "@material/base" "^0.2.6"
+    "@material/theme" "^0.4.0"
 
 "@material/rtl@^0.1.7":
   version "0.1.7"
@@ -172,15 +176,15 @@
     "@material/elevation" "^0.1.11"
     "@material/theme" "^0.2.0"
 
-"@material/tabs@0.2.8":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@material/tabs/-/tabs-0.2.8.tgz#633fb7b7190b8e33f775fd9f563e2a35f5687846"
+"@material/tabs@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@material/tabs/-/tabs-0.3.0.tgz#a5f5df2b79d1a825bfbf90a839b6381c2d943a59"
   dependencies:
-    "@material/animation" "^0.3.1"
+    "@material/animation" "^0.4.0"
     "@material/base" "^0.2.5"
-    "@material/ripple" "^0.8.5"
-    "@material/rtl" "^0.1.7"
-    "@material/theme" "^0.2.0"
+    "@material/ripple" "^0.8.7"
+    "@material/rtl" "^0.1.8"
+    "@material/theme" "^0.3.1"
     "@material/typography" "^0.3.0"
 
 "@material/textfield@0.3.6":
@@ -205,6 +209,10 @@
 "@material/theme@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.3.0.tgz#d0e7622c77aebbd9416e6561c31ff4a8338d1f06"
+
+"@material/theme@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.3.1.tgz#6ff261ff72b3493a5cc6e746da3b472d072aa5a9"
 
 "@material/theme@^0.4.0":
   version "0.4.0"
