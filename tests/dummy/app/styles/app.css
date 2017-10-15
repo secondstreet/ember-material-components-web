@@ -75,3 +75,8 @@ label {
 .inner-flexible .mdc-toolbar {
   margin: 0;
 }
+
+.FreestyleGuide-cta {
+  margin-right: 125px;
+  margin-left: -125px;
+}
