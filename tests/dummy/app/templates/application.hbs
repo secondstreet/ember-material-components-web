@@ -5,20 +5,6 @@
 </a>
 
 {{#if isDemoVisible}}
-{{#mdc-drawer as |drawer|}}
-  {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
-  {{#drawer.content}}
-    <nav id="icon-with-text-demo" class="mdc-list">
-      <a class="mdc-list-item mdc-permanent-drawer--selected" href="#">
-        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
-      </a>
-      <a class="mdc-list-item" href="#">
-        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-      </a>
-    </nav>
-  {{/drawer.content}}
-{{/mdc-drawer}}
-
   {{#freestyle-guide title="MDC-Ember Demos"}}
     {{#freestyle-section name="Repo info" as |section|}}
       <p class="shields">
@@ -620,6 +606,171 @@
           {{/mdc-menu}}
         {{/mdc-menu-anchor}}
       {{/freestyle-usage}}
+    {{/freestyle-section}}
+    {{#freestyle-section name="Drawers" as |section|}}
+      {{#section.subsection name="Permanent Drawers"}}
+        {{#freestyle-usage "permanent-drawer-above"}}
+          <div class="component-doc flexible">
+            {{#mdc-drawer as |drawer|}}
+              {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
+              {{#drawer.content}}
+                {{#mdc-list-group as |group|}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item class="mdc-permanent-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
+                  {{/mdc-list}}
+                  {{group.divider}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
+                  {{/mdc-list}}
+                {{/mdc-list-group}}
+              {{/drawer.content}}
+            {{/mdc-drawer}}
+            <div class="demo-content inner-flexible">
+              <!-- TODO: #324 - Should switch to .mdc-toolbar--fixed -->
+              <header class="mdc-toolbar mdc-elevation--z4">
+                <div class="mdc-toolbar__row">
+                  <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <span class="catalog-back">
+              <a href="#" class="mdc-toolbar__icon--menu"><i class="material-icons"></i></a>
+            </span>
+                    <span class="mdc-toolbar__title catalog-title">Permanent Drawer Above Toolbar</span>
+                  </section>
+                </div>
+              </header>
+              <main class="demo-main">
+                <h1>Permanent Drawer</h1>
+                <p>It sits to the left of this content.</p>
+              </main>
+            </div>
+          </div>
+        {{/freestyle-usage}}
+        {{#freestyle-usage "permanent-drawer-below"}}
+          <div class="component-doc flexible">
+            <header class="mdc-toolbar mdc-toolbar--fixed fixed-relative">
+              <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="#" class="mdc-toolbar__icon--menu"><i class="material-icons"></i></a>
+          </span>
+                  <span class="mdc-toolbar__title catalog-title">Permanent Drawer Below Toolbar</span>
+                </section>
+              </div>
+            </header>
+            {{#mdc-drawer as |drawer|}}
+              {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
+              {{#drawer.content}}
+                {{#mdc-list-group as |group|}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item class="mdc-permanent-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
+                  {{/mdc-list}}
+                  {{group.divider}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
+                  {{/mdc-list}}
+                {{/mdc-list-group}}
+              {{/drawer.content}}
+            {{/mdc-drawer}}
+            <div class="demo-content inner-flexible">
+              <main class="demo-main">
+                <h1>Permanent Drawer</h1>
+                <p>It sits to the left of this content.</p>
+              </main>
+            </div>
+          </div>
+        {{/freestyle-usage}}
+      {{/section.subsection}}
+      {{#section.subsection name="Persistent Drawers"}}
+        {{#freestyle-usage "persistent-drawer"}}
+          <div class="component-doc flexible">
+            {{#mdc-drawer tagName='aside' persistent=true permanent=false open=isPersistentDrawerOpened as |drawer|}}
+              {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
+              {{#drawer.content}}
+                {{#mdc-list-group as |group|}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item class="mdc-permanent-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
+                  {{/mdc-list}}
+                  {{group.divider}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
+                  {{/mdc-list}}
+                {{/mdc-list-group}}
+              {{/drawer.content}}
+            {{/mdc-drawer}}
+            <div class="demo-content inner-flexible">
+              <header class="mdc-toolbar mdc-elevation--z4">
+                <div class="mdc-toolbar__row">
+                  <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    {{#if isPersistentDrawerOpened}}
+                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isPersistentDrawerOpened) false}}>menu</button>
+                    {{else}}
+                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isPersistentDrawerOpened) true}}>menu</button>
+                    {{/if}}
+                    <span class="mdc-toolbar__title catalog-title">Persistent Drawer</span>
+                  </section>
+                </div>
+              </header>
+              <main class="demo-main">
+                <h1>Persistent Drawer</h1>
+                <p>Click the menu icon above to open and close the drawer. Is the Persistent Drawer is open? {{if isPersistentDrawerOpened "yes" "no"}}</p>
+              </main>
+            </div>
+          </div>
+        {{/freestyle-usage}}
+      {{/section.subsection}}
+      {{#section.subsection name="Temporary Drawers"}}
+        {{#freestyle-usage "temporary-drawer"}}
+          <div class="component-doc flexible">
+            {{#mdc-drawer tagName='aside' temporary=true permanent=false open=isTemporaryDrawerOpened as |drawer|}}
+              {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
+              {{#drawer.content}}
+                {{#mdc-list-group as |group|}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item class="mdc-temporary-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
+                  {{/mdc-list}}
+                  {{group.divider}}
+                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
+                    {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
+                  {{/mdc-list}}
+                {{/mdc-list-group}}
+              {{/drawer.content}}
+            {{/mdc-drawer}}
+            <div class="demo-content inner-flexible">
+              <header class="mdc-toolbar mdc-elevation--z4">
+                <div class="mdc-toolbar__row">
+                  <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isTemporaryDrawerOpened) true}}>menu</button>
+                    <span class="mdc-toolbar__title catalog-title">Temporary Drawer</span>
+                  </section>
+                </div>
+              </header>
+              <main class="demo-main">
+                <h1>Temporary Drawer</h1>
+                <p>Click the menu icon above to open and close the drawer. Is the Temporary Drawer is open? {{if isTemporaryDrawerOpened "yes" "no"}}</p>
+              </main>
+            </div>
+          </div>
+        {{/freestyle-usage}}
+      {{/section.subsection}}
     {{/freestyle-section}}
     {{#freestyle-section name="Progress Bar" as |section|}}
       {{#freestyle-usage "progress-determinate" name="Progress Determinate"}}

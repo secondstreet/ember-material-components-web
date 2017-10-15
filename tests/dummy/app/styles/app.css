@@ -67,6 +67,11 @@ label {
 }
 
 .fixed-relative {
-  top:inherit;
+  top: inherit;
+  left: inherit;
   position: absolute;
+}
+
+.inner-flexible .mdc-toolbar {
+  margin: 0;
 }
