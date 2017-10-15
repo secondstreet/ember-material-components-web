@@ -565,7 +565,7 @@
 
       {{#section.subsection name="Two Line List"}}
 
-        {{#freestyle-usage "list-text" title="Text only"}}
+        {{#freestyle-usage "list-two-line-text" title="Text only"}}
           {{#mdc-list two-line=true as |list|}}
             {{#list.item as |item|}}
               {{#item.text as |text|}}Two-line item
@@ -790,7 +790,7 @@
 
     {{/freestyle-section}}
     {{#freestyle-section name="Tab Bar" as |section|}}
-      {{#freestyle-usage "tab-actions" name="Action-based tabs"}}
+      {{#freestyle-usage "tab-actions1" name="Action-based tabs"}}
         {{#mdc-tab-bar links=false as |bar|}}
           {{#bar.tab active=isFirstActive become-active=(action (mut isFirstActive))}}
             Fruits
@@ -849,7 +849,7 @@
         {{/mdc-tab-bar}}
 
       {{/freestyle-usage}}
-      {{#freestyle-usage "tab-actions" name="Tab Bar Scrolling"}}
+      {{#freestyle-usage "tab-scroll" name="Tab Bar Scrolling"}}
         {{#mdc-tab-bar-scroller as |scroller|}}
           {{#scroller.tab-bar links=false as |bar|}}
             {{#bar.tab active=isRedActive become-active=(action (mut isRedActive))}}
@@ -883,7 +883,7 @@
         {{/mdc-tab-bar-scroller}}
 
       {{/freestyle-usage}}
-      {{#freestyle-usage "tab-actions" name="Dark-themed tabs"}}
+      {{#freestyle-usage "tab-dark" name="Dark-themed tabs"}}
         <div style="background:black">
           {{#mdc-tab-bar dark=true links=false as |bar|}}
             {{#bar.tab active=isFirstActive become-active=(action (mut isFirstActive))}}
@@ -900,17 +900,17 @@
       {{/freestyle-usage}}
     {{/freestyle-section}}
     {{#freestyle-section name="Switch" as |section|}}
-      {{#freestyle-usage "tab-actions" name="Active Switch"}}
+      {{#freestyle-usage "switch-active" name="Active Switch"}}
         {{mdc-switch checked=isFirstSwitchOn onchange=(action (mut isFirstSwitchOn))}}
         <button {{action (toggle "isFirstSwitchOn" this)}}>Press to Toggle Switch</button>
       {{/freestyle-usage}}
-      {{#freestyle-usage "tab-actions" name="Switch with Toggle Label"}}
+      {{#freestyle-usage "switch-toggle" name="Switch with Toggle Label"}}
         <label>
           {{mdc-switch checked=isSecondSwitchOn onchange=(action (mut isSecondSwitchOn))}}
           On/Off
         </label>
       {{/freestyle-usage}}
-      {{#freestyle-usage "tab-actions" name="Disabled Switch"}}
+      {{#freestyle-usage "switch-disabled" name="Disabled Switch"}}
         {{mdc-switch disabled=true}}
 
       {{/freestyle-usage}}

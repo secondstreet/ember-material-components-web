@@ -76,7 +76,7 @@ label {
   margin: 0;
 }
 
-.FreestyleGuide-cta {
+.FreestyleGuide-cta:last-child {
   margin-right: 125px;
   margin-left: -125px;
 }
