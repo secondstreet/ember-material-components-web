@@ -1,0 +1,87 @@
+{
+  "projectName": "ember-material-components-web",
+  "projectOwner": "secondstreet",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "badgeTemplate": "[![Contributors](https://img.shields.io/badge/contributors-<%= contributors.length %>-brightgreen.svg)](#contributors)",
+  "contributors": [
+    {
+      "login": "secondstreet",
+      "name": "Second Street",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4250958?v=4",
+      "profile": "http://secondstreet.com",
+      "contributions": [
+        "financial"
+      ]
+    },
+    {
+      "login": "Kerrick",
+      "name": "Kerrick Long",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/552093?v=4",
+      "profile": "https://kerricklong.com/",
+      "contributions": [
+        "question",
+        "code",
+        "example",
+        "review"
+      ]
+    },
+    {
+      "login": "danielraggs",
+      "name": "danielraggs",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/9326399?v=4",
+      "profile": "https://github.com/danielraggs",
+      "contributions": [
+        "code",
+        "example",
+        "review"
+      ]
+    },
+    {
+      "login": "vkkostin",
+      "name": "Vladic",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/20466869?v=4",
+      "profile": "https://github.com/vkkostin",
+      "contributions": [
+        "code",
+        "example",
+        "review"
+      ]
+    },
+    {
+      "login": "mthouve",
+      "name": "Matt Thouvenot",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6677376?v=4",
+      "profile": "https://github.com/mthouve",
+      "contributions": [
+        "code",
+        "example",
+        "review"
+      ]
+    },
+    {
+      "login": "KnownSubset",
+      "name": "Nathan Dauber",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/948512?v=4",
+      "profile": "https://github.com/KnownSubset",
+      "contributions": [
+        "code",
+        "doc",
+        "example"
+      ]
+    },
+    {
+      "login": "JackCA",
+      "name": "Jack Anderson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/296167?v=4",
+      "profile": "https://janderson.me",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    }
+  ]
+}

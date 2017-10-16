@@ -1,10 +1,9 @@
 /* jshint node: true */
 'use strict';
 
-var path = require('path');
-var mergeTrees = require('broccoli-merge-trees');
-var Funnel = require('broccoli-funnel');
-var materialPackages = [
+const mergeTrees = require('broccoli-merge-trees');
+const Funnel = require('broccoli-funnel');
+const materialPackages = [
   { name: '@material/animation', css: true, js: true },
   { name: '@material/checkbox', css: true, js: true },
   { name: '@material/radio', css: true, js: true },
@@ -48,26 +47,28 @@ var materialPackages = [
  *    Ember's module system.
  */
 module.exports = {
-  name: 'ember-material-components-web',
-  /**
+  name: 'ember-material-components-web', /**
    * Invoked at the beginning of the build process, this hook allows us to
    * use the `import()` method to include files from our `vendor` tree into
    * the built app.
    */
-  included: function(app) {
-    materialPackages.forEach(function(pkg) {
-      var pkgBaseName = pkg.name.replace('@material/', '');
+  included: function (app) {
+    materialPackages.forEach(function (pkg) {
+      const pkgBaseName = pkg.name.replace('@material/', '');
       if (pkg.js) {
-        app.import('vendor/ember-material-components-web/dist/mdc.' + camelize(pkgBaseName) + '.min.js', {
-          using: [{ transformation: 'amd', as: pkg.name }]
-        });
+        app.import({
+          development: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.js`,
+          production: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.min.js`
+        }, { using: [{ transformation: 'amd', as: pkg.name }] });
       }
       if (pkg.css) {
-        app.import('vendor/ember-material-components-web/dist/mdc.' + pkgBaseName + '.min.css');
+        app.import({
+          development: `vendor/ember-material-components-web/dist/mdc.${pkgBaseName}.css`,
+          production: `vendor/ember-material-components-web/dist/mdc.${pkgBaseName}.min.css`,
+        });
       }
     });
-  },
-  /**
+  }, /**
    * Returns a Broccoli tree for the addon's `vendor` directory. The `vendor`
    * directory isn't explicitly used for anything, but files can be `import()`ed
    * which we do in the `included` hook above.
@@ -75,15 +76,16 @@ module.exports = {
    * This is necessary because Ember CLI doesn't currently support `import()`ing
    * anything directly from a `node_modules/` folder.
    */
-  treeForVendor: function() {
-    var trees = materialPackages.map(function(pkg) {
-      var include = [];
-      if (pkg.css) { include.push('dist/mdc.*.min.css'); }
-      if (pkg.js) { include.push('dist/mdc.*.min.js'); }
-      return new Funnel('node_modules/' + pkg.name, {
-        destDir: 'ember-material-components-web',
-        include: include
-      });
+  treeForVendor: function () {
+    const trees = materialPackages.map(function (pkg) {
+      const include = [];
+      if (pkg.css) {
+        include.push('dist/mdc.*.css');
+      }
+      if (pkg.js) {
+        include.push('dist/mdc.*.js');
+      }
+      return new Funnel(`node_modules/${pkg.name}`, { destDir: 'ember-material-components-web', include: include });
     });
 
     return this._super(mergeTrees(trees, { overwrite: true }));
@@ -95,12 +97,13 @@ module.exports = {
  * Copyright (c) 2016 Yehuda Katz, Tom Dale and Ember.js contributors
  * https://github.com/emberjs/ember.js/blob/v2.10.0/packages/ember-runtime/lib/system/string.js#L25-L29
  */
-var STRING_CAMELIZE_REGEXP_1 = (/(\-|\_|\.|\s)+(.)?/g);
-var STRING_CAMELIZE_REGEXP_2 = (/(^|\/)([A-Z])/g);
+const STRING_CAMELIZE_REGEXP_1 = (/(\-|\_|\.|\s)+(.)?/g);
+const STRING_CAMELIZE_REGEXP_2 = (/(^|\/)([A-Z])/g);
+
 function camelize(str) {
-  return str.replace(STRING_CAMELIZE_REGEXP_1, function(match, separator, chr) {
+  return str.replace(STRING_CAMELIZE_REGEXP_1, function (match, separator, chr) {
     return chr ? chr.toUpperCase() : '';
-  }).replace(STRING_CAMELIZE_REGEXP_2, function(match, separator, chr) {
+  }).replace(STRING_CAMELIZE_REGEXP_2, function (match) {
     return match.toLowerCase();
   });
 };
