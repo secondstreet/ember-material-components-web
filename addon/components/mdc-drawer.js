@@ -1,15 +1,16 @@
 import Ember from 'ember';
-import {MDCComponent} from '../mixins/mdc-component';
-import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation} from '@material/drawer';
+import { MDCComponent } from '../mixins/mdc-component';
+import getElementProperty from '../utils/get-element-property';
+import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation } from '@material/drawer';
 import layout from '../templates/components/mdc-drawer';
 
-const {Component, computed, get, getProperties, set} = Ember;
+const { Component, computed, get, getProperties, run, set } = Ember;
 
 export default Component.extend(MDCComponent, {
 //region Ember Hooks
   layout,
   classNames: ['mdc-drawer'],
-  classNameBindings: ['mdcClassNames', 'isPermanent:mdc-permanent-drawer', 'isPersistent:mdc-persistent-drawer', 'isTemporary:mdc-temporary-drawer'],
+  classNameBindings: ['mdcClassNames', 'isPermanent:mdc-permanent-drawer'],
 
   init() {
     this._super(...arguments);
@@ -49,25 +50,11 @@ export default Component.extend(MDCComponent, {
 
   //region ComputedProperties
   isPermanent: computed('permanent', 'persistent', 'temporary', function () {
-    const {permanent, persistent, temporary} = getProperties(this, 'permanent', 'persistent', 'temporary');
+    const { permanent, persistent, temporary } = getProperties(this, 'permanent', 'persistent', 'temporary');
     if (permanent && (temporary || persistent)) {
       throw new Ember.Error('Cannot be permanent and temporary or persistent');
     }
     return permanent;
-  }),
-  isPersistent: computed('permanent', 'persistent', 'temporary', function () {
-    const {permanent, persistent, temporary} = getProperties(this, 'permanent', 'persistent', 'temporary');
-    if (persistent && (permanent || temporary)) {
-      throw new Ember.Error('Cannot be persistent and permanent or temporary');
-    }
-    return persistent;
-  }),
-  isTemporary: computed('permanent', 'persistent', 'temporary', function () {
-    const {permanent, persistent, temporary} = getProperties(this, 'permanent', 'persistent', 'temporary');
-    if (temporary && (permanent || persistent)) {
-      throw new Ember.Error('Cannot be temporary and permanent or persistent');
-    }
-    return temporary;
   }),
   //endregion
 
@@ -84,35 +71,39 @@ export default Component.extend(MDCComponent, {
     }
   },
   /**
-   * @returns {MDCPersistentDrawerFoundation|MDCTemporaryDrawerFoundation}
+   * @returns {MDCPersistentDrawerFoundation|MDCTemporaryDrawerFoundation|Object}
    */
   createFoundation() {
-    const {permanent, persistent} = getProperties(this, 'permanent', 'persistent');
-    if (permanent) {
+    const { isPermanent, persistent } = getProperties(this, 'isPermanent', 'persistent');
+    if (isPermanent) {
       return { init() {}, destroy() {} };
     }
     const Foundation = persistent ? MDCPersistentDrawerFoundation : MDCTemporaryDrawerFoundation;
-    const {FOCUSABLE_ELEMENTS, ITEMS_SELECTOR, DRAWER_SELECTOR} = Foundation.strings;
+    run(() => get(this, 'mdcClasses').addObject(Foundation.cssClasses.ROOT));
+    const { FOCUSABLE_ELEMENTS, ITEMS_SELECTOR, DRAWER_SELECTOR } = Foundation.strings;
     const adapter = {
-      addClass: className => get(this, 'mdcClasses').addObject(className),
-      removeClass: className => get(this, 'mdcClasses').removeObject(className),
-      hasClass: className => get(this, 'element.classList').contains(className),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      hasClass: className => get(this, 'mdcClasses').includes(className),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       registerDrawerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterDrawerInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       registerTransitionEndHandler: (handler) => this.registerMdcInteractionHandler('transitionend', handler),
       deregisterTransitionEndHandler: (handler) => this.deregisterMdcInteractionHandler('transitionend', handler),
-      registerDocumentKeydownHandler: (handler) => this.registerMdcInteractionHandler('keydown', handler),
-      deregisterDocumentKeydownHandler: (handler) => this.deregisterMdcInteractionHandler('keydown', handler),
-      getDrawerWidth: () => get(this, 'element').offsetWidth,
-      setTranslateX: (value) => this.setStyleFor('mdcStyles', 'translateX', `${value}px`),
-      saveElementTabState: (el) => set(this, 'previousTab', el.tabIndex),
-      restoreElementTabState: (el) => el.tabIndex = get(this, 'previousTab'), //WTF
+      registerDocumentKeydownHandler: (handler) => run(() => window.document.addEventListener('keydown', handler)),
+      deregisterDocumentKeydownHandler: (handler) => run(() => window.document.removeEventListener('keydown', handler)),
+      getDrawerWidth: () => {
+        const { width } = getElementProperty(this, 'getBoundingClientRect', () => ({ width: 0 }))();
+        return width;
+      },
+      setTranslateX: (value) => run(() => this.setStyleFor('mdcStyles', 'translateX', `${value}px`)),
+      saveElementTabState: (el) => set(this, 'previousTabState', el.tabIndex),
+      restoreElementTabState: (el) => el.tabIndex = get(this, 'previousTabState'),
       makeElementUntabbable: (el) => el.tabIndex = -1,
       notifyOpen: () => set(this, 'open', true),
       notifyClose: () => set(this, 'open', false),
-      isRtl: () => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
+      isRtl: () => getElementProperty(this, 'direction') === 'rtl',
       getFocusableElements: () => this.$(FOCUSABLE_ELEMENTS),
       hasNecessaryDom: () => !!get(this, 'element') && !!this.$(ITEMS_SELECTOR).length,
       isDrawer: (el) => get(this, 'element').querySelector(DRAWER_SELECTOR) === el,

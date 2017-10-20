@@ -10,7 +10,7 @@
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.3.0.tgz#57b13c75e705eba9686ec5e9fd03a361738ce76a"
 
-"@material/animation@^0.4.0":
+"@material/animation@^0.4.0", "@material/animation@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.4.1.tgz#bf8b50aedad4cffce8a5b428fdca8f1abbaf176e"
 
@@ -50,6 +50,17 @@
     "@material/selection-control" "^0.1.0"
     "@material/theme" "^0.2.0"
 
+"@material/drawer@0.5.9":
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/@material/drawer/-/drawer-0.5.9.tgz#81b81df5c8d95e8297ae052cffa66dc997011dbd"
+  dependencies:
+    "@material/animation" "^0.4.1"
+    "@material/base" "^0.2.6"
+    "@material/elevation" "^0.1.13"
+    "@material/rtl" "^0.1.8"
+    "@material/theme" "^0.4.0"
+    "@material/typography" "^0.3.0"
+
 "@material/elevation@0.1.11", "@material/elevation@^0.1.11":
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.1.11.tgz#195815648697f2fbad20666a4c232dc9b6f1189b"
@@ -61,6 +72,12 @@
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.1.10.tgz#f0250c97c81663534b83c3428e764c9026d41ba1"
   dependencies:
     "@material/animation" "^0.3.0"
+
+"@material/elevation@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.1.13.tgz#a38885f3caf4398ca6a7468c308887d70bd4605b"
+  dependencies:
+    "@material/animation" "^0.4.1"
 
 "@material/fab@0.3.16":
   version "0.3.16"
