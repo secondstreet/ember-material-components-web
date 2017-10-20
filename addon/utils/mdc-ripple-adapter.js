@@ -21,7 +21,7 @@ export const createRippleAdapter = (component, overrides) => Object.assign({
   deregisterInteractionHandler: (evtType, handler) => component.deregisterMdcInteractionHandler(evtType, handler),
   registerResizeHandler: handler => window.addEventListener('resize', handler),
   deregisterResizeHandler: handler => window.removeEventListener('resize', handler),
-  updateCssVariable: (varName, value) => component.setStyleFor('mdcStyles', varName, value),
+  updateCssVariable: (varName, value) => run(() => component.setStyleFor('mdcStyles', varName, value)),
   computeBoundingRect: () => getElementProperty(component, 'getBoundingClientRect', () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }))(),
   getWindowPageOffset: () => ({ x: window.pageXOffset, y: window.pageYOffset })
 }, overrides);
