@@ -4,7 +4,7 @@ import { MDCComponent } from '../mixins/mdc-component';
 import styleComputed from '../utils/style-computed';
 import { MDCSimpleMenuFoundation, util } from '@material/menu';
 
-const { get, set } = Ember;
+const { get, set, run } = Ember;
 const { strings } = MDCSimpleMenuFoundation;
 const TRANSFORM_PROPERTY = util.getTransformPropertyName(window);
 
@@ -97,8 +97,8 @@ export default Ember.Component.extend(MDCComponent, {
   },
   createFoundation() {
     return new MDCSimpleMenuFoundation({
-      addClass: className => get(this, 'mdcClasses').addObject(className),
-      removeClass: className => get(this, 'mdcClasses').removeObject(className),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       hasClass: className => get(this, 'element.classList').contains(className),
       hasNecessaryDom: () => !!get(this , 'element') && !!this.$(strings.ITEMS_SELECTOR).length,
       getInnerDimensions: () => {
@@ -108,32 +108,32 @@ export default Ember.Component.extend(MDCComponent, {
       hasAnchor: () => get(this, 'anchor'),
       getAnchorDimensions: () => get(this, 'anchor').getAnchorDimensions(),
       getWindowDimensions: () => ({ width: window.innerWidth, height: window.innerHeight }),
-      setScale: (x, y) => this.setStyleFor('mdcStyles', TRANSFORM_PROPERTY, `scale(${x}, ${y}`),
-      setInnerScale: (x, y)  => this.setStyleFor('itemStyles', TRANSFORM_PROPERTY, `scale(${x}, ${y}`),
+      setScale: (x, y) => run(() => this.setStyleFor('mdcStyles', TRANSFORM_PROPERTY, `scale(${x}, ${y}`)),
+      setInnerScale: (x, y)  => run(() => this.setStyleFor('itemStyles', TRANSFORM_PROPERTY, `scale(${x}, ${y}`)),
       getNumberOfItems: () => get(this, 'items.length'),
-      registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
-      deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
+      registerInteractionHandler: run(() => (type, handler) => this.registerMdcInteractionHandler(type, handler)),
+      deregisterInteractionHandler: run(() => (type, handler) => this.deregisterMdcInteractionHandler(type, handler)),
       registerBodyClickHandler: handler => document.body.addEventListener('click', handler),
       deregisterBodyClickHandler: handler => document.body.removeEventListener('click', handler),
       getYParamsForItemAtIndex: index => this.itemAt(index).getYParams(),
       setTransitionDelayForItemAtIndex: (index, value) => this.itemAt(index).setTransitionDelay(value),
       getIndexForEventTarget: target => get(this, 'items').mapBy('element').indexOf(target),
       notifySelected: ({ index }) => this.itemAt(index).notifySelected(index),
-      notifyCancel: () => get(this, 'cancel')(false), // False is provided as a convenience for the {{mut}} helper
-      saveFocus: () => set(this, 'previousFocus', document.activeElement),
-      restoreFocus: () => get(this, 'previousFocus') && get(this, 'previousFocus').focus(),
+      notifyCancel: () => run(() => get(this, 'cancel')(false)), // False is provided as a convenience for the {{mut}} helper
+      saveFocus: () => run(() => set(this, 'previousFocus', document.activeElement)),
+      restoreFocus: () => run(() => get(this, 'previousFocus') && get(this, 'previousFocus').focus()),
       isFocused: () => document.activeElement === get(this, 'element'),
-      focus: ()  => get(this, 'element').focus(),
+      focus: ()  => run(() => get(this, 'element').focus()),
       getFocusedItemIndex: () => get(this, 'items').mapBy('element').indexOf(document.activeElement),
-      focusItemAtIndex: index => get(this.itemAt(index), 'element').focus(),
+      focusItemAtIndex: index => run(() => get(this.itemAt(index), 'element').focus()),
       isRtl: ()  => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
-      setTransformOrigin: value => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value),
-      setPosition: ({ top, right, bottom, left }) => {
+      setTransformOrigin: value => run(() => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value)),
+      setPosition: ({ top, right, bottom, left }) => run(() => {
         this.setStyleFor('mdcStyles', 'top', top || null);
         this.setStyleFor('mdcStyles', 'right', right || null);
         this.setStyleFor('mdcStyles', 'bottom', bottom || null);
         this.setStyleFor('mdcStyles', 'left', left || null);
-      },
+      }),
       getAccurateTime: () => window.performance.now()
     });
   }
