@@ -7,7 +7,7 @@ import getElementProperty from '../utils/get-element-property';
 import getComponentProperty from '../utils/get-component-property';
 import styleComputed from '../utils/style-computed';
 
-const { get, computed, set, run } = Ember;
+const { computed, get, run, set } = Ember;
 const { cssClasses, strings } = MDCTabBarScrollerFoundation;
 
 export default Ember.Component.extend(MDCComponent, {
@@ -113,7 +113,7 @@ export default Ember.Component.extend(MDCComponent, {
       setScrollLeftForScrollFrame: (scrollLeftAmount) =>  get(this, 'scrollFrameElement').scrollLeft = scrollLeftAmount,
       getOffsetWidthForTabBar: () => get(this, 'tabBarElement').offsetWidth,
       setTransformStyleForTabBar: (value) => {
-        this.setStyleFor('mdcScrollFrameStyles', getCorrectPropertyName(window, 'transform'), value);
+        run(() => this.setStyleFor('mdcScrollFrameStyles', getCorrectPropertyName(window, 'transform'), value));
       },
       getOffsetLeftForEventTarget: (target) => target.offsetLeft,
       getOffsetWidthForEventTarget: (target) => target.offsetWidth

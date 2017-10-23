@@ -5,7 +5,7 @@ import { MDCComponent } from '../mixins/mdc-component';
 import { MDCRadioFoundation } from '@material/radio';
 import SupportsBubblesFalse from '../mixins/supports-bubbles-false';
 
-const { get } = Ember;
+const { get, run } = Ember;
 
 export default Ember.Component.extend(MDCComponent, SupportsBubblesFalse, {
   //region Attributes
@@ -90,8 +90,8 @@ export default Ember.Component.extend(MDCComponent, SupportsBubblesFalse, {
    */
   createFoundation() {
     return new MDCRadioFoundation({
-      addClass: className => get(this, 'mdcClasses').addObject(className),
-      removeClass: className => get(this, 'mdcClasses').removeObject(className),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       getNativeControl: () => this.$('input').get(0),
     });
   },

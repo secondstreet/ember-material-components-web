@@ -6,7 +6,7 @@ import getElementProperty from '../utils/get-element-property';
 import getComponentProperty from '../utils/get-component-property';
 import styleComputed from '../utils/style-computed';
 
-const { computed, observer, get, set } = Ember;
+const { computed, get, observer, run, set } = Ember;
 const { strings } = MDCTabBarFoundation;
 
 export default Ember.Component.extend(MDCComponent, {
@@ -105,7 +105,7 @@ export default Ember.Component.extend(MDCComponent, {
       registerResizeHandler: (handler) => window.addEventListener('resize', handler),
       deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
       getOffsetWidth: () => getElementProperty(this, 'offsetWidth', 0),
-      setStyleForIndicator: (propertyName, value) => this.setStyleFor('mdcIndicatorStyles', propertyName, value),
+      setStyleForIndicator: (propertyName, value) => run(() => this.setStyleFor('mdcIndicatorStyles', propertyName, value)),
       getOffsetWidthForIndicator: () => getElementProperty(this, 'querySelector', () => ({ offsetWidth: 0 }))(strings.INDICATOR_SELECTOR).offsetWidth,
       notifyChange: (evtData) => get(this, 'onchange')(evtData), // TODO
       getNumberOfTabs: () => get(this, 'tabs.length'),

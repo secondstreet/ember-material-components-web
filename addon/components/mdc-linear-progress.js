@@ -5,7 +5,7 @@ import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import styleComputed from '../utils/style-computed';
 
-const { get, set } = Ember;
+const { get, run, set } = Ember;
 
 const { cssClasses, strings } = MDCLinearProgressFoundation;
 
@@ -90,7 +90,7 @@ export default Ember.Component.extend(MDCComponent, {
         else if (el.classList.contains(strings.BUFFER_SELECTOR.slice(1))) {
           elementStyles = 'mdcBufferStyles';
         }
-        this.setStyleFor(elementStyles, property, value);
+        run(() => this.setStyleFor(elementStyles, property, value));
       }
     });
   },
