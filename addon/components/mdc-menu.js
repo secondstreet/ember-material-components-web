@@ -47,7 +47,7 @@ export default Ember.Component.extend(MDCComponent, {
   layout,
   classNames: ['mdc-simple-menu'],
   classNameBindings: ['mdcClassNames', 'open:mdc-simple-menu--open'],
-  attributeBindings: ['style'],
+  attributeBindings: ['style', 'tabindex'],
   //endregion
 
   //region Properties
