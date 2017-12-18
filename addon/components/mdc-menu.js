@@ -28,6 +28,11 @@ export default Ember.Component.extend(MDCComponent, {
    * @type {?Function}
    */
   cancel: x => x,
+  /**
+   * Enabling this is generally a bad idea for accessibility, so think hard about using this attribute.
+   * @type {Boolean}
+   */
+  'disable-focus': false,
   //endregion
 
   //region Ember Hooks
@@ -123,9 +128,9 @@ export default Ember.Component.extend(MDCComponent, {
       saveFocus: () => set(this, 'previousFocus', document.activeElement),
       restoreFocus: () => get(this, 'previousFocus') && get(this, 'previousFocus').focus(),
       isFocused: () => document.activeElement === get(this, 'element'),
-      focus: ()  => run(() => get(this, 'element').focus()),
+      focus: ()  => run(() => !get(this, 'disable-focus') && get(this, 'element').focus()),
       getFocusedItemIndex: () => get(this, 'items').mapBy('element').indexOf(document.activeElement),
-      focusItemAtIndex: index => get(this.itemAt(index), 'element').focus(),
+      focusItemAtIndex: index => !get(this, 'disable-focus') && get(this.itemAt(index), 'element').focus(),
       isRtl: ()  => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: value => run(() => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value)),
       setPosition: ({ top, right, bottom, left }) => {
