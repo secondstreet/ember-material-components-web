@@ -1,7 +1,7 @@
 import { equal } from '@ember/object/computed';
+import { run, next } from '@ember/runloop';
 import { A } from '@ember/array';
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
 import { set, observer, getProperties, get } from '@ember/object';
 import layout from '../templates/components/mdc-tab-bar';
 import { MDCTabBarFoundation } from '@material/tabs';
@@ -156,7 +156,7 @@ export default Component.extend(MDCComponent, {
       get(this, 'tabs').removeObject(tab);
     },
     switchToTab(tab) {
-      run.next(() => get(this, 'tabs.length') ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true) : null);
+      next(() => get(this, 'tabs.length') ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true) : null);
     },
     scrollTabIntoView(tab) {
       if (get(this, 'scroll-active-tab-into-view')) {

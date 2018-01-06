@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed, get } from '@ember/object';
+import events from '../utils/global-event-handlers';
 import layout from '../templates/components/mdc-elevation';
 
 export default Component.extend({
@@ -15,6 +16,7 @@ export default Component.extend({
   layout,
   classNameBindings: ['elevationClass'],
   classNames: ['mdc-elevation-transition'],
+  attributeBindings: [...events],
  //endregion
 
  //region Computed Properties

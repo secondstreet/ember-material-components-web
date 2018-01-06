@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import events from '../../../../../utils/global-event-handlers';
 import layout from '../../../../../templates/components/mdc-grid-list/tiles/tile/primary/primary-content';
 
 export default Component.extend({
@@ -7,6 +8,7 @@ export default Component.extend({
   tagName: 'img',
   classNames: ['mdc-grid-tile__primary-content'],
   attributeBindings: [
+    'alt',
     'height',
     'src',
     'ismap',
@@ -15,7 +17,8 @@ export default Component.extend({
     'sizes',
     'srcset',
     'usemap',
-    'width'
+    'width',
+    ...events
   ]
   //endregion
 });

@@ -1,5 +1,6 @@
 import { equal } from '@ember/object/computed';
 import Component from '@ember/component';
+import events from '../utils/global-event-handlers';
 import layout from '../templates/components/mdc-layout-grid';
 
 export default Component.extend({
@@ -22,6 +23,7 @@ export default Component.extend({
     'isAlignLeft:mdc-layout-grid--align-left',
     'isAlignRight:mdc-layout-grid--align-right'
   ],
+  attributeBindings: [...events],
   layout,
   //endregion
 

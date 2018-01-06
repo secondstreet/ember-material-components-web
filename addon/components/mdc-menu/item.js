@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { get } from '@ember/object';
 import layout from '../../templates/components/mdc-menu/item';
+import events from '../../utils/global-event-handlers';
 
 /**
  * @typedef {Ember.Component} MDCMenuItemComponent
@@ -31,7 +32,7 @@ export default Component.extend({
   layout,
   tagName: 'li',
   classNames: ['mdc-list-item'],
-  attributeBindings: ['role', 'tabindex', 'style'],
+  attributeBindings: ['role', 'tabindex', 'style', ...events],
   //endregion
 
   //region Properties

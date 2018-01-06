@@ -34,10 +34,10 @@
     {{#freestyle-section name="Buttons" as |section|}}
       {{#freestyle-usage "flat" title="Flat Buttons"}}
         {{#mdc-button}}Standard Button{{/mdc-button}}
-        {{#mdc-button disabled=true click=(action "alert" "Should not see this.")}}Disabled Button{{/mdc-button}}
+        {{#mdc-button disabled=true onclick=(action "alert" "Should not see this.")}}Disabled Button{{/mdc-button}}
         {{#mdc-button secondary=true}}Secondary Button{{/mdc-button}}
         {{#mdc-button stroked=true}}Stroked Button{{/mdc-button}}
-        {{#mdc-button click=(action "alert" "Action button clicked")}}Action Button{{/mdc-button}}
+        {{#mdc-button onclick=(action "alert" "Action button clicked")}}Action Button{{/mdc-button}}
         <form class="tiny-form" onsubmit={{action "alert" "Form Submitted"}}>
           {{#mdc-button type="submit"}}Submit Button{{/mdc-button}}
         </form>
@@ -57,7 +57,7 @@
     {{#freestyle-section name="Floating Action Buttons" as |section|}}
       {{#freestyle-usage "fab-bind" title="bind actions"}}
 
-        {{#mdc-fab click=(action "alert" "Stop clicked")}}
+        {{#mdc-fab onclick=(action "alert" "Stop clicked")}}
           <i class="material-icons">stop</i>
         {{/mdc-fab}}
       {{/freestyle-usage}}
@@ -67,7 +67,7 @@
         {{/mdc-fab}}
       {{/freestyle-usage}}
       {{#freestyle-usage "fab-disabled" title="Disabled"}}
-        {{#mdc-fab disabled=true click=(action "alert" "Should not see this.")}}
+        {{#mdc-fab disabled=true onclick=(action "alert" "Should not see this.")}}
           <i class="material-icons">pause</i>
         {{/mdc-fab}}
       {{/freestyle-usage}}
@@ -100,7 +100,7 @@
             {{#actions.action}}
               Example Action
             {{/actions.action}}
-            {{#actions.action click=(action "alert" "Alert action clicked")}}
+            {{#actions.action onclick=(action "alert" "Alert action clicked")}}
               Alert Action
             {{/actions.action}}
           {{/card.actions}}
@@ -594,13 +594,13 @@
             more_vert
           {{/mdc-icon-toggle}}
           {{#mdc-menu anchor=anchor open=isMenuOneOpen cancel=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu canceled"))) as |menu|}}
-            {{#menu.item click=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item one clicked!")))}}
+            {{#menu.item onclick=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item one clicked!")))}}
               Menu Item One
             {{/menu.item}}
-            {{#menu.item click=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item two clicked!")))}}
+            {{#menu.item onclick=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item two clicked!")))}}
               Menu Item Two
             {{/menu.item}}
-            {{#menu.item click=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item three clicked!")))}}
+            {{#menu.item onclick=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item three clicked!")))}}
               Menu Item Three
             {{/menu.item}}
           {{/mdc-menu}}
@@ -934,4 +934,4 @@
   {{/freestyle-guide}}
 {{/if}}
 {{outlet}}
-{{#mdc-button class="toggle-demo-visibility" click=(action (toggle "isDemoVisible" this))}}Toggle visibility{{/mdc-button}}
+{{#mdc-button class="toggle-demo-visibility" onclick=(action (toggle "isDemoVisible" this))}}Toggle visibility{{/mdc-button}}

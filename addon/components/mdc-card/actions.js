@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import events from '../../utils/global-event-handlers';
 import layout from '../../templates/components/mdc-card/actions';
 
 export default Component.extend({
@@ -13,6 +14,7 @@ export default Component.extend({
   layout,
   tagName: 'section',
   classNames: ['mdc-card__actions'],
-  classNameBindings: ['vertical:mdc-card__actions--vertical']
+  classNameBindings: ['vertical:mdc-card__actions--vertical'],
+  attributeBindings: [...events]
   //endregion
 });

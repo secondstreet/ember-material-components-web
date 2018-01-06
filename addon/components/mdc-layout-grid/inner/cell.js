@@ -1,6 +1,7 @@
 import { equal } from '@ember/object/computed';
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
+import events from '../../../utils/global-event-handlers';
 import layout from '../../../templates/components/mdc-layout-grid/inner/cell';
 
 export default Component.extend({
@@ -31,7 +32,7 @@ export default Component.extend({
    */
   'span-phone': null,
   //endregion
-  
+
   //region Ember Hooks
   classNames: ['mdc-layout-grid__cell'],
   classNameBindings: [
@@ -44,6 +45,7 @@ export default Component.extend({
     'spanTabletClass',
     'spanPhoneClass'
   ],
+  attributeBindings: [...events],
   layout,
   //endregion
 

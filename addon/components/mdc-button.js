@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import MDCComponent from '../mixins/mdc-component';
+import events from '../utils/global-event-handlers';
 import layout from '../templates/components/mdc-button';
 
 export default Component.extend(MDCComponent, {
@@ -51,7 +52,7 @@ export default Component.extend(MDCComponent, {
     'stroked:mdc-button--stroked',
     'mdcClassNames'
   ],
-  attributeBindings: ['disabled', 'type', 'style'],
+  attributeBindings: ['disabled', 'type', 'style', ...events],
   //endregion
 
   //region Properties

@@ -4,6 +4,7 @@ import { set, get } from '@ember/object';
 import layout from '../templates/components/mdc-linear-progress';
 import { MDCLinearProgressFoundation } from '@material/linear-progress';
 import { MDCComponent } from '../mixins/mdc-component';
+import events from '../utils/global-event-handlers';
 import getElementProperty from '../utils/get-element-property';
 import styleComputed from '../utils/style-computed';
 
@@ -47,7 +48,7 @@ export default Component.extend(MDCComponent, {
     `reversed:${cssClasses.REVERSED_CLASS}`,
     'secondary:mdc-linear-progress--accent'
   ],
-  attributeBindings: ['role'],
+  attributeBindings: ['role', ...events],
   init() {
     this._super(...arguments);
     set(this, 'mdcPrimaryBarStyles', {});

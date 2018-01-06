@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import events from '../utils/global-event-handlers';
 import layout from '../templates/components/mdc-list';
 
 export default Component.extend({
@@ -25,6 +26,7 @@ export default Component.extend({
   layout,
   tagName: 'ul',
   classNameBindings: ['dense:mdc-list--dense', 'two-line:mdc-list--two-line', 'avatar-list:mdc-list--avatar-list'],
-  classNames: ['mdc-list']
+  classNames: ['mdc-list'],
+  attributeBindings: [...events]
   //endregion
 });
