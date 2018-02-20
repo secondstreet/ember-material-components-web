@@ -36,7 +36,7 @@ export const MDCComponent = Mixin.create({
     // parent's didInsertElement.
     scheduleOnce('afterRender', this, () => {
       this._attachMdcInteractionHandlers();
-      if (get(this, 'createFoundation')) {
+      if (get(this, 'createFoundation') && !get(this, 'isDestroyed')) {
         const foundation = this.createFoundation();
         set(this, 'foundation', foundation);
         foundation.init();
