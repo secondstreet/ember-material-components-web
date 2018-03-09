@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -20,14 +21,14 @@ test('it renders', function(assert) {
   });
   this.render(hbs`{{mdc-linear-progress secondary=isSecondary progress=myProgress indeterminate=isIndeterminate foundation=mdcFoundation}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(find('*').textContent.trim(), '');
 
-  assert.notOk(this.$('.mdc-linear-progress').hasClass('mdc-linear-progress--indeterminate'), 'Progress bar is not in indeterminate state');
+  assert.notOk(find('.mdc-linear-progress').classList.contains('mdc-linear-progress--indeterminate'), 'Progress bar is not in indeterminate state');
 
   this.set('myProgress', 0.8);
 
   this.set('isSecondary', true);
   this.set('isIndeterminate', true);
-  assert.ok(this.$('.mdc-linear-progress').hasClass('mdc-linear-progress--indeterminate'), 'Progress bar is in indeterminate state');
-  assert.ok(this.$('.mdc-linear-progress').hasClass('mdc-linear-progress--accent'), 'Progress bar is in secondary variation');
+  assert.ok(find('.mdc-linear-progress').classList.contains('mdc-linear-progress--indeterminate'), 'Progress bar is in indeterminate state');
+  assert.ok(find('.mdc-linear-progress').classList.contains('mdc-linear-progress--accent'), 'Progress bar is in secondary variation');
 });

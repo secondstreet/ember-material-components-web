@@ -149,10 +149,11 @@ export default Component.extend(MDCComponent, {
     },
     scrollActiveTabIntoView(index) {
       // TODO: Need to submit an issue asking Google to make a scroll method that only triggers if tab is hidden, must do this until then
-      const scrollerRightBoundary = this.$('.mdc-tab-bar-scroller__scroll-frame')[0].getBoundingClientRect().right;
-      const scrollerLeftBoundary = this.$('.mdc-tab-bar-scroller__scroll-frame')[0].getBoundingClientRect().left;
-      const tabRightBoundary = get(this, 'tab-bar').tabAt(index).$()[0].getBoundingClientRect().right;
-      const tabLeftBoundary = get(this, 'tab-bar').tabAt(index).$()[0].getBoundingClientRect().left;
+
+      const { left: scrollerLeftBoundary, right: scrollerRightBoundary } = this.element.querySelector('.mdc-tab-bar-scroller__scroll-frame').getBoundingClientRect()
+
+      const { left: tabLeftBoundary, right: tabRightBoundary } = get(this, 'tab-bar').tabAt(index).element.getBoundingClientRect();
+
       if ((tabRightBoundary > scrollerRightBoundary) || (tabLeftBoundary < scrollerLeftBoundary)) {
         get(this, 'foundation').scrollToTabAtIndex(index);
       }

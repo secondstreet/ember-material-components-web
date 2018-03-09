@@ -1,3 +1,4 @@
+import { findAll, find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -20,7 +21,7 @@ test('it renders', function(assert) {
     {{/mdc-grid-list/tiles/tile}}
   `);
 
-  assert.equal(this.$('li.mdc-grid-tile').length, 1);
-  assert.equal(this.$('.mdc-grid-tile__primary').text().trim(), 'template block text');
-  assert.equal(this.$('.mdc-grid-tile__secondary').text().trim(), 'template block text');
+  assert.equal(findAll('li.mdc-grid-tile').length, 1);
+  assert.equal(find('.mdc-grid-tile__primary').textContent.trim(), 'template block text');
+  assert.equal(find('.mdc-grid-tile__secondary').textContent.trim(), 'template block text');
 });

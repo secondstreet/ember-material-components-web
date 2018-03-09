@@ -1,4 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
+import { find } from 'ember-native-dom-helpers';
+
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('mdc-tab-bar-scroller', 'Integration | Component | mdc tab bar scroller', {
@@ -13,18 +15,18 @@ test('it renders', function(assert) {
   this.render(hbs`{{#mdc-tab-bar-scroller as |scroller|}}
     {{#scroller.tab-bar links=false as |bar|}}
       {{#bar.tab}}
-        One 
+        One
       {{/bar.tab}}
       {{#bar.tab}}
-        Two 
+        Two
       {{/bar.tab}}
       {{#bar.tab}}
-        Three 
+        Three
       {{/bar.tab}}
     {{/scroller.tab-bar}}
   {{/mdc-tab-bar-scroller}}`);
 
-  assert.ok(this.$());
+  assert.ok(find('.mdc-tab-bar-scroller'));
 
   //TODO: Add better tests!
 });

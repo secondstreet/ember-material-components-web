@@ -92,7 +92,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
     return new MDCRadioFoundation({
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
-      getNativeControl: () => this.$('input').get(0),
+      getNativeControl: () => this.element.querySelector('input'),
     });
   },
   //endregion

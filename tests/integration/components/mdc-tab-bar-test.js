@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -12,7 +13,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{mdc-tab-bar}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(find('*').textContent.trim(), '');
 
   // Template block usage:
   this.render(hbs`
@@ -22,8 +23,8 @@ test('it renders', function(assert) {
     {{mdc-tab-bar/indicator}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
-  assert.ok(this.$('.mdc-tab-bar .mdc-tab-bar__indicator'), 'tab bar indicator appears');
+  assert.equal(find('*').textContent.trim(), 'template block text');
+  assert.ok(find('.mdc-tab-bar .mdc-tab-bar__indicator'), 'tab bar indicator appears');
 
-  assert.ok(this.$('.mdc-tab-bar .mdc-tab-bar__indicator').hasClass('foo'), 'custom class names can be passed into the indicator');
+  assert.ok(find('.mdc-tab-bar .mdc-tab-bar__indicator').classList.contains('foo'), 'custom class names can be passed into the indicator');
 });

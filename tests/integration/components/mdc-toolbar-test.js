@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -19,5 +20,5 @@ test('it renders', function(assert) {
     {{/mdc-toolbar}}
   `);
 
-  assert.equal(this.$('.mdc-toolbar__title').text().trim(), 'Title text');
+  assert.equal(find('.mdc-toolbar__title').textContent.trim(), 'Title text');
 });

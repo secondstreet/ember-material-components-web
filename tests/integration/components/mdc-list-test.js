@@ -1,3 +1,4 @@
+import { find, findAll } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -15,6 +16,6 @@ test('it renders', function(assert) {
     {{/mdc-list}}
   `);
 
-  assert.equal(this.$('.mdc-list-item').length, 3);
-  assert.equal(this.$('.mdc-list-item:first-of-type').text().trim(), 'Item 1');
+  assert.equal(findAll('.mdc-list-item').length, 3);
+  assert.equal(find('.mdc-list-item:first-of-type').textContent.trim(), 'Item 1');
 });

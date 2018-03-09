@@ -83,9 +83,11 @@ export default Component.extend(MDCComponent, {
     if (isPermanent) {
       return { init() {}, destroy() {} };
     }
+
     const Foundation = persistent ? MDCPersistentDrawerFoundation : MDCTemporaryDrawerFoundation;
     run(() => get(this, 'mdcClasses').addObject(Foundation.cssClasses.ROOT));
-    const { FOCUSABLE_ELEMENTS, ITEMS_SELECTOR, DRAWER_SELECTOR } = Foundation.strings;
+    const { FOCUSABLE_ELEMENTS, DRAWER_SELECTOR } = Foundation.strings;
+
     const adapter = {
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
@@ -109,8 +111,8 @@ export default Component.extend(MDCComponent, {
       notifyOpen: () => set(this, 'open', true),
       notifyClose: () => set(this, 'open', false),
       isRtl: () => getElementProperty(this, 'direction') === 'rtl',
-      getFocusableElements: () => this.$(FOCUSABLE_ELEMENTS),
-      hasNecessaryDom: () => !!get(this, 'element') && !!this.$(ITEMS_SELECTOR).length,
+      getFocusableElements: () => this.element.querySelectorAll(FOCUSABLE_ELEMENTS),
+      hasNecessaryDom: () => Boolean(this.element),
       isDrawer: (el) => get(this, 'element').querySelector(DRAWER_SELECTOR) === el,
     };
     return new Foundation(adapter);

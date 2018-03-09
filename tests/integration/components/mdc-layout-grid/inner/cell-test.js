@@ -1,3 +1,4 @@
+import { findAll, find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -15,13 +16,13 @@ test('it renders', function(assert) {
     {{/mdc-layout-grid/inner/cell}}
   `);
 
-  assert.equal(this.$('.mdc-layout-grid__cell').text().trim(), 'template block text');
-  assert.equal(this.$('.mdc-layout-grid__cell--span-6').length, 1);
-  assert.equal(this.$('.mdc-layout-grid__cell--span-8-desktop').length, 1);
-  assert.equal(this.$('.mdc-layout-grid__cell--span-6-tablet').length, 1);
-  assert.equal(this.$('.mdc-layout-grid__cell--span-4-phone').length, 1);
-  assert.equal(this.$('.mdc-layout-grid__cell--order-3').length, 1);
-  assert.equal(this.$('.mdc-layout-grid__cell--align-top').length, 1);
+  assert.equal(find('.mdc-layout-grid__cell').textContent.trim(), 'template block text');
+  assert.equal(findAll('.mdc-layout-grid__cell--span-6').length, 1);
+  assert.equal(findAll('.mdc-layout-grid__cell--span-8-desktop').length, 1);
+  assert.equal(findAll('.mdc-layout-grid__cell--span-6-tablet').length, 1);
+  assert.equal(findAll('.mdc-layout-grid__cell--span-4-phone').length, 1);
+  assert.equal(findAll('.mdc-layout-grid__cell--order-3').length, 1);
+  assert.equal(findAll('.mdc-layout-grid__cell--align-top').length, 1);
 
   // Template block usage:
   this.render(hbs`
@@ -32,5 +33,5 @@ test('it renders', function(assert) {
     {{/mdc-layout-grid/inner/cell}}
   `);
 
-  assert.equal(this.$('.mdc-layout-grid__inner').text().trim(), 'template block text');
+  assert.equal(find('.mdc-layout-grid__inner').textContent.trim(), 'template block text');
 });

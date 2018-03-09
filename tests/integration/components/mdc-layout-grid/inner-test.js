@@ -1,3 +1,4 @@
+import { findAll, find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -17,6 +18,6 @@ test('it renders', function(assert) {
     {{/mdc-layout-grid/inner}}
   `);
 
-  assert.equal(this.$('.mdc-layout-grid__inner').length, 1);
-  assert.equal(this.$('.mdc-layout-grid__cell').text().trim(), 'template block text');
+  assert.equal(findAll('.mdc-layout-grid__inner').length, 1);
+  assert.equal(find('.mdc-layout-grid__cell').textContent.trim(), 'template block text');
 });

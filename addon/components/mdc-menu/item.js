@@ -71,7 +71,7 @@ export default Component.extend({
    * @param {String} value
    */
   setTransitionDelay(value) {
-    this.$().css('transition-delay', value);
+    this.element.style.transitionDelay = value;
   },
   //endregion
 });

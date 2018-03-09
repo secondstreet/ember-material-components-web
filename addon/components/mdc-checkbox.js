@@ -92,7 +92,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       deregisterAnimationEndHandler: (handler) => getElementProperty(this, 'removeEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
       registerChangeHandler: (handler) => run(() => get(this, 'changeHandlers').addObject(handler)),
       deregisterChangeHandler: (handler) => run(() => get(this, 'changeHandlers').removeObject(handler)),
-      getNativeControl: () => this.$('input').get(0),
+      getNativeControl: () => this.element.querySelector('input'),
       forceLayout: () => undefined,
       isAttachedToDOM: () => !!get(this, 'element')
     });
