@@ -3,7 +3,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('mdc-grid-list/tiles/tile', 'Integration | Component | mdc grid list/tiles/tile', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {

@@ -3,7 +3,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('mdc-icon-toggle', 'Integration | Component | mdc icon toggle', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {

@@ -24,7 +24,7 @@ const materialPackages = [
   { name: '@material/tabs', css: true, js: true },
   { name: '@material/ripple', css: true, js: true },
   { name: '@material/linear-progress', css: true, js: true },
-  { name: '@material/switch', css: true, js: false }
+  { name: '@material/switch', css: true, js: false },
 ];
 
 /**
@@ -48,19 +48,22 @@ const materialPackages = [
  *    Ember's module system.
  */
 module.exports = {
-  name: 'ember-material-components-web', /**
+  name: 'ember-material-components-web' /**
    * Invoked at the beginning of the build process, this hook allows us to
    * use the `import()` method to include files from our `vendor` tree into
    * the built app.
-   */
-  included: function (app) {
-    materialPackages.forEach(function (pkg) {
+   */,
+  included: function(app) {
+    materialPackages.forEach(function(pkg) {
       const pkgBaseName = pkg.name.replace('@material/', '');
       if (pkg.js) {
-        app.import({
-          development: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.js`,
-          production: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.min.js`
-        }, { using: [{ transformation: 'amd', as: pkg.name }] });
+        app.import(
+          {
+            development: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.js`,
+            production: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.min.js`,
+          },
+          { using: [{ transformation: 'amd', as: pkg.name }] }
+        );
       }
       if (pkg.css) {
         app.import({
@@ -69,16 +72,16 @@ module.exports = {
         });
       }
     });
-  }, /**
+  } /**
    * Returns a Broccoli tree for the addon's `vendor` directory. The `vendor`
    * directory isn't explicitly used for anything, but files can be `import()`ed
    * which we do in the `included` hook above.
    *
    * This is necessary because Ember CLI doesn't currently support `import()`ing
    * anything directly from a `node_modules/` folder.
-   */
-  treeForVendor: function () {
-    const trees = materialPackages.map(function (pkg) {
+   */,
+  treeForVendor: function() {
+    const trees = materialPackages.map(function(pkg) {
       const include = [];
       if (pkg.css) {
         include.push('dist/mdc.*.css');
@@ -90,7 +93,7 @@ module.exports = {
     });
 
     return this._super(mergeTrees(trees, { overwrite: true }));
-  }
+  },
 };
 
 /* eslint-disable */
@@ -99,13 +102,15 @@ module.exports = {
  * Copyright (c) 2016 Yehuda Katz, Tom Dale and Ember.js contributors
  * https://github.com/emberjs/ember.js/blob/v2.10.0/packages/ember-runtime/lib/system/string.js#L25-L29
  */
-const STRING_CAMELIZE_REGEXP_1 = (/(\-|\_|\.|\s)+(.)?/g);
-const STRING_CAMELIZE_REGEXP_2 = (/(^|\/)([A-Z])/g);
+const STRING_CAMELIZE_REGEXP_1 = /(\-|\_|\.|\s)+(.)?/g;
+const STRING_CAMELIZE_REGEXP_2 = /(^|\/)([A-Z])/g;
 
 function camelize(str) {
-  return str.replace(STRING_CAMELIZE_REGEXP_1, function (match, separator, chr) {
-    return chr ? chr.toUpperCase() : '';
-  }).replace(STRING_CAMELIZE_REGEXP_2, function (match) {
-    return match.toLowerCase();
-  });
-};
+  return str
+    .replace(STRING_CAMELIZE_REGEXP_1, function(match, separator, chr) {
+      return chr ? chr.toUpperCase() : '';
+    })
+    .replace(STRING_CAMELIZE_REGEXP_2, function(match) {
+      return match.toLowerCase();
+    });
+}
