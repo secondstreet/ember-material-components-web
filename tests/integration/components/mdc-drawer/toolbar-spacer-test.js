@@ -3,11 +3,10 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('mdc-drawer/toolbar-spacer', 'Integration | Component | mdc drawer/toolbar spacer', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 

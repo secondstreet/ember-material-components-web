@@ -3,11 +3,10 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('mdc-tab-bar', 'Integration | Component | mdc tab bar', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
@@ -26,5 +25,8 @@ test('it renders', function(assert) {
   assert.equal(find('*').textContent.trim(), 'template block text');
   assert.ok(find('.mdc-tab-bar .mdc-tab-bar__indicator'), 'tab bar indicator appears');
 
-  assert.ok(find('.mdc-tab-bar .mdc-tab-bar__indicator').classList.contains('foo'), 'custom class names can be passed into the indicator');
+  assert.ok(
+    find('.mdc-tab-bar .mdc-tab-bar__indicator').classList.contains('foo'),
+    'custom class names can be passed into the indicator'
+  );
 });

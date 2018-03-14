@@ -3,7 +3,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('mdc-layout-grid/inner/cell', 'Integration | Component | mdc layout grid/inner/cell', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {

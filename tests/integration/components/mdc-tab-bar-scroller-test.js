@@ -4,11 +4,10 @@ import { find } from 'ember-native-dom-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('mdc-tab-bar-scroller', 'Integration | Component | mdc tab bar scroller', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
