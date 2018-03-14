@@ -14,6 +14,6 @@ export default Component.extend({
   layout,
   classNames: ['mdc-card__title'],
   classNameBindings: ['large:mdc-card__title--large'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

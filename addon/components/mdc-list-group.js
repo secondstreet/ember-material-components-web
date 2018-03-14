@@ -6,6 +6,6 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   classNames: ['mdc-list-group'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

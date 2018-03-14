@@ -36,7 +36,7 @@ export default Component.extend({
     'isOne:mdc-card__media-item--1x',
     'isOneDotFive:mdc-card__media-item--1dot5x',
     'isTwo:mdc-card__media-item--2x',
-    'isThree:mdc-card__media-item--3x'
+    'isThree:mdc-card__media-item--3x',
   ],
   //endregion
 
@@ -47,6 +47,6 @@ export default Component.extend({
   isThree: equal('size', 3),
   height: computed('size', function() {
     return MDC_1x_PIXELS * get(this, 'size');
-  })
+  }),
   //endregion
 });

@@ -7,6 +7,6 @@ export default Component.extend({
   layout,
   tagName: 'li',
   classNames: ['mdc-list-item'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

@@ -15,8 +15,10 @@ export default Component.extend({
    */
   getAnchorDimensions() {
     const el = get(this, 'element');
-    if (!el) { return null; }
+    if (!el) {
+      return null;
+    }
     return el.getBoundingClientRect();
-  }
+  },
   //endregion
 });

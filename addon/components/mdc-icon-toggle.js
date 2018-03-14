@@ -2,15 +2,13 @@ import { scheduleOnce } from '@ember/runloop';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import layout from '../templates/components/mdc-icon-toggle';
-import {
-  MDCComponent,
-  addClass,
-  removeClass
-} from '../mixins/mdc-component';
+import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCIconToggleFoundation } from '@material/icon-toggle';
 
-const { strings: { DATA_TOGGLE_ON, DATA_TOGGLE_OFF, ARIA_PRESSED, ARIA_DISABLED, ARIA_LABEL } } = MDCIconToggleFoundation;
+const {
+  strings: { DATA_TOGGLE_ON, DATA_TOGGLE_OFF, ARIA_PRESSED, ARIA_DISABLED, ARIA_LABEL },
+} = MDCIconToggleFoundation;
 
 export default Component.extend(MDCComponent, {
   //region Attributes
@@ -71,9 +69,9 @@ export default Component.extend(MDCComponent, {
           bottom: left + size,
           right: left + size,
           width: size,
-          height: size
+          height: size,
         };
-      }
+      },
     };
   },
   //endregion
@@ -117,16 +115,18 @@ export default Component.extend(MDCComponent, {
       },
       notifyChange(evtData) {
         get(component, 'onchange')(evtData.isOn);
-      }
+      },
     });
   },
   syncPressed() {
     const foundation = get(this, 'foundation');
-    if (!foundation) { return; }
+    if (!foundation) {
+      return;
+    }
     const pressed = !!get(this, 'pressed');
     if (foundation && foundation.isOn() !== pressed) {
       foundation.toggle(pressed);
     }
-  }
+  },
   //endregion
 });

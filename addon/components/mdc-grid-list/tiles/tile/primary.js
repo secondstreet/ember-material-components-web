@@ -6,6 +6,6 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   classNames: ['mdc-grid-tile__primary'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

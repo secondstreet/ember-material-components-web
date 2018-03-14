@@ -12,7 +12,7 @@ export default Mixin.create({
       if (!get(this, 'bubbles')) {
         ev.stopPropagation();
       }
-    }
-  }
+    },
+  },
   //endregion
 });

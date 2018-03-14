@@ -5,11 +5,7 @@ import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import layout from '../templates/components/mdc-textfield';
-import {
-  MDCComponent,
-  addClass,
-  removeClass
-} from '../mixins/mdc-component';
+import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCTextfieldFoundation } from '@material/textfield';
 import { util } from '@material/ripple';
@@ -127,7 +123,7 @@ export default Component.extend(MDCComponent, {
       'inputFocusHandlers',
       'inputBlurHandlers',
       'inputInputHandlers',
-      'inputKeydownHandlers'
+      'inputKeydownHandlers',
     ].forEach(prop => set(this, prop, A([])));
     this._super(...arguments);
   },
@@ -167,13 +163,13 @@ export default Component.extend(MDCComponent, {
     const fallbackHasMatches = () => ({ [MATCHES]: () => false });
     return {
       isSurfaceActive: () =>
-        getElementProperty(this, 'querySelector', fallbackHasMatches)('input, textarea')[MATCHES](':active')
+        getElementProperty(this, 'querySelector', fallbackHasMatches)('input, textarea')[MATCHES](':active'),
     };
   },
   //endregion
 
   //region Computed Properties
-  isFocused: computed('mdcClassNames', function (){
+  isFocused: computed('mdcClassNames', function() {
     const mdcClassNames = get(this, 'mdcClassNames').split(' ');
     const focusedClassName = get(this, 'CLASS_NAMES.FOCUSED');
     return mdcClassNames.includes(focusedClassName);
@@ -222,7 +218,9 @@ export default Component.extend(MDCComponent, {
         get(component, 'labelClasses').removeObject(className);
       },
       helptextHasClass(className) {
-        return get(component, 'helptextClassnames').split(' ').includes(className);
+        return get(component, 'helptextClassnames')
+          .split(' ')
+          .includes(className);
       },
       setHelptextAttr(name, value) {
         const existing = component.existingHelpTextAttr(name);
@@ -267,7 +265,7 @@ export default Component.extend(MDCComponent, {
       },
       getNativeInput() {
         return getElementProperty(component, 'querySelector', () => null)('input, textarea');
-      }
+      },
     });
   },
   //endregion
@@ -283,7 +281,7 @@ export default Component.extend(MDCComponent, {
     handleInput(ev) {
       this.send('handle', 'input', ev);
       get(this, 'onchange')(ev.target.value);
-    }
-  }
+    },
+  },
   //endregion
 });

@@ -3,11 +3,7 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { run, next, scheduleOnce } from '@ember/runloop';
 import layout from '../templates/components/mdc-checkbox';
-import {
-  addClass,
-  removeClass,
-  MDCComponent
-} from '../mixins/mdc-component';
+import { addClass, removeClass, MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCCheckboxFoundation } from '@material/checkbox';
 import SupportsBubblesFalse from '../mixins/supports-bubbles-false';
@@ -86,15 +82,17 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    */
   createFoundation() {
     return new MDCCheckboxFoundation({
-      addClass: (className) => next(() => addClass(className, this)),
-      removeClass: (className) => next(() => removeClass(className, this)),
-      registerAnimationEndHandler: (handler) => getElementProperty(this, 'addEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
-      deregisterAnimationEndHandler: (handler) => getElementProperty(this, 'removeEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
-      registerChangeHandler: (handler) => run(() => get(this, 'changeHandlers').addObject(handler)),
-      deregisterChangeHandler: (handler) => run(() => get(this, 'changeHandlers').removeObject(handler)),
+      addClass: className => next(() => addClass(className, this)),
+      removeClass: className => next(() => removeClass(className, this)),
+      registerAnimationEndHandler: handler =>
+        getElementProperty(this, 'addEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
+      deregisterAnimationEndHandler: handler =>
+        getElementProperty(this, 'removeEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
+      registerChangeHandler: handler => run(() => get(this, 'changeHandlers').addObject(handler)),
+      deregisterChangeHandler: handler => run(() => get(this, 'changeHandlers').removeObject(handler)),
       getNativeControl: () => this.element.querySelector('input'),
       forceLayout: () => undefined,
-      isAttachedToDOM: () => !!get(this, 'element')
+      isAttachedToDOM: () => !!get(this, 'element'),
     });
   },
   //endregion
@@ -105,7 +103,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       const checked = ev.target.checked;
       get(this, 'changeHandlers').forEach(handler => handler(ev));
       get(this, 'onchange')(checked);
-    }
-  }
+    },
+  },
   //endregion
 });

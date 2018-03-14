@@ -7,6 +7,6 @@ export default Component.extend({
   layout,
   tagName: 'span',
   classNames: ['mdc-list-item__text'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

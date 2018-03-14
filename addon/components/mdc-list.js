@@ -27,6 +27,6 @@ export default Component.extend({
   tagName: 'ul',
   classNameBindings: ['dense:mdc-list--dense', 'two-line:mdc-list--two-line', 'avatar-list:mdc-list--avatar-list'],
   classNames: ['mdc-list'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

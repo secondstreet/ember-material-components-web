@@ -40,7 +40,7 @@ export default Component.extend({
     'wrap',
     'lang',
     'dir',
-    'value'
+    'value',
   ],
   classNames: ['mdc-textfield__input'],
   focusIn(ev) {
@@ -54,6 +54,6 @@ export default Component.extend({
   },
   keyDown(ev) {
     get(this, 'onkeydown')(ev);
-  }
+  },
   //endregion
 });

@@ -56,7 +56,7 @@ export default Component.extend({
     'step',
     'type',
     'value',
-    'width'
+    'width',
   ],
   classNames: ['mdc-textfield__input'],
   focusIn(ev) {
@@ -70,6 +70,6 @@ export default Component.extend({
   },
   keyDown(ev) {
     get(this, 'onkeydown')(ev);
-  }
+  },
   //endregion
 });

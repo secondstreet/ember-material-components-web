@@ -43,7 +43,7 @@ export default Component.extend({
     'spanClass',
     'spanDesktopClass',
     'spanTabletClass',
-    'spanPhoneClass'
+    'spanPhoneClass',
   ],
   attributeBindings: [...events],
   layout,
@@ -72,6 +72,6 @@ export default Component.extend({
   }),
   isAlignTop: equal('align', 'top'),
   isAlignMiddle: equal('align', 'middle'),
-  isAlignBottom: equal('align', 'bottom')
+  isAlignBottom: equal('align', 'bottom'),
   //endregion
 });

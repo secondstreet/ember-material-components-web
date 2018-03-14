@@ -17,11 +17,11 @@ export default Component.extend({
   classNameBindings: ['elevationClass'],
   classNames: ['mdc-elevation-transition'],
   attributeBindings: [...events],
- //endregion
+  //endregion
 
- //region Computed Properties
- elevationClass: computed('z', function() {
-   return `mdc-elevation--z${get(this, 'z')}`;
- })
- //endregion
+  //region Computed Properties
+  elevationClass: computed('z', function() {
+    return `mdc-elevation--z${get(this, 'z')}`;
+  }),
+  //endregion
 });

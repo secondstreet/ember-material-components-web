@@ -90,7 +90,9 @@ export default Component.extend(MDCComponent, {
   },
   updateOpenness() {
     const foundation = get(this, 'foundation');
-    if (!foundation) { return; }
+    if (!foundation) {
+      return;
+    }
     const open = get(this, 'open');
     if (foundation.isOpen() && !open) {
       foundation.close();
@@ -107,7 +109,7 @@ export default Component.extend(MDCComponent, {
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       hasClass: className => get(this, 'element.classList').contains(className),
-      hasNecessaryDom: () => !!get(this , 'element') && !!this.element.querySelectorAll(strings.ITEMS_SELECTOR).length,
+      hasNecessaryDom: () => !!get(this, 'element') && !!this.element.querySelectorAll(strings.ITEMS_SELECTOR).length,
       getInnerDimensions: () => {
         let item = this.element.querySelector(strings.ITEMS_SELECTOR);
         if (!item) {
@@ -120,7 +122,7 @@ export default Component.extend(MDCComponent, {
       getAnchorDimensions: () => get(this, 'anchor').getAnchorDimensions(),
       getWindowDimensions: () => ({ width: window.innerWidth, height: window.innerHeight }),
       setScale: (x, y) => run(() => this.setStyleFor('mdcStyles', TRANSFORM_PROPERTY, `scale(${x}, ${y}`)),
-      setInnerScale: (x, y)  => run(() => this.setStyleFor('itemStyles', TRANSFORM_PROPERTY, `scale(${x}, ${y}`)),
+      setInnerScale: (x, y) => run(() => this.setStyleFor('itemStyles', TRANSFORM_PROPERTY, `scale(${x}, ${y}`)),
       getNumberOfItems: () => get(this, 'items.length'),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
@@ -128,16 +130,22 @@ export default Component.extend(MDCComponent, {
       deregisterBodyClickHandler: handler => document.body.removeEventListener('click', handler),
       getYParamsForItemAtIndex: index => this.itemAt(index).getYParams(),
       setTransitionDelayForItemAtIndex: (index, value) => this.itemAt(index).setTransitionDelay(value),
-      getIndexForEventTarget: target => get(this, 'items').mapBy('element').indexOf(target),
+      getIndexForEventTarget: target =>
+        get(this, 'items')
+          .mapBy('element')
+          .indexOf(target),
       notifySelected: ({ index }) => this.itemAt(index).notifySelected(index),
       notifyCancel: () => get(this, 'cancel')(false), // False is provided as a convenience for the {{mut}} helper
       saveFocus: () => set(this, 'previousFocus', document.activeElement),
       restoreFocus: () => get(this, 'previousFocus') && get(this, 'previousFocus').focus(),
       isFocused: () => document.activeElement === get(this, 'element'),
-      focus: ()  => run(() => !get(this, 'disable-focus') && get(this, 'element').focus()),
-      getFocusedItemIndex: () => get(this, 'items').mapBy('element').indexOf(document.activeElement),
+      focus: () => run(() => !get(this, 'disable-focus') && get(this, 'element').focus()),
+      getFocusedItemIndex: () =>
+        get(this, 'items')
+          .mapBy('element')
+          .indexOf(document.activeElement),
       focusItemAtIndex: index => !get(this, 'disable-focus') && get(this.itemAt(index), 'element').focus(),
-      isRtl: ()  => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
+      isRtl: () => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: value => run(() => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value)),
       setPosition: ({ top, right, bottom, left }) => {
         run(() => {
@@ -147,8 +155,8 @@ export default Component.extend(MDCComponent, {
           this.setStyleFor('mdcStyles', 'left', left || null);
         });
       },
-      getAccurateTime: () => window.performance.now()
+      getAccurateTime: () => window.performance.now(),
     });
-  }
+  },
   //endregion
 });

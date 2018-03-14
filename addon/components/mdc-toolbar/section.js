@@ -19,14 +19,14 @@ export default Component.extend({
   layout,
   classNames: ['mdc-toolbar__section'],
   classNameBindings: [
-      'isAlignStart:mdc-toolbar__section--align-start',
-      'isAlignEnd:mdc-toolbar__section--align-end',
-      'shrink-to-fit:mdc-toolbar__section--shrink-to-fit'
+    'isAlignStart:mdc-toolbar__section--align-start',
+    'isAlignEnd:mdc-toolbar__section--align-end',
+    'shrink-to-fit:mdc-toolbar__section--shrink-to-fit',
   ],
   //endregion
 
   //region Computed Properties
   isAlignStart: equal('align', 'start'),
-  isAlignEnd: equal('align', 'end')
+  isAlignEnd: equal('align', 'end'),
   //endregion
 });

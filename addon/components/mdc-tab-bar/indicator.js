@@ -5,6 +5,6 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   classNames: ['mdc-tab-bar__indicator'],
-  attributeBindings: ['style']
+  attributeBindings: ['style'],
   //endregion
 });

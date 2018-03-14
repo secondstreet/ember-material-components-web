@@ -18,7 +18,7 @@ export default Component.extend({
     'srcset',
     'usemap',
     'width',
-    ...events
-  ]
+    ...events,
+  ],
   //endregion
 });

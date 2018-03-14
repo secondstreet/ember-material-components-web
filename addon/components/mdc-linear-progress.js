@@ -46,7 +46,7 @@ export default Component.extend(MDCComponent, {
     `indeterminate:${cssClasses.INDETERMINATE_CLASS}`,
     `closed:${cssClasses.CLOSED_CLASS}`,
     `reversed:${cssClasses.REVERSED_CLASS}`,
-    'secondary:mdc-linear-progress--accent'
+    'secondary:mdc-linear-progress--accent',
   ],
   attributeBindings: ['role', ...events],
   init() {
@@ -78,25 +78,24 @@ export default Component.extend(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCLinearProgressFoundation({
-      hasClass: (className) => get(this, 'mdcClasses').includes(className),
-      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
+      hasClass: className => get(this, 'mdcClasses').includes(className),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       getPrimaryBar: () => getElementProperty(this, 'querySelector')(strings.PRIMARY_BAR_SELECTOR),
       getBuffer: () => getElementProperty(this, 'querySelector')(strings.BUFFER_SELECTOR),
       setStyle: (el, property, value) => {
         let elementStyles;
         if (el.classList.contains(strings.PRIMARY_BAR_SELECTOR.slice(1))) {
           elementStyles = 'mdcPrimaryBarStyles';
-        }
-        else if (el.classList.contains(strings.BUFFER_SELECTOR.slice(1))) {
+        } else if (el.classList.contains(strings.BUFFER_SELECTOR.slice(1))) {
           elementStyles = 'mdcBufferStyles';
         }
         run(() => this.setStyleFor(elementStyles, property, value));
-      }
+      },
     });
   },
   afterFoundationCreation() {
     this.sync('progress');
-  }
+  },
   //endregion
 });

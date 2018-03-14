@@ -6,6 +6,6 @@ export default Component.extend({
   layout,
   tagName: 'span',
   classNames: ['mdc-textfield__label'],
-  classNameBindings: ['class-names']
+  classNameBindings: ['class-names'],
   //endregion
 });

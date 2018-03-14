@@ -7,6 +7,6 @@ export default Component.extend({
   layout,
   tagName: 'ul',
   classNames: ['mdc-grid-list__tiles'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

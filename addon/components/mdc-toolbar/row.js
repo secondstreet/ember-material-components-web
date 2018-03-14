@@ -24,6 +24,6 @@ export default Component.extend({
   }),
   isFirstRow: computed('first-row', function() {
     return get(this, 'first-row') === this;
-  })
+  }),
   //endregion
 });

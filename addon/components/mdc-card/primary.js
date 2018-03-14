@@ -7,6 +7,6 @@ export default Component.extend({
   layout,
   tagName: 'section',
   classNames: ['mdc-card__primary'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

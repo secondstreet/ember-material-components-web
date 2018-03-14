@@ -32,6 +32,6 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Properties
-  ripple: true
+  ripple: true,
   //endregion
 });

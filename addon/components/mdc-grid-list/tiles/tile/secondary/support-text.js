@@ -7,6 +7,6 @@ export default Component.extend({
   layout,
   tagName: 'span',
   classNames: ['mdc-grid-tile__support-text'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

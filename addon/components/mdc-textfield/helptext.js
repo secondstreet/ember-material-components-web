@@ -19,7 +19,7 @@ const MDCTextfieldHelptextComponent = Component.extend({
   tagName: 'p',
   classNames: ['mdc-textfield-helptext'],
   classNameBindings: ['class-names'],
-  attributeBindings: mdcAttrs
+  attributeBindings: mdcAttrs,
   //endregion
 });
 
@@ -27,9 +27,11 @@ mdcAttrs.forEach(attr => {
   MDCTextfieldHelptextComponent.reopen({
     [attr]: computed('attribute-pairs.[]', function() {
       const found = get(this, 'attribute-pairs').find(x => x[0] === attr);
-      if (!found) { return null; }
+      if (!found) {
+        return null;
+      }
       return found[1];
-    })
+    }),
   });
 });
 

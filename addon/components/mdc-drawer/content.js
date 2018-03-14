@@ -9,6 +9,10 @@ export default Component.extend({
   //endregion
   //region Ember Hooks
   layout,
-  classNameBindings: ['temporary:mdc-temporary-drawer__content', 'permanent:mdc-permanent-drawer__content', 'persistent:mdc-persistent-drawer__content'],
+  classNameBindings: [
+    'temporary:mdc-temporary-drawer__content',
+    'permanent:mdc-permanent-drawer__content',
+    'persistent:mdc-persistent-drawer__content',
+  ],
   //endregion
 });

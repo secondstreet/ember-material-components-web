@@ -43,9 +43,7 @@ export const MDCComponent = Mixin.create({
         this.afterFoundationCreation(foundation);
       }
       if (get(this, 'ripple')) {
-        const rippleFoundation = new MDCRippleFoundation(
-          createRippleAdapter(this, this.rippleOptions())
-        );
+        const rippleFoundation = new MDCRippleFoundation(createRippleAdapter(this, this.rippleOptions()));
         set(this, 'rippleFoundation', rippleFoundation);
         rippleFoundation.init();
       }
@@ -132,7 +130,9 @@ export const MDCComponent = Mixin.create({
    */
   sync(prop) {
     const foundation = get(this, 'foundation');
-    if (!foundation) { return; }
+    if (!foundation) {
+      return;
+    }
     const value = get(this, prop);
     const Prop = capitalize(prop);
     if (!foundation[`is${Prop}`] || foundation[`is${Prop}`]() !== value) {
@@ -142,7 +142,9 @@ export const MDCComponent = Mixin.create({
 
   setStyleFor(key, property, value) {
     next(() => {
-      if (get(this, 'isDestroyed')) { return; }
+      if (get(this, 'isDestroyed')) {
+        return;
+      }
 
       set(this, `${key}.${property}`, value);
       // Setting properties on the object doesn't cause computed properties to recompute
@@ -153,11 +155,15 @@ export const MDCComponent = Mixin.create({
   },
 
   _attachMdcInteractionHandlers() {
-    get(this, 'mdcInteractionHandlers').forEach(([type, handler]) => getElementProperty(this, 'addEventListener', () => null)(type, handler));
+    get(this, 'mdcInteractionHandlers').forEach(([type, handler]) =>
+      getElementProperty(this, 'addEventListener', () => null)(type, handler)
+    );
   },
 
   _detachMdcInteractionHandlers() {
-    get(this, 'mdcInteractionHandlers').forEach(([type, handler]) => getElementProperty(this, 'removeEventListener', () => null)(type, handler));
+    get(this, 'mdcInteractionHandlers').forEach(([type, handler]) =>
+      getElementProperty(this, 'removeEventListener', () => null)(type, handler)
+    );
   },
 
   registerMdcInteractionHandler(type, handler) {

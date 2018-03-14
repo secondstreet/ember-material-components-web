@@ -11,6 +11,6 @@ export default Component.extend({
   //region Ember hooks
   layout,
   classNames: ['mdc-form-field'],
-  classNameBindings: ['align-end:mdc-form-field--align-end']
+  classNameBindings: ['align-end:mdc-form-field--align-end'],
   //endregion
 });

@@ -15,6 +15,6 @@ export default Component.extend({
   tagName: 'section',
   classNames: ['mdc-card__actions'],
   classNameBindings: ['vertical:mdc-card__actions--vertical'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });
