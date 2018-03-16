@@ -6,6 +6,6 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   classNames: ['mdc-card__media'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

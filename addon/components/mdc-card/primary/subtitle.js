@@ -6,6 +6,6 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   classNames: ['mdc-card__subtitle'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

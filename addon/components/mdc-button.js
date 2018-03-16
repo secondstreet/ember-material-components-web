@@ -50,12 +50,12 @@ export default Component.extend(MDCComponent, {
     'compact:mdc-button--compact',
     'dense:mdc-button--dense',
     'stroked:mdc-button--stroked',
-    'mdcClassNames'
+    'mdcClassNames',
   ],
   attributeBindings: ['disabled', 'type', 'style', ...events],
   //endregion
 
   //region Properties
-  ripple: true
+  ripple: true,
   //endregion
 });

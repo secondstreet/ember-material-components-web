@@ -86,5 +86,5 @@ export default [
   'ontouchstart',
   'ontransitioncancel',
   'ontransitionend',
-  'onwaiting'
-]
+  'onwaiting',
+];

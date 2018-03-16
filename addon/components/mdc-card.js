@@ -14,6 +14,6 @@ export default Component.extend({
   layout,
   classNames: ['mdc-card'],
   classNameBindings: ['horizontal-block:mdc-card__horizontal-block'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

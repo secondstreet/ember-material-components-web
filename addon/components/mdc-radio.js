@@ -62,27 +62,34 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       isSurfaceActive: () => false,
       computeBoundingRect: () => {
         const size = 40;
-        const { left, top } = getElementProperty(this, 'getBoundingClientRect', () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }))();
+        const { left, top } = getElementProperty(this, 'getBoundingClientRect', () => ({
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          width: 0,
+          height: 0,
+        }))();
         return {
           top,
           left,
           bottom: left + size,
           right: left + size,
           width: size,
-          height: size
+          height: size,
         };
-      }
+      },
     };
   },
   //endregion
 
   //region Methods
   _attachMdcInteractionHandlers() {
-    const input = getElementProperty(this, 'querySelector', () => ({ addEventListener() {}}))('input');
+    const input = getElementProperty(this, 'querySelector', () => ({ addEventListener() {} }))('input');
     get(this, 'mdcInteractionHandlers').forEach(([type, handler]) => input.addEventListener(type, handler));
   },
   _detachMdcInteractionHandlers() {
-    const input = getElementProperty(this, 'querySelector', () => ({ removeEventListener() {}}))('input');
+    const input = getElementProperty(this, 'querySelector', () => ({ removeEventListener() {} }))('input');
     get(this, 'mdcInteractionHandlers').forEach(([type, handler]) => input.removeEventListener(type, handler));
   },
   /**
@@ -102,7 +109,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
     inputChanged(ev) {
       const checked = ev.target.checked;
       get(this, 'onchange')(checked);
-    }
-  }
+    },
+  },
   //endregion
 });

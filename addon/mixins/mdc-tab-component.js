@@ -47,7 +47,7 @@ export default Mixin.create(MDCComponent, {
     set(key, value) {
       get(this, 'foundation').setPreventDefaultOnClick(value);
       return value;
-    }
+    },
   }).volatile(),
   /**
    * @returns {Number}
@@ -72,8 +72,8 @@ export default Mixin.create(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCTabFoundation({
-      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       getOffsetWidth: () => get(this, 'element').offsetWidth,
@@ -83,9 +83,9 @@ export default Mixin.create(MDCComponent, {
   },
   measureSelf() {
     const foundation = get(this, 'foundation');
-    if(foundation) {
+    if (foundation) {
       return foundation.measureSelf();
     }
-  }
+  },
   //endregion
 });

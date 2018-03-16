@@ -5,14 +5,11 @@ import { run } from '@ember/runloop';
 import { set, getProperties, get, computed } from '@ember/object';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
-import {
-  MDCTemporaryDrawerFoundation,
-  MDCPersistentDrawerFoundation
-} from '@material/drawer';
+import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation } from '@material/drawer';
 import layout from '../templates/components/mdc-drawer';
 
 export default Component.extend(MDCComponent, {
-//region Ember Hooks
+  //region Ember Hooks
   layout,
   classNames: ['mdc-drawer'],
   classNameBindings: ['mdcClassNames', 'isPermanent:mdc-permanent-drawer'],
@@ -54,7 +51,7 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region ComputedProperties
-  isPermanent: computed('permanent', 'persistent', 'temporary', function () {
+  isPermanent: computed('permanent', 'persistent', 'temporary', function() {
     const { permanent, persistent, temporary } = getProperties(this, 'permanent', 'persistent', 'temporary');
     if (permanent && (temporary || persistent)) {
       throw new EmberError('Cannot be permanent and temporary or persistent');
@@ -66,7 +63,9 @@ export default Component.extend(MDCComponent, {
   //region Methods
   updateOpenness() {
     const foundation = get(this, 'foundation');
-    if (!foundation) { return; }
+    if (!foundation) {
+      return;
+    }
     const open = get(this, 'open');
     if (foundation.isOpen() && !open) {
       foundation.close();
@@ -96,24 +95,24 @@ export default Component.extend(MDCComponent, {
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       registerDrawerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterDrawerInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
-      registerTransitionEndHandler: (handler) => this.registerMdcInteractionHandler('transitionend', handler),
-      deregisterTransitionEndHandler: (handler) => this.deregisterMdcInteractionHandler('transitionend', handler),
-      registerDocumentKeydownHandler: (handler) => run(() => window.document.addEventListener('keydown', handler)),
-      deregisterDocumentKeydownHandler: (handler) => run(() => window.document.removeEventListener('keydown', handler)),
+      registerTransitionEndHandler: handler => this.registerMdcInteractionHandler('transitionend', handler),
+      deregisterTransitionEndHandler: handler => this.deregisterMdcInteractionHandler('transitionend', handler),
+      registerDocumentKeydownHandler: handler => run(() => window.document.addEventListener('keydown', handler)),
+      deregisterDocumentKeydownHandler: handler => run(() => window.document.removeEventListener('keydown', handler)),
       getDrawerWidth: () => {
         const { width } = getElementProperty(this, 'getBoundingClientRect', () => ({ width: 0 }))();
         return width;
       },
-      setTranslateX: (value) => run(() => this.setStyleFor('mdcStyles', 'translateX', `${value}px`)),
-      saveElementTabState: (el) => set(this, 'previousTabState', el.tabIndex),
-      restoreElementTabState: (el) => el.tabIndex = get(this, 'previousTabState'),
-      makeElementUntabbable: (el) => el.tabIndex = -1,
+      setTranslateX: value => run(() => this.setStyleFor('mdcStyles', 'translateX', `${value}px`)),
+      saveElementTabState: el => set(this, 'previousTabState', el.tabIndex),
+      restoreElementTabState: el => (el.tabIndex = get(this, 'previousTabState')),
+      makeElementUntabbable: el => (el.tabIndex = -1),
       notifyOpen: () => set(this, 'open', true),
       notifyClose: () => set(this, 'open', false),
       isRtl: () => getElementProperty(this, 'direction') === 'rtl',
       getFocusableElements: () => this.element.querySelectorAll(FOCUSABLE_ELEMENTS),
       hasNecessaryDom: () => Boolean(this.element),
-      isDrawer: (el) => get(this, 'element').querySelector(DRAWER_SELECTOR) === el,
+      isDrawer: el => get(this, 'element').querySelector(DRAWER_SELECTOR) === el,
     };
     return new Foundation(adapter);
   },

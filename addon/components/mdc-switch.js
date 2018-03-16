@@ -44,7 +44,7 @@ export default Component.extend(SupportsBubblesFalse, {
     inputChanged(ev) {
       const checked = ev.target.checked;
       get(this, 'onchange')(checked);
-    }
-  }
+    },
+  },
   //endregion
 });

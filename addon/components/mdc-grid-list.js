@@ -13,7 +13,7 @@ export default Component.extend({
     'twoline-caption:mdc-grid-list--twoline-caption',
     'tileAspectRatioClass',
     'iconAlignStartClass',
-    'iconAlignEndClass'
+    'iconAlignEndClass',
   ],
   attributeBindings: [...events],
   //endregion
@@ -56,6 +56,6 @@ export default Component.extend({
   }),
   iconAlignEndClass: computed('icon-align', function() {
     return get(this, 'icon-align') === 'end' ? 'mdc-grid-list--with-icon-align-end' : null;
-  })
+  }),
   //endregion
 });

@@ -7,6 +7,6 @@ export default Component.extend({
   layout,
   tagName: 'h3',
   classNames: ['mdc-list-group__subheader'],
-  attributeBindings: [...events]
+  attributeBindings: [...events],
   //endregion
 });

@@ -17,7 +17,7 @@ export default Component.extend({
    * @type {?Function}
    * @param {Number} index
    */
-  'selected': x => x,
+  selected: x => x,
   //endregion
 
   //region Ember Hooks
@@ -49,7 +49,9 @@ export default Component.extend({
    */
   assertMenu() {
     const menu = get(this, 'menu');
-    if (!menu) { throw new Error(`Missing 'menu' attribute from ${this.toString()}`); }
+    if (!menu) {
+      throw new Error(`Missing 'menu' attribute from ${this.toString()}`);
+    }
     return menu;
   },
   registerWithMenu() {

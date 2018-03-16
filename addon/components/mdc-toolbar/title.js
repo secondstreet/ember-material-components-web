@@ -11,6 +11,6 @@ export default Component.extend({
   //endregion
 
   //region Computed Properties
-  style: readOnly('title-style')
+  style: readOnly('title-style'),
   //endregion
 });

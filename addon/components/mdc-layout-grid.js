@@ -21,7 +21,7 @@ export default Component.extend({
   classNameBindings: [
     'fixed-column-width:mdc-layout-grid--fixed-column-width',
     'isAlignLeft:mdc-layout-grid--align-left',
-    'isAlignRight:mdc-layout-grid--align-right'
+    'isAlignRight:mdc-layout-grid--align-right',
   ],
   attributeBindings: [...events],
   layout,
@@ -29,6 +29,6 @@ export default Component.extend({
 
   //region Computed Properties
   isAlignLeft: equal('align', 'left'),
-  isAlignRight: equal('align', 'right')
+  isAlignRight: equal('align', 'right'),
   //endregion
 });
