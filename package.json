@@ -33,7 +33,7 @@
     "generate-contrib": "all-contributors generate",
     "lint:prettier":
       "prettier --list-different {{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}",
-    "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
+    "lint:js": "yarn run eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
     "test": "ember try:each"
   },
@@ -90,6 +90,7 @@
     "ember-qunit-nice-errors": "1.2.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.18.0",
+    "eslint": "^4.19.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
     "husky": "^0.14.3",
