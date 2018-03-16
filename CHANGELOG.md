@@ -1,5 +1,25 @@
 # MDC-Ember Changelog
 
+### 0.0.39 Hematite Harrier (March 16, 2018)
+
+- :heavy_plus_sign: Add prettier.js (#67)
+- :heavy_plus_sign: Add prettier.js (#62)
+- :heavy_minus_sign: Replace jQuery with native methods (#59)
+- :sparkles: Bind DOM events to some components (#61)
+- :bug: Don't set foundations on destroyed components (#60)
+- :ambulance: Fix CI autodeploy
+- :busts_in_sillhouette: Add Contributor
+- :rocket: AutoDeploy docs to GitHub Pages on merge to master (#58)
+- :green_heart: Temporary Travis CI workaround
+- :busts_in_silhouette: Add contributor
+- :arrow_up: [docs] Upgrade Ember Composable Helpers
+- :bug: Fix #52
+- :memo: Fix contributors (#53)
+- :arrow_up: Upgrade Ember CLI to 2.18.0
+- :bug: If no label is present show the placeholder
+- :bug: Move ember-freestyle to devDependencies
+- :sparkles: Implement {{mdc-drawer}}  (#45)
+
 ### 0.0.38 Garnet Greyhound (December 18, 2017)
 
 - :sparkles: Binds the `tabindex` attribute
