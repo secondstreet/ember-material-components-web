@@ -124,7 +124,7 @@ export default Component.extend(MDCComponent, {
       notifyChange: evtData => get(this, 'onchange')(evtData), // TODO
       getNumberOfTabs: () => get(this, 'tabs.length'),
       isTabActiveAtIndex: index => this.isTabActiveAtIndex(index),
-      setTabActiveAtIndex: (index, isActive) => this.setTabActiveAtIndex(index, isActive),
+      setTabActiveAtIndex: (index, isActive) => run(() => this.setTabActiveAtIndex(index, isActive)),
       isDefaultPreventedOnClickForTabAtIndex: index => get(this.tabAt(index), 'preventDefaultOnClick'),
       setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) =>
         run(() => set(this.tabAt(index), 'preventDefaultOnClick', preventDefaultOnClick)),
