@@ -48,11 +48,12 @@ const materialPackages = [
  *    Ember's module system.
  */
 module.exports = {
-  name: 'ember-material-components-web' /**
+  name: 'ember-material-components-web',
+  /**
    * Invoked at the beginning of the build process, this hook allows us to
    * use the `import()` method to include files from our `vendor` tree into
    * the built app.
-   */,
+   */
   included: function(app) {
     materialPackages.forEach(function(pkg) {
       const pkgBaseName = pkg.name.replace('@material/', '');

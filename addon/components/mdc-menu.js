@@ -129,7 +129,8 @@ export default Component.extend(MDCComponent, {
       registerBodyClickHandler: handler => document.body.addEventListener('click', handler),
       deregisterBodyClickHandler: handler => document.body.removeEventListener('click', handler),
       getYParamsForItemAtIndex: index => !get(this, 'isDestroyed') && this.itemAt(index).getYParams(),
-      setTransitionDelayForItemAtIndex: (index, value) => !get(this, 'isDestroyed') && this.itemAt(index).setTransitionDelay(value),
+      setTransitionDelayForItemAtIndex: (index, value) =>
+        !get(this, 'isDestroyed') && this.itemAt(index).setTransitionDelay(value),
       getIndexForEventTarget: target =>
         get(this, 'items')
           .mapBy('element')
@@ -144,7 +145,8 @@ export default Component.extend(MDCComponent, {
         get(this, 'items')
           .mapBy('element')
           .indexOf(document.activeElement),
-      focusItemAtIndex: index => !get(this, 'isDestroyed') && !get(this, 'disable-focus') && get(this.itemAt(index), 'element').focus(),
+      focusItemAtIndex: index =>
+        !get(this, 'isDestroyed') && !get(this, 'disable-focus') && get(this.itemAt(index), 'element').focus(),
       isRtl: () => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: value => run(() => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value)),
       setPosition: ({ top, right, bottom, left }) => {
