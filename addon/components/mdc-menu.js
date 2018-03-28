@@ -128,13 +128,13 @@ export default Component.extend(MDCComponent, {
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       registerBodyClickHandler: handler => document.body.addEventListener('click', handler),
       deregisterBodyClickHandler: handler => document.body.removeEventListener('click', handler),
-      getYParamsForItemAtIndex: index => this.itemAt(index).getYParams(),
-      setTransitionDelayForItemAtIndex: (index, value) => this.itemAt(index).setTransitionDelay(value),
+      getYParamsForItemAtIndex: index => !get(this, 'isDestroyed') && this.itemAt(index).getYParams(),
+      setTransitionDelayForItemAtIndex: (index, value) => !get(this, 'isDestroyed') && this.itemAt(index).setTransitionDelay(value),
       getIndexForEventTarget: target =>
         get(this, 'items')
           .mapBy('element')
           .indexOf(target),
-      notifySelected: ({ index }) => this.itemAt(index).notifySelected(index),
+      notifySelected: ({ index }) => !get(this, 'isDestroyed') && this.itemAt(index).notifySelected(index),
       notifyCancel: () => get(this, 'cancel')(false), // False is provided as a convenience for the {{mut}} helper
       saveFocus: () => set(this, 'previousFocus', document.activeElement),
       restoreFocus: () => get(this, 'previousFocus') && get(this, 'previousFocus').focus(),
@@ -144,7 +144,7 @@ export default Component.extend(MDCComponent, {
         get(this, 'items')
           .mapBy('element')
           .indexOf(document.activeElement),
-      focusItemAtIndex: index => !get(this, 'disable-focus') && get(this.itemAt(index), 'element').focus(),
+      focusItemAtIndex: index => !get(this, 'isDestroyed') && !get(this, 'disable-focus') && get(this.itemAt(index), 'element').focus(),
       isRtl: () => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: value => run(() => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value)),
       setPosition: ({ top, right, bottom, left }) => {
