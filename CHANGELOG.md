@@ -1,5 +1,9 @@
 # MDC-Ember Changelog
 
+### 0.0.40 Ivory Irish terrier (March 29, 2018)
+- :bug: Fix issue with destroyed {{mdc-menu}}s (#70)
+- :bug: impure function needs to be wrapped in `Ember.run` (#68)
+
 ### 0.0.39 Hematite Harrier (March 16, 2018)
 
 - :heavy_plus_sign: Add prettier.js (#67)
