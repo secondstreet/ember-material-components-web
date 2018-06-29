@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
-import { set } from '@ember/object';
-import { later } from '@ember/runloop';
+import { get, set } from '@ember/object';
+import { runTask, runDisposables } from 'ember-lifeline';
 import FreestyleController from 'ember-freestyle/controllers/freestyle';
 
 export default FreestyleController.extend({
@@ -30,11 +30,13 @@ export default FreestyleController.extend({
       base: '#ffffff',
     },
   },
+  destroy() {
+    runDisposables(this);
+    this._super(...arguments);
+  },
   actions: {
     alert(what) {
-      later(() => {
-        window.alert(what);
-      }, 300);
+      !get(this, 'isDestroyed') && runTask(this, () => window.alert(what), 0);
       return false;
     },
     logToConsole(eventType) {

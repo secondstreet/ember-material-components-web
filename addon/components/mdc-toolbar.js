@@ -2,7 +2,7 @@ import { readOnly } from '@ember/object/computed';
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
-import { run } from '@ember/runloop';
+import { runTask } from 'ember-lifeline';
 import layout from '../templates/components/mdc-toolbar';
 import { MDCToolbarFoundation, util } from '@material/toolbar';
 import { MDCComponent } from '../mixins/mdc-component';
@@ -44,13 +44,13 @@ export default Component.extend(MDCComponent, {
     `flexible:${cssClasses.TOOLBAR_ROW_FLEXIBLE}`,
     `fixed-lastrow-only:${cssClasses.FIXED_LASTROW}`,
   ],
+  attributeBindings: ['style'],
   init() {
     this._super(...arguments);
     set(this, 'mdcTitleStyles', {});
     set(this, 'mdcFirstRowStyles', {});
     set(this, 'rows', A([]));
   },
-  attributeBindings: ['style'],
   //endregion
 
   //region Properties
@@ -79,9 +79,12 @@ export default Component.extend(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCToolbarFoundation({
-      hasClass: className => get(this, 'element').classList.contains(className),
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      hasClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'element').classList.contains(className), 0),
+      addClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').addObject(className), 0),
+      removeClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').removeObject(className), 0),
       registerScrollHandler: handler => window.addEventListener('scroll', handler, util.applyPassive()),
       deregisterScrollHandler: handler => window.removeEventListener('scroll', handler, util.applyPassive()),
       registerResizeHandler: handler => window.addEventListener('resize', handler),
@@ -91,11 +94,13 @@ export default Component.extend(MDCComponent, {
       getOffsetHeight: () => getElementProperty(this, 'offsetHeight', 0),
       getFirstRowElementOffsetHeight: () =>
         getElementProperty(this, 'querySelector', () => ({ offsetHeight: 0 }))(strings.FIRST_ROW_SELECTOR).offsetHeight,
-      notifyChange: evtData => run(() => get(this, 'onchange')(evtData)),
-      setStyle: (property, value) => run(() => this.setStyleFor('mdcStyles', property, value)),
-      setStyleForTitleElement: (property, value) => run(() => this.setStyleFor('mdcTitleStyles', property, value)),
+      notifyChange: evtData => !get(this, 'isDestroyed') && runTask(this, () => get(this, 'onchange')(evtData), 0),
+      setStyle: (property, value) =>
+        !get(this, 'isDestroyed') && runTask(this, () => this.setStyleFor('mdcStyles', property, value), 0),
+      setStyleForTitleElement: (property, value) =>
+        !get(this, 'isDestroyed') && runTask(this, () => this.setStyleFor('mdcTitleStyles', property, value), 0),
       setStyleForFlexibleRowElement: (property, value) =>
-        run(() => this.setStyleFor('mdcFirstRowStyles', property, value)),
+        !get(this, 'isDestroyed') && runTask(this, () => this.setStyleFor('mdcFirstRowStyles', property, value), 0),
       setStyleForFixedAdjustElement: () => null, // no-op
     });
   },

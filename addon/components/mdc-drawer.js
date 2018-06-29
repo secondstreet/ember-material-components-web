@@ -1,7 +1,7 @@
 import EmberError from '@ember/error';
 import { A } from '@ember/array';
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
+import { runTask } from 'ember-lifeline';
 import { set, getProperties, get, computed } from '@ember/object';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
@@ -84,31 +84,37 @@ export default Component.extend(MDCComponent, {
     }
 
     const Foundation = persistent ? MDCPersistentDrawerFoundation : MDCTemporaryDrawerFoundation;
-    run(() => get(this, 'mdcClasses').addObject(Foundation.cssClasses.ROOT));
+    runTask(this, () => get(this, 'mdcClasses').addObject(Foundation.cssClasses.ROOT));
     const { FOCUSABLE_ELEMENTS, DRAWER_SELECTOR } = Foundation.strings;
 
     const adapter = {
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
-      hasClass: className => get(this, 'mdcClasses').includes(className),
+      addClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').addObject(className), 0),
+      removeClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').removeObject(className), 0),
+      hasClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').contains(className), 0),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       registerDrawerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterDrawerInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       registerTransitionEndHandler: handler => this.registerMdcInteractionHandler('transitionend', handler),
       deregisterTransitionEndHandler: handler => this.deregisterMdcInteractionHandler('transitionend', handler),
-      registerDocumentKeydownHandler: handler => run(() => window.document.addEventListener('keydown', handler)),
-      deregisterDocumentKeydownHandler: handler => run(() => window.document.removeEventListener('keydown', handler)),
+      registerDocumentKeydownHandler: handler =>
+        !get(this, 'isDestroyed') && runTask(this, () => window.document.addEventListener('keydown', handler), 0),
+      deregisterDocumentKeydownHandler: handler =>
+        !get(this, 'isDestroyed') && runTask(this, () => window.document.removeEventListener('keydown', handler), 0),
       getDrawerWidth: () => {
         const { width } = getElementProperty(this, 'getBoundingClientRect', () => ({ width: 0 }))();
         return width;
       },
-      setTranslateX: value => run(() => this.setStyleFor('mdcStyles', 'translateX', `${value}px`)),
+      setTranslateX: value =>
+        !get(this, 'isDestroyed') && runTask(this, () => this.setStyleFor('mdcStyles', 'translateX', `${value}px`), 0),
       saveElementTabState: el => set(this, 'previousTabState', el.tabIndex),
       restoreElementTabState: el => (el.tabIndex = get(this, 'previousTabState')),
       makeElementUntabbable: el => (el.tabIndex = -1),
-      notifyOpen: () => set(this, 'open', true),
-      notifyClose: () => set(this, 'open', false),
+      notifyOpen: () => !get(this, 'isDestroyed') && runTask(this, () => set(this, 'open', true), 0),
+      notifyClose: () => !get(this, 'isDestroyed') && runTask(this, () => set(this, 'open', false), 0),
       isRtl: () => getElementProperty(this, 'direction') === 'rtl',
       getFocusableElements: () => this.element.querySelectorAll(FOCUSABLE_ELEMENTS),
       hasNecessaryDom: () => Boolean(this.element),

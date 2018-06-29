@@ -17,13 +17,16 @@ export const createRippleAdapter = (component, overrides) =>
       isUnbounded: () => false,
       isSurfaceActive: () => get(component, 'element')[MATCHES](':active'),
       isSurfaceDisabled: () => get(component, 'disabled'),
-      addClass: className => run(() => get(component, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(component, 'mdcClasses').removeObject(className)),
+      addClass: className =>
+        run(() => !get(component, 'isDestroyed') && get(component, 'mdcClasses').addObject(className)),
+      removeClass: className =>
+        run(() => !get(component, 'isDestroyed') && get(component, 'mdcClasses').removeObject(className)),
       registerInteractionHandler: (evtType, handler) => component.registerMdcInteractionHandler(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) => component.deregisterMdcInteractionHandler(evtType, handler),
       registerResizeHandler: handler => window.addEventListener('resize', handler),
       deregisterResizeHandler: handler => window.removeEventListener('resize', handler),
-      updateCssVariable: (varName, value) => run(() => component.setStyleFor('mdcStyles', varName, value)),
+      updateCssVariable: (varName, value) =>
+        run(() => !get(component, 'isDestroyed') && component.setStyleFor('mdcStyles', varName, value)),
       computeBoundingRect: () =>
         getElementProperty(component, 'getBoundingClientRect', () => ({
           top: 0,

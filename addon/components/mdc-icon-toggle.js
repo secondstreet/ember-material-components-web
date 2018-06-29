@@ -1,4 +1,4 @@
-import { scheduleOnce } from '@ember/runloop';
+import { scheduleTask } from 'ember-lifeline';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import layout from '../templates/components/mdc-icon-toggle';
@@ -45,10 +45,11 @@ export default Component.extend(MDCComponent, {
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('disabled');
-      this.syncPressed();
-    });
+    !get(this, 'isDestroyed') &&
+      scheduleTask(this, 'render', () => {
+        this.sync('disabled');
+        this.syncPressed();
+      });
   },
   attributeBindings: [DATA_TOGGLE_ON, DATA_TOGGLE_OFF, ARIA_PRESSED, ARIA_DISABLED, ARIA_LABEL, 'tabindex', 'style'],
   classNameBindings: ['mdcClassNames', 'aria-disabled:mdc-icon-toggle--disabled'],

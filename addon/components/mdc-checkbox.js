@@ -1,7 +1,7 @@
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
-import { run, next, scheduleOnce } from '@ember/runloop';
+import { runTask, scheduleTask } from 'ember-lifeline';
 import layout from '../templates/components/mdc-checkbox';
 import { addClass, removeClass, MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
@@ -60,11 +60,12 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   },
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('checked');
-      this.sync('indeterminate');
-      this.sync('disabled');
-    });
+    !get(this, 'isDestroyed') &&
+      scheduleTask(this, 'render', () => {
+        this.sync('checked');
+        this.sync('indeterminate');
+        this.sync('disabled');
+      });
   },
   //endregion
 
@@ -82,15 +83,19 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    */
   createFoundation() {
     return new MDCCheckboxFoundation({
-      addClass: className => next(() => addClass(className, this)),
-      removeClass: className => next(() => removeClass(className, this)),
+      addClass: className =>
+        !get(this, 'isDestroyed') && scheduleTask(this, 'actions', () => addClass(className, this)),
+      removeClass: className =>
+        !get(this, 'isDestroyed') && scheduleTask(this, 'actions', () => removeClass(className, this)),
       registerAnimationEndHandler: handler =>
         getElementProperty(this, 'addEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
       deregisterAnimationEndHandler: handler =>
         getElementProperty(this, 'removeEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
-      registerChangeHandler: handler => run(() => get(this, 'changeHandlers').addObject(handler)),
-      deregisterChangeHandler: handler => run(() => get(this, 'changeHandlers').removeObject(handler)),
-      getNativeControl: () => this.element.querySelector('input'),
+      registerChangeHandler: handler =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'changeHandlers').addObject(handler)),
+      deregisterChangeHandler: handler =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'changeHandlers').removeObject(handler)),
+      getNativeControl: () => get(this, 'element').querySelector('input'),
       forceLayout: () => undefined,
       isAttachedToDOM: () => !!get(this, 'element'),
     });
