@@ -3,6 +3,7 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import layout from '../templates/components/mdc-menu';
 import { MDCComponent } from '../mixins/mdc-component';
+import Opennable from '../mixins/opennable';
 import styleComputed from '../utils/style-computed';
 import { MDCSimpleMenuFoundation, util } from '@material/menu';
 import { runTask } from 'ember-lifeline';
@@ -13,7 +14,7 @@ const TRANSFORM_PROPERTY = util.getTransformPropertyName(window);
 /**
  * @typedef {Ember.Component} MDCMenuComponent
  */
-export default Component.extend(MDCComponent, {
+export default Component.extend(MDCComponent, Opennable, {
   //region Attributes
   /**
    * @type {Boolean}
@@ -87,19 +88,6 @@ export default Component.extend(MDCComponent, {
    */
   unregisterItem(item) {
     get(this, 'items').removeObject(item);
-  },
-  updateOpenness() {
-    const foundation = get(this, 'foundation');
-    if (!foundation) {
-      return;
-    }
-    const open = get(this, 'open');
-    if (foundation.isOpen() && !open) {
-      foundation.close();
-    }
-    if (!foundation.isOpen() && open) {
-      foundation.open();
-    }
   },
   itemAt(index) {
     return get(this, 'items').objectAt(index);

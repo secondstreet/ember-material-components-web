@@ -4,11 +4,12 @@ import Component from '@ember/component';
 import { runTask } from 'ember-lifeline';
 import { set, getProperties, get, computed } from '@ember/object';
 import { MDCComponent } from '../mixins/mdc-component';
+import Opennable from '../mixins/opennable';
 import getElementProperty from '../utils/get-element-property';
 import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation } from '@material/drawer';
 import layout from '../templates/components/mdc-drawer';
 
-export default Component.extend(MDCComponent, {
+export default Component.extend(MDCComponent, Opennable, {
   //region Ember Hooks
   layout,
   classNames: ['mdc-drawer'],
@@ -61,19 +62,6 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Methods
-  updateOpenness() {
-    const foundation = get(this, 'foundation');
-    if (!foundation) {
-      return;
-    }
-    const open = get(this, 'open');
-    if (foundation.isOpen() && !open) {
-      foundation.close();
-    }
-    if (!foundation.isOpen() && open) {
-      foundation.open();
-    }
-  },
   /**
    * @returns {MDCPersistentDrawerFoundation|MDCTemporaryDrawerFoundation|Object}
    */
