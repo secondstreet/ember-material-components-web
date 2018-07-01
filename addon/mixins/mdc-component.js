@@ -1,5 +1,5 @@
 import { capitalize } from '@ember/string';
-import { scheduleOnce, next } from '@ember/runloop';
+import { runTask, runDisposables, scheduleTask } from 'ember-lifeline';
 import { A } from '@ember/array';
 import Mixin from '@ember/object/mixin';
 import { computed, set, get } from '@ember/object';
@@ -9,11 +9,11 @@ import { createRippleAdapter } from '../utils/mdc-ripple-adapter';
 import styleComputed from '../utils/style-computed';
 
 export const addClass = (className, component) => {
-  get(component, 'mdcClasses').addObject(className);
+  runTask(component, () => get(component, 'mdcClasses').addObject(className));
 };
 
 export const removeClass = (className, component) => {
-  get(component, 'mdcClasses').removeObject(className);
+  runTask(component, () => get(component, 'mdcClasses').removeObject(className));
 };
 
 /**
@@ -34,20 +34,21 @@ export const MDCComponent = Mixin.create({
     // many components rely on child components registering themselves, which
     // tend to happen in their own didInsertElement hooks that run _after_ the
     // parent's didInsertElement.
-    scheduleOnce('afterRender', this, () => {
-      this._attachMdcInteractionHandlers();
-      if (get(this, 'createFoundation') && !get(this, 'isDestroyed')) {
-        const foundation = this.createFoundation();
-        set(this, 'foundation', foundation);
-        foundation.init();
-        this.afterFoundationCreation(foundation);
-      }
-      if (get(this, 'ripple')) {
-        const rippleFoundation = new MDCRippleFoundation(createRippleAdapter(this, this.rippleOptions()));
-        set(this, 'rippleFoundation', rippleFoundation);
-        rippleFoundation.init();
-      }
-    });
+    !get(this, 'isDestroyed') &&
+      scheduleTask(this, 'sync', () => {
+        this._attachMdcInteractionHandlers();
+        if (get(this, 'createFoundation')) {
+          const foundation = this.createFoundation();
+          set(this, 'foundation', foundation);
+          foundation.init();
+          this.afterFoundationCreation(foundation);
+        }
+        if (get(this, 'ripple')) {
+          const rippleFoundation = new MDCRippleFoundation(createRippleAdapter(this, this.rippleOptions()));
+          set(this, 'rippleFoundation', rippleFoundation);
+          rippleFoundation.init();
+        }
+      });
   },
 
   willDestroyElement() {
@@ -60,6 +61,10 @@ export const MDCComponent = Mixin.create({
     if (rippleFoundation) {
       rippleFoundation.destroy();
     }
+  },
+  destroy() {
+    runDisposables(this);
+    this._super(...arguments);
   },
   //endregion
 
@@ -141,17 +146,14 @@ export const MDCComponent = Mixin.create({
   },
 
   setStyleFor(key, property, value) {
-    next(() => {
-      if (get(this, 'isDestroyed')) {
-        return;
-      }
-
-      set(this, `${key}.${property}`, value);
-      // Setting properties on the object doesn't cause computed properties to recompute
-      // (and we can't put every possible CSS property in the dependent keys),
-      // so we'll just trigger the change notification manually.
-      this.notifyPropertyChange(key);
-    });
+    !get(this, 'isDestroyed') &&
+      scheduleTask(this, 'sync', () => {
+        set(this, `${key}.${property}`, value);
+        // Setting properties on the object doesn't cause computed properties to recompute
+        // (and we can't put every possible CSS property in the dependent keys),
+        // so we'll just trigger the change notification manually.
+        this.notifyPropertyChange(key);
+      });
   },
 
   _attachMdcInteractionHandlers() {
@@ -167,19 +169,21 @@ export const MDCComponent = Mixin.create({
   },
 
   registerMdcInteractionHandler(type, handler) {
-    next(() => {
-      this._detachMdcInteractionHandlers();
-      get(this, 'mdcInteractionHandlers').addObject([type, handler]);
-      this._attachMdcInteractionHandlers();
-    });
+    !get(this, 'isDestroyed') &&
+      scheduleTask(this, 'sync', () => {
+        this._detachMdcInteractionHandlers();
+        get(this, 'mdcInteractionHandlers').addObject([type, handler]);
+        this._attachMdcInteractionHandlers();
+      });
   },
 
   deregisterMdcInteractionHandler(type, handler) {
-    next(() => {
-      this._detachMdcInteractionHandlers();
-      get(this, 'mdcInteractionHandlers').removeObject([type, handler]);
-      this._attachMdcInteractionHandlers();
-    });
+    !get(this, 'isDestroyed') &&
+      scheduleTask(this, 'sync', () => {
+        this._detachMdcInteractionHandlers();
+        get(this, 'mdcInteractionHandlers').removeObject([type, handler]);
+        this._attachMdcInteractionHandlers();
+      });
   },
   //endregion
 });

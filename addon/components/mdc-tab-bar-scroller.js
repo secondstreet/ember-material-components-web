@@ -1,6 +1,6 @@
 import { A } from '@ember/array';
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
+import { runTask, runDisposables } from 'ember-lifeline';
 import { set, get, computed } from '@ember/object';
 import { MDCTabBarScrollerFoundation } from '@material/tabs';
 import { getCorrectPropertyName } from '@material/animation';
@@ -45,6 +45,10 @@ export default Component.extend(MDCComponent, {
       'backIndicatorElement',
       getElementProperty(this, 'querySelector', () => null)(strings.INDICATOR_BACK_SELECTOR)
     );
+  },
+  destroy() {
+    runDisposables(this);
+    this._super(...arguments);
   },
   //endregion
 
@@ -99,19 +103,30 @@ export default Component.extend(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCTabBarScrollerFoundation({
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').addObject(className), 0),
+      removeClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').removeObject(className), 0),
       eventTargetHasClass: (target, className) => target.classList.contains(className),
-      addClassToForwardIndicator: className => run(() => get(this, 'forwardIndicatorClasses').addObject(className)),
+      addClassToForwardIndicator: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'forwardIndicatorClasses').addObject(className), 0),
       removeClassFromForwardIndicator: className =>
-        run(() => get(this, 'forwardIndicatorClasses').removeObject(className)),
-      addClassToBackIndicator: className => run(() => get(this, 'backIndicatorClasses').addObject(className)),
-      removeClassFromBackIndicator: className => run(() => get(this, 'backIndicatorClasses').removeObject(className)),
-      isRTL: () =>
-        !!this &&
         !get(this, 'isDestroyed') &&
-        !!get(this, 'element') &&
-        getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
+        runTask(this, () => get(this, 'forwardIndicatorClasses').removeObject(className), 0),
+      addClassToBackIndicator: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'backIndicatorClasses').addObject(className), 0),
+      removeClassFromBackIndicator: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'backIndicatorClasses').removeObject(className), 0),
+      isRTL: () =>
+        !get(this, 'isDestroyed') &&
+        runTask(
+          this,
+          () =>
+            !!this &&
+            !!get(this, 'element') &&
+            getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
+          0
+        ),
       registerBackIndicatorClickHandler: handler =>
         get(this, 'backIndicatorElement').addEventListener('click', handler),
       deregisterBackIndicatorClickHandler: handler =>
@@ -134,7 +149,12 @@ export default Component.extend(MDCComponent, {
       setScrollLeftForScrollFrame: scrollLeftAmount => (get(this, 'scrollFrameElement').scrollLeft = scrollLeftAmount),
       getOffsetWidthForTabBar: () => get(this, 'tabBarElement').offsetWidth,
       setTransformStyleForTabBar: value => {
-        run(() => this.setStyleFor('mdcScrollFrameStyles', getCorrectPropertyName(window, 'transform'), value));
+        !get(this, 'isDestroyed') &&
+          runTask(
+            this,
+            () => this.setStyleFor('mdcScrollFrameStyles', getCorrectPropertyName(window, 'transform'), value),
+            0
+          );
       },
       getOffsetLeftForEventTarget: target => target.offsetLeft,
       getOffsetWidthForEventTarget: target => target.offsetWidth,

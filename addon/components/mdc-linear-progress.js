@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
+import { runTask } from 'ember-lifeline';
 import { set, get } from '@ember/object';
 import layout from '../templates/components/mdc-linear-progress';
 import { MDCLinearProgressFoundation } from '@material/linear-progress';
@@ -78,9 +78,12 @@ export default Component.extend(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCLinearProgressFoundation({
-      hasClass: className => get(this, 'mdcClasses').includes(className),
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      hasClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').contains(className), 0),
+      addClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').addObject(className), 0),
+      removeClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').removeObject(className), 0),
       getPrimaryBar: () => getElementProperty(this, 'querySelector')(strings.PRIMARY_BAR_SELECTOR),
       getBuffer: () => getElementProperty(this, 'querySelector')(strings.BUFFER_SELECTOR),
       setStyle: (el, property, value) => {
@@ -90,7 +93,7 @@ export default Component.extend(MDCComponent, {
         } else if (el.classList.contains(strings.BUFFER_SELECTOR.slice(1))) {
           elementStyles = 'mdcBufferStyles';
         }
-        run(() => this.setStyleFor(elementStyles, property, value));
+        !get(this, 'isDestroyed') && runTask(this, () => this.setStyleFor(elementStyles, property, value), 0);
       },
     });
   },

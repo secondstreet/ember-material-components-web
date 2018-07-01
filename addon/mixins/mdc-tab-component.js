@@ -1,4 +1,4 @@
-import { run } from '@ember/runloop';
+import { runTask } from 'ember-lifeline';
 import Mixin from '@ember/object/mixin';
 import { get, computed } from '@ember/object';
 import { MDCTabFoundation } from '@material/tabs';
@@ -72,8 +72,10 @@ export default Mixin.create(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCTabFoundation({
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').addObject(className), 0),
+      removeClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').removeObject(className), 0),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       getOffsetWidth: () => get(this, 'element').offsetWidth,

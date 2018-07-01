@@ -58,10 +58,11 @@ module.exports = {
     materialPackages.forEach(function(pkg) {
       const pkgBaseName = pkg.name.replace('@material/', '');
       if (pkg.js) {
+        let packageName = camelize(pkgBaseName);
         app.import(
           {
-            development: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.js`,
-            production: `vendor/ember-material-components-web/dist/mdc.${camelize(pkgBaseName)}.min.js`,
+            development: `vendor/ember-material-components-web/dist/mdc.${packageName}.js`,
+            production: `vendor/ember-material-components-web/dist/mdc.${packageName}.min.js`,
           },
           { using: [{ transformation: 'amd', as: pkg.name }] }
         );
@@ -73,15 +74,15 @@ module.exports = {
         });
       }
     });
-  } /**
+  },
+  /**
    * Returns a Broccoli tree for the addon's `vendor` directory. The `vendor`
    * directory isn't explicitly used for anything, but files can be `import()`ed
    * which we do in the `included` hook above.
    *
    * This is necessary because Ember CLI doesn't currently support `import()`ing
    * anything directly from a `node_modules/` folder.
-   */,
-  treeForVendor: function() {
+   */ treeForVendor: function() {
     const trees = materialPackages.map(function(pkg) {
       const include = [];
       if (pkg.css) {
@@ -90,7 +91,10 @@ module.exports = {
       if (pkg.js) {
         include.push('dist/mdc.*.js');
       }
-      return new Funnel(`node_modules/${pkg.name}`, { destDir: 'ember-material-components-web', include: include });
+      return new Funnel(`node_modules/${pkg.name}`, {
+        destDir: 'ember-material-components-web',
+        include: include,
+      });
     });
 
     return this._super(mergeTrees(trees, { overwrite: true }));

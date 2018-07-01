@@ -1,5 +1,5 @@
 import { equal } from '@ember/object/computed';
-import { run, next } from '@ember/runloop';
+import { runTask, scheduleTask } from 'ember-lifeline';
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, observer, getProperties, get } from '@ember/object';
@@ -107,27 +107,29 @@ export default Component.extend(MDCComponent, {
   //region Method
   createFoundation() {
     return new MDCTabBarFoundation({
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      addClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').addObject(className), 0),
       removeClass: className =>
-        run.next(this, function() {
-          get(this, 'mdcClasses').removeObject(className);
-        }), //use non-arrow function for `run.next` since we are passing in the context
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').removeObject(className), 0),
       bindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
       unbindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
       registerResizeHandler: handler => window.addEventListener('resize', handler),
       deregisterResizeHandler: handler => window.removeEventListener('resize', handler),
       getOffsetWidth: () => getElementProperty(this, 'offsetWidth', 0),
       setStyleForIndicator: (propertyName, value) =>
-        run(() => this.setStyleFor('mdcIndicatorStyles', propertyName, value)),
+        !get(this, 'isDestroyed') &&
+        runTask(this, () => this.setStyleFor('mdcIndicatorStyles', propertyName, value), 0),
       getOffsetWidthForIndicator: () =>
         getElementProperty(this, 'querySelector', () => ({ offsetWidth: 0 }))(strings.INDICATOR_SELECTOR).offsetWidth,
       notifyChange: evtData => get(this, 'onchange')(evtData), // TODO
       getNumberOfTabs: () => get(this, 'tabs.length'),
       isTabActiveAtIndex: index => this.isTabActiveAtIndex(index),
-      setTabActiveAtIndex: (index, isActive) => run(() => this.setTabActiveAtIndex(index, isActive)),
+      setTabActiveAtIndex: (index, isActive) =>
+        !get(this, 'isDestroyed') && runTask(this, () => this.setTabActiveAtIndex(index, isActive), 0),
       isDefaultPreventedOnClickForTabAtIndex: index => get(this.tabAt(index), 'preventDefaultOnClick'),
       setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) =>
-        run(() => set(this.tabAt(index), 'preventDefaultOnClick', preventDefaultOnClick)),
+        !get(this, 'isDestroyed') &&
+        runTask(this, () => set(this.tabAt(index), 'preventDefaultOnClick', preventDefaultOnClick), 0),
       measureTabAtIndex: index => this.tabAt(index).measureSelf(),
       getComputedWidthForTabAtIndex: index => getComponentProperty(this.tabAt(index), 'computedWidth', 0),
       getComputedLeftForTabAtIndex: index => getComponentProperty(this.tabAt(index), 'computedLeft', 0),
@@ -158,7 +160,7 @@ export default Component.extend(MDCComponent, {
     tabSelected({ tab }, shouldNotifyChange) {
       const { tabs, foundation } = getProperties(this, 'tabs', 'foundation');
       const index = tabs.indexOf(tab);
-      run(() => foundation && foundation.switchToTabAtIndex(index, shouldNotifyChange));
+      runTask(this, () => foundation && foundation.switchToTabAtIndex(index, shouldNotifyChange), 0);
     },
     registerTab(tab) {
       get(this, 'tabs').addObject(tab);
@@ -167,19 +169,21 @@ export default Component.extend(MDCComponent, {
       get(this, 'tabs').removeObject(tab);
     },
     switchToTab(tab) {
-      next(
-        () =>
-          get(this, 'tabs.length')
-            ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true)
-            : null
-      );
+      const tabs = get(this, 'tabs') || [];
+      const tabIndex = tabs.indexOf(tab);
+      if (tabIndex < 0 || get(this, 'isDestroyed')) {
+        return;
+      }
+      scheduleTask(this, 'actions', () => get(this, 'foundation').switchToTabAtIndex(tabIndex, true));
     },
     scrollTabIntoView(tab) {
+      const tabs = get(this, 'tabs') || [];
+      const tabIndex = tabs.indexOf(tab);
+      if (tabIndex < 0 || get(this, 'isDestroyed')) {
+        return;
+      }
       if (get(this, 'scroll-active-tab-into-view')) {
-        run.next(
-          () =>
-            get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null
-        );
+        scheduleTask(this, 'actions', get(this, 'scroll-active-tab-into-view')(tabIndex));
       }
     },
   },

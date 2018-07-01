@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { get } from '@ember/object';
-import { run, scheduleOnce } from '@ember/runloop';
+import { runTask, scheduleTask } from 'ember-lifeline';
 import layout from '../templates/components/mdc-radio';
 import getElementProperty from '../utils/get-element-property';
 import { MDCComponent } from '../mixins/mdc-component';
@@ -47,10 +47,11 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('checked');
-      this.sync('disabled');
-    });
+    !get(this, 'isDestroyed') &&
+      scheduleTask(this, 'render', () => {
+        this.sync('checked');
+        this.sync('disabled');
+      });
   },
   //endregion
 
@@ -97,8 +98,10 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    */
   createFoundation() {
     return new MDCRadioFoundation({
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').addObject(className), 0),
+      removeClass: className =>
+        !get(this, 'isDestroyed') && runTask(this, () => get(this, 'mdcClasses').removeObject(className), 0),
       getNativeControl: () => this.element.querySelector('input'),
     });
   },
