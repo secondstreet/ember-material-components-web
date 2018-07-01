@@ -23,7 +23,10 @@
   "repository": "secondstreet/ember-material-components-web",
   "lint-staged": {
     "linters": {
-      "{{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}": ["prettier --write", "git add"]
+      "{{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}": [
+        "prettier --write",
+        "git add"
+      ]
     }
   },
   "scripts": {
@@ -31,8 +34,7 @@
     "add-contrib": "all-contributors add",
     "build": "ember build",
     "generate-contrib": "all-contributors generate",
-    "lint:prettier":
-      "prettier --list-different {{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}",
+    "lint:prettier": "prettier --list-different {{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.js}",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
     "test": "ember try:each"
