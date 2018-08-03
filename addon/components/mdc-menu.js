@@ -5,9 +5,9 @@ import { set, get } from '@ember/object';
 import layout from '../templates/components/mdc-menu';
 import { MDCComponent } from '../mixins/mdc-component';
 import styleComputed from '../utils/style-computed';
-import { MDCSimpleMenuFoundation, util } from '@material/menu';
+import { MDCMenuFoundation, util } from '@material/menu';
 
-const { strings } = MDCSimpleMenuFoundation;
+const { strings } = MDCMenuFoundation;
 const TRANSFORM_PROPERTY = util.getTransformPropertyName(window);
 
 /**
@@ -52,8 +52,8 @@ export default Component.extend(MDCComponent, {
     this.updateOpenness();
   },
   layout,
-  classNames: ['mdc-simple-menu'],
-  classNameBindings: ['mdcClassNames', 'open:mdc-simple-menu--open'],
+  classNames: ['mdc-menu'],
+  classNameBindings: ['mdcClassNames', 'open:mdc-menu--open'],
   attributeBindings: ['style', 'tabindex'],
   //endregion
 
@@ -105,7 +105,7 @@ export default Component.extend(MDCComponent, {
     return get(this, 'items').objectAt(index);
   },
   createFoundation() {
-    return new MDCSimpleMenuFoundation({
+    return new MDCMenuFoundation({
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       hasClass: className => get(this, 'element.classList').contains(className),

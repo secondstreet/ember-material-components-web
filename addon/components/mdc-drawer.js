@@ -2,17 +2,22 @@ import EmberError from '@ember/error';
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
-import { set, getProperties, get, computed } from '@ember/object';
+import { computed, get, getProperties, set } from '@ember/object';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
-import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation } from '@material/drawer';
 import layout from '../templates/components/mdc-drawer';
+import MDCTemporaryDrawerFoundation from '@material/drawer/temporary/foundation';
 
 export default Component.extend(MDCComponent, {
   //region Ember Hooks
   layout,
   classNames: ['mdc-drawer'],
-  classNameBindings: ['mdcClassNames', 'isPermanent:mdc-permanent-drawer'],
+  classNameBindings: [
+    'mdcClassNames',
+    'permanent:mdc-drawer--permanent',
+    'persistent:mdc-drawer--persistent',
+    'temporary:mdc-drawer--temporary',
+  ],
 
   init() {
     this._super(...arguments);
@@ -75,46 +80,49 @@ export default Component.extend(MDCComponent, {
     }
   },
   /**
-   * @returns {MDCPersistentDrawerFoundation|MDCTemporaryDrawerFoundation|Object}
+   * @returns {MDCTemporaryDrawerFoundation|Object}
    */
   createFoundation() {
-    const { isPermanent, persistent } = getProperties(this, 'isPermanent', 'persistent');
-    if (isPermanent) {
+    if (!get(this, 'temporary')) {
       return { init() {}, destroy() {} };
     }
 
-    const Foundation = persistent ? MDCPersistentDrawerFoundation : MDCTemporaryDrawerFoundation;
-    run(() => get(this, 'mdcClasses').addObject(Foundation.cssClasses.ROOT));
-    const { FOCUSABLE_ELEMENTS, DRAWER_SELECTOR } = Foundation.strings;
+    run(() => get(this, 'mdcClasses').addObject(MDCTemporaryDrawerFoundation.cssClasses.ROOT));
+    const { FOCUSABLE_ELEMENTS, DRAWER_SELECTOR } = MDCTemporaryDrawerFoundation.strings;
 
-    const adapter = {
+    const TODO = () => {
+      throw new Error('Not Yet Implemented');
+    };
+    return new MDCTemporaryDrawerFoundation({
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       hasClass: className => get(this, 'mdcClasses').includes(className),
+      eventTargetHasClass: (target, className) => TODO(),
+      addBodyClass: className => TODO(),
+      removeBodyClass: className => TODO(),
+      hasNecessaryDom: () => Boolean(this.element.querySelector('mdc-drawer__drawer')),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
-      registerDrawerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
-      deregisterDrawerInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
+      registerDrawerInteractionHandler: (type, handler) =>
+        this.registerMdcInteractionHandler(type, handler, '.mdc-drawer__drawer'),
+      deregisterDrawerInteractionHandler: (type, handler) =>
+        this.deregisterMdcInteractionHandler(type, handler, '.mdc-drawer__drawer'),
       registerTransitionEndHandler: handler => this.registerMdcInteractionHandler('transitionend', handler),
       deregisterTransitionEndHandler: handler => this.deregisterMdcInteractionHandler('transitionend', handler),
       registerDocumentKeydownHandler: handler => run(() => window.document.addEventListener('keydown', handler)),
       deregisterDocumentKeydownHandler: handler => run(() => window.document.removeEventListener('keydown', handler)),
-      getDrawerWidth: () => {
-        const { width } = getElementProperty(this, 'getBoundingClientRect', () => ({ width: 0 }))();
-        return width;
-      },
+      getDrawerWidth: () => getElementProperty(this, 'getBoundingClientRect', () => ({ width: 0 }))().width,
       setTranslateX: value => run(() => this.setStyleFor('mdcStyles', 'translateX', `${value}px`)),
+      updateCssVariable: value => TODO(),
+      getFocusableElements: () => getElementProperty(this, 'querySelectorAll', () => [])(FOCUSABLE_ELEMENTS),
       saveElementTabState: el => set(this, 'previousTabState', el.tabIndex),
       restoreElementTabState: el => (el.tabIndex = get(this, 'previousTabState')),
       makeElementUntabbable: el => (el.tabIndex = -1),
       notifyOpen: () => set(this, 'open', true),
       notifyClose: () => set(this, 'open', false),
       isRtl: () => getElementProperty(this, 'direction') === 'rtl',
-      getFocusableElements: () => this.element.querySelectorAll(FOCUSABLE_ELEMENTS),
-      hasNecessaryDom: () => Boolean(this.element),
-      isDrawer: el => get(this, 'element').querySelector(DRAWER_SELECTOR) === el,
-    };
-    return new Foundation(adapter);
+      isDrawer: el => getElementProperty(this, 'querySelector', () => null)(DRAWER_SELECTOR) === el,
+    });
   },
   //endregion
 });

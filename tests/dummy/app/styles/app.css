@@ -16,10 +16,6 @@ label {
   margin-bottom: 1em;
 }
 
-.FreestyleUsage-rendered .mdc-card {
-  max-width: 480px;
-}
-
 .FreestyleUsage-rendered [class*="mdc-elevation--z"] {
   margin: 2rem;
   min-height: 3em;

@@ -28,11 +28,6 @@ export default Component.extend(MDCComponent, {
   reversed: false,
 
   /**
-   * @type {Boolean}
-   */
-  secondary: false,
-
-  /**
    * @type {Number}
    * Must be a value between 0 and 1
    */
@@ -46,7 +41,6 @@ export default Component.extend(MDCComponent, {
     `indeterminate:${cssClasses.INDETERMINATE_CLASS}`,
     `closed:${cssClasses.CLOSED_CLASS}`,
     `reversed:${cssClasses.REVERSED_CLASS}`,
-    'secondary:mdc-linear-progress--accent',
   ],
   attributeBindings: ['role', ...events],
   init() {

@@ -1,14 +1,13 @@
 {{#if isPermanent}}
   {{yield (hash
-            toolbar-spacer=(component "mdc-drawer/toolbar-spacer" permanent=true temporary=false persistent=false)
-            content=(component "mdc-drawer/content" permanent=true temporary=false persistent=false)
-          )}}
-
+    toolbar-spacer=(component "mdc-drawer/toolbar-spacer")
+    content=(component "mdc-drawer/content")
+  )}}
 {{else}}
-  <div class="mdc-{{if temporary "temporary" "persistent"}}-drawer__drawer">
+  <div class="mdc-drawer__drawer">
     {{yield (hash
-              toolbar-spacer=(component "mdc-drawer/toolbar-spacer" permanent=false temporary=temporary persistent=persistent)
-              content=(component "mdc-drawer/content" permanent=false temporary=temporary persistent=persistent)
-            )}}
+      toolbar-spacer=(component "mdc-drawer/toolbar-spacer")
+      content=(component "mdc-drawer/content")
+    )}}
   </div>
 {{/if}}

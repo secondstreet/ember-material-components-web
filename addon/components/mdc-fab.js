@@ -12,23 +12,24 @@ export default Component.extend(MDCComponent, {
   /**
    * @type {Boolean}
    */
-  plain: false,
-  /**
-   * @type {Boolean}
-   */
-  disabled: false,
+  extended: false,
   /**
    * @type {?String}
    */
   'aria-label': null,
+  /**
+   * Can be passed in to apply a given style to
+   * @type {?String}
+   */
+  'icon-class': '',
   //endregion
 
   //region Ember Hooks
   layout,
   tagName: 'button',
   classNames: ['mdc-fab'],
-  attributeBindings: ['aria-label', 'disabled', 'type', 'style', ...events],
-  classNameBindings: ['mini:mdc-fab--mini', 'plain:mdc-fab--plain', 'mdcClassNames'],
+  attributeBindings: ['aria-label', 'type', 'style', ...events],
+  classNameBindings: ['mini:mdc-fab--mini', 'extended:mdc-fab--extended', 'mdcClassNames'],
   //endregion
 
   //region Properties

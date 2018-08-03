@@ -1,9 +1,9 @@
 import Component from '@ember/component';
-import layout from '../../templates/components/mdc-drawer/toolbar-spacer';
+import layout from '../../templates/components/mdc-drawer/header';
 
 export default Component.extend({
   //region Ember Hooks
-  classNames: ['mdc-drawer__toolbar-spacer'],
+  classNames: ['mdc-drawer__header'],
   layout,
   //endregion
 });

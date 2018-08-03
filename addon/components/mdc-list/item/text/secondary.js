@@ -6,7 +6,7 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'span',
-  classNames: ['mdc-list-item__text__secondary'],
+  classNames: ['mdc-list-item__secondary-text'],
   attributeBindings: [...events],
   //endregion
 });

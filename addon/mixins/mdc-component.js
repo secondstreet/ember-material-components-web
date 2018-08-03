@@ -154,31 +154,50 @@ export const MDCComponent = Mixin.create({
     });
   },
 
-  _attachMdcInteractionHandlers() {
-    get(this, 'mdcInteractionHandlers').forEach(([type, handler]) =>
-      getElementProperty(this, 'addEventListener', () => null)(type, handler)
-    );
-  },
-
-  _detachMdcInteractionHandlers() {
-    get(this, 'mdcInteractionHandlers').forEach(([type, handler]) =>
-      getElementProperty(this, 'removeEventListener', () => null)(type, handler)
-    );
-  },
-
-  registerMdcInteractionHandler(type, handler) {
-    next(() => {
-      this._detachMdcInteractionHandlers();
-      get(this, 'mdcInteractionHandlers').addObject([type, handler]);
-      this._attachMdcInteractionHandlers();
+  _attachMdcInteractionHandlers(selector = null) {
+    get(this, `mdcInteractionHandlers${selector || ''}`).forEach(([type, handler]) => {
+      if (selector) {
+        getElementProperty(this, 'querySelector', () => ({ addEventListener() {} }))(selector).addEventListener(
+          type,
+          handler
+        );
+      } else {
+        getElementProperty(this, 'addEventListener', () => null)(type, handler);
+      }
     });
   },
 
-  deregisterMdcInteractionHandler(type, handler) {
+  _detachMdcInteractionHandlers(selector = null) {
+    get(this, `mdcInteractionHandlers${selector || ''}`).forEach(([type, handler]) => {
+      if (selector) {
+        getElementProperty(this, 'querySelector', () => ({ removeEventListener() {} }))(selector).removeEventListener(
+          type,
+          handler
+        );
+      } else {
+        getElementProperty(this, 'removeEventListener', () => null)(type, handler);
+      }
+    });
+  },
+
+  registerMdcInteractionHandler(type, handler, selector = null) {
     next(() => {
-      this._detachMdcInteractionHandlers();
-      get(this, 'mdcInteractionHandlers').removeObject([type, handler]);
-      this._attachMdcInteractionHandlers();
+      const handlerArrayKey = `mdcInteractionHandlers${selector || ''}`;
+      if (!get(this, handlerArrayKey)) {
+        set(this, handlerArrayKey, A([]));
+      }
+
+      this._detachMdcInteractionHandlers(selector);
+      get(this, handlerArrayKey).addObject([type, handler]);
+      this._attachMdcInteractionHandlers(selector);
+    });
+  },
+
+  deregisterMdcInteractionHandler(type, handler, selector = null) {
+    next(() => {
+      this._detachMdcInteractionHandlers(selector);
+      get(this, `mdcInteractionHandlers${selector || ''}`).removeObject([type, handler]);
+      this._attachMdcInteractionHandlers(selector);
     });
   },
   //endregion

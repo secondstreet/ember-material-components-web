@@ -8,10 +8,6 @@ export default Component.extend(MDCComponent, {
   /**
    * @type {Boolean}
    */
-  secondary: false,
-  /**
-   * @type {Boolean}
-   */
   raised: false,
   /**
    * @type {Boolean}
@@ -20,15 +16,11 @@ export default Component.extend(MDCComponent, {
   /**
    * @type {Boolean}
    */
-  compact: false,
-  /**
-   * @type {Boolean}
-   */
   dense: false,
   /**
    * @type {Boolean}
    */
-  stroked: false,
+  outlined: false,
   /**
    * @type {Boolean}
    */
@@ -44,12 +36,10 @@ export default Component.extend(MDCComponent, {
   tagName: 'button',
   classNames: 'mdc-button',
   classNameBindings: [
-    'secondary:mdc-button--accent',
     'raised:mdc-button--raised',
     'unelevated:mdc-button--unelevated',
-    'compact:mdc-button--compact',
     'dense:mdc-button--dense',
-    'stroked:mdc-button--stroked',
+    'outlined:mdc-button--outlined',
     'mdcClassNames',
   ],
   attributeBindings: ['disabled', 'type', 'style', ...events],
