@@ -99,6 +99,12 @@
           {{#fab.label}}Create{{/fab.label}}
         {{/mdc-fab}}
       {{/freestyle-usage}}
+      {{#freestyle-usage "fab-exited" title="Animated Exit"}}
+        {{#mdc-fab exited=isFabExited as |fab|}}
+          <i class="material-icons {{iconClass}}">add</i>
+        {{/mdc-fab}}
+        <button onclick={{action (mut isFabExited (not isFabExited))}}>{{if isFabExited "Un-exit" "Exit"}}</button>
+      {{/freestyle-usage}}
     {{/freestyle-section}}
     {{#freestyle-section name="Checkboxes" as |section|}}
       {{#freestyle-usage "cbx-attributes" title="Attributes"}}
@@ -561,18 +567,21 @@
         {{#freestyle-usage "list-two-line-text" title="Text only"}}
           {{#mdc-list two-line=true as |list|}}
             {{#list.item as |item|}}
-              {{#item.text as |text|}}Two-line item
-              {{#text.secondary}}Secondary text{{/text.secondary}}
+              {{#item.text as |text|}}
+                {{#text.primary}}Two-line item{{/text.primary}}
+                {{#text.secondary}}Secondary text{{/text.secondary}}
               {{/item.text}}
             {{/list.item}}
             {{#list.item as |item|}}
-              {{#item.text as |text|}}Two-line item
-              {{#text.secondary}}Secondary text{{/text.secondary}}
+              {{#item.text as |text|}}
+                {{#text.primary}}Two-line item{{/text.primary}}
+                {{#text.secondary}}Secondary text{{/text.secondary}}
               {{/item.text}}
             {{/list.item}}
             {{#list.item as |item|}}
-              {{#item.text as |text|}}Two-line item
-              {{#text.secondary}}Secondary text{{/text.secondary}}
+              {{#item.text as |text|}}
+                {{#text.primary}}Two-line item{{/text.primary}}
+                {{#text.secondary}}Secondary text{{/text.secondary}}
               {{/item.text}}
             {{/list.item}}
           {{/mdc-list}}

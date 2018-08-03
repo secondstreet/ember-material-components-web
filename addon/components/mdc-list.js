@@ -5,18 +5,22 @@ import layout from '../templates/components/mdc-list';
 export default Component.extend({
   //region Attribute
   /**
-   * Make the list more visually compact
+   * Styles the density of the list, making it appear more compact.
    * @type {Boolean}
    */
   dense: false,
   /*
-   * Make the list confrom to the two-line list spec
+   * Modifier to style the list with two lines (primary and secondary lines).
    * @type {Boolean}
-   * @see {@link https://material.io/guidelines/components/lists.html#lists-actions}
    */
   'two-line': false,
   /**
-   * Styles the detail elements as what the spec calls "avatars" -- large, circular details
+   * @type {Boolean}
+   */
+  'non-interactive': false,
+  /**
+   * Configures the leading titles of each row to display images instead of icons.
+   * This will make the graphics of the list items larger.
    * @type {Boolean}
    */
   'avatar-list': false,
@@ -25,8 +29,20 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'ul',
-  classNameBindings: ['dense:mdc-list--dense', 'two-line:mdc-list--two-line', 'avatar-list:mdc-list--avatar-list'],
+  classNameBindings: [
+    'dense:mdc-list--dense',
+    'two-line:mdc-list--two-line',
+    'non-interactive:mdc-list--non-interactive',
+    'avatar-list:mdc-list--avatar-list',
+  ],
   classNames: ['mdc-list'],
   attributeBindings: [...events],
+  //endregion
+
+  //region Methods
+  createFoundation() {
+    // TODO: Mix in MDCComponent and implement an adapter for MDCListAdapter
+    // https://material.io/develop/web/components/lists/#usage-within-web-frameworks
+  },
   //endregion
 });

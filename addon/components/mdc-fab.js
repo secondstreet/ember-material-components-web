@@ -14,6 +14,10 @@ export default Component.extend(MDCComponent, {
    */
   extended: false,
   /**
+   * @type {Boolean}
+   */
+  exited: false,
+  /**
    * @type {?String}
    */
   'aria-label': null,
@@ -29,7 +33,7 @@ export default Component.extend(MDCComponent, {
   tagName: 'button',
   classNames: ['mdc-fab'],
   attributeBindings: ['aria-label', 'type', 'style', ...events],
-  classNameBindings: ['mini:mdc-fab--mini', 'extended:mdc-fab--extended', 'mdcClassNames'],
+  classNameBindings: ['mini:mdc-fab--mini', 'extended:mdc-fab--extended', 'exited:mdc-fab--exited', 'mdcClassNames'],
   //endregion
 
   //region Properties

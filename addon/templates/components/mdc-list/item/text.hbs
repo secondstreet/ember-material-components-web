@@ -1,3 +1,8 @@
-{{yield (hash
-  secondary=(component "mdc-list/item/text/secondary")
-)}}
+{{#if two-line}}
+  {{yield (hash
+    primary=(component "mdc-list/item/text/primary")
+    secondary=(component "mdc-list/item/text/secondary")
+  )}}
+{{else}}
+  {{yield}}
+{{/if}}
