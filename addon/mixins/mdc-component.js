@@ -8,6 +8,8 @@ import getElementProperty from '../utils/get-element-property';
 import { createRippleAdapter } from '../utils/mdc-ripple-adapter';
 import styleComputed from '../utils/style-computed';
 
+const saferPath = path => path.replace(/\./g, '__DOT__');
+
 export const addClass = (className, component) => {
   get(component, 'mdcClasses').addObject(className);
 };
@@ -141,11 +143,16 @@ export const MDCComponent = Mixin.create({
   },
 
   setStyleFor(key, property, value) {
+    if (key === 'mdcStyles' && get(this, 'element')) {
+      // Eagerly set the style on the root element, to avoid a flash of unstyled content
+      get(this, 'element').style.setProperty(property, value);
+    }
     next(() => {
       if (get(this, 'isDestroyed')) {
         return;
       }
 
+      // Add the style to an array tracked and bound to the DOM by Ember, so re-renders don't wipe out the style.
       set(this, `${key}.${property}`, value);
       // Setting properties on the object doesn't cause computed properties to recompute
       // (and we can't put every possible CSS property in the dependent keys),
@@ -155,7 +162,7 @@ export const MDCComponent = Mixin.create({
   },
 
   _attachMdcInteractionHandlers(selector = null) {
-    get(this, `mdcInteractionHandlers${selector || ''}`).forEach(([type, handler]) => {
+    get(this, `mdcInteractionHandlers${saferPath(selector || '')}`).forEach(([type, handler]) => {
       if (selector) {
         getElementProperty(this, 'querySelector', () => ({ addEventListener() {} }))(selector).addEventListener(
           type,
@@ -168,7 +175,7 @@ export const MDCComponent = Mixin.create({
   },
 
   _detachMdcInteractionHandlers(selector = null) {
-    get(this, `mdcInteractionHandlers${selector || ''}`).forEach(([type, handler]) => {
+    get(this, `mdcInteractionHandlers${saferPath(selector || '')}`).forEach(([type, handler]) => {
       if (selector) {
         getElementProperty(this, 'querySelector', () => ({ removeEventListener() {} }))(selector).removeEventListener(
           type,
@@ -182,7 +189,7 @@ export const MDCComponent = Mixin.create({
 
   registerMdcInteractionHandler(type, handler, selector = null) {
     next(() => {
-      const handlerArrayKey = `mdcInteractionHandlers${selector || ''}`;
+      const handlerArrayKey = `mdcInteractionHandlers${saferPath(selector || '')}`;
       if (!get(this, handlerArrayKey)) {
         set(this, handlerArrayKey, A([]));
       }
@@ -196,7 +203,7 @@ export const MDCComponent = Mixin.create({
   deregisterMdcInteractionHandler(type, handler, selector = null) {
     next(() => {
       this._detachMdcInteractionHandlers(selector);
-      get(this, `mdcInteractionHandlers${selector || ''}`).removeObject([type, handler]);
+      get(this, `mdcInteractionHandlers${saferPath(selector || '')}`).removeObject([type, handler]);
       this._attachMdcInteractionHandlers(selector);
     });
   },

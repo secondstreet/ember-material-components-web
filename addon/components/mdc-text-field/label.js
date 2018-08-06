@@ -5,7 +5,7 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'span',
-  classNames: ['mdc-text-field__label'],
+  classNames: ['mdc-floating-label'],
   classNameBindings: ['class-names'],
   //endregion
 });

@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -9,15 +10,6 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{mdc-fab/label}}`);
-
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    ''
-  );
-
   // Template block usage:
   this.render(hbs`
     {{#mdc-fab/label}}
@@ -25,10 +17,5 @@ test('it renders', function(assert) {
     {{/mdc-fab/label}}
   `);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    'template block text'
-  );
+  assert.equal(find('*').textContent.trim(), 'template block text');
 });

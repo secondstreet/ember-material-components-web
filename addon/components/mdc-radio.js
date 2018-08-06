@@ -42,7 +42,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
 
   //region Ember Hooks
   classNames: ['mdc-radio'],
-  classNameBindings: ['mdcClassNames'],
+  classNameBindings: ['mdcClassNames', 'disabled:mdc-radio--disabled'],
   attributeBindings: ['style'],
   layout,
   didRender() {

@@ -4,6 +4,7 @@ import { A } from '@ember/array';
 import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { isPresent } from '@ember/utils';
+import { assert } from '@ember/debug';
 import layout from '../templates/components/mdc-text-field';
 import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
@@ -99,6 +100,11 @@ export default Component.extend(MDCComponent, {
    */
   fullwidth: false,
   /**
+   * TODO: Implement @material/notched-outline and then this attribute.
+   * @type {Boolean}
+   */
+  outlined: false,
+  /**
    * @type {Boolean}
    */
   textarea: false,
@@ -116,6 +122,12 @@ export default Component.extend(MDCComponent, {
 
   //region Ember Hooks
   layout,
+  classNames: ['mdc-text-field'],
+  classNameBindings: [
+    'fullwidth:mdc-text-field--fullwidth',
+    'textarea:mdc-text-field--textarea',
+    'disabled:mdc-text-field--disabled',
+  ],
   init() {
     [
       'labelClasses',
@@ -126,6 +138,13 @@ export default Component.extend(MDCComponent, {
       'inputKeydownHandlers',
     ].forEach(prop => set(this, prop, A([])));
     this._super(...arguments);
+  },
+  didReceiveAttrs() {
+    this._super(...arguments);
+    assert(
+      'Do not use `box` or `outlined` to style a `fullwidth` {{mdc-text-field}}',
+      !((get(this, 'box') || get(this, 'outlined')) && get(this, 'fullwidth'))
+    );
   },
   //endregion
 

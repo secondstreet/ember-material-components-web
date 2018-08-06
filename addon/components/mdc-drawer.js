@@ -6,9 +6,30 @@ import { computed, get, getProperties, set } from '@ember/object';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import layout from '../templates/components/mdc-drawer';
-import MDCTemporaryDrawerFoundation from '@material/drawer/temporary/foundation';
+import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation, util } from '@material/drawer';
 
 export default Component.extend(MDCComponent, {
+  //region Attributes
+  /**
+   * @type {Boolean}
+   */
+  permanent: true,
+  /**
+   * @type {Boolean}
+   */
+  persistent: false,
+  /**
+   * @type {Boolean}
+   */
+  temporary: false,
+  /**
+   * @type {Boolean}
+   */
+  open: false,
+  onopen: x => x,
+  onclose: x => x,
+  //endregion
+
   //region Ember Hooks
   layout,
   classNames: ['mdc-drawer'],
@@ -32,27 +53,6 @@ export default Component.extend(MDCComponent, {
     this._super(...arguments);
     this.updateOpenness();
   },
-  //endregion
-
-  //region Attributes
-  /**
-   * @type {Boolean}
-   */
-  permanent: true,
-  /**
-   * @type {Boolean}
-   */
-  persistent: false,
-  /**
-   * @type {Boolean}
-   */
-  temporary: false,
-  /**
-   * @type {Boolean}
-   */
-  open: false,
-  onopen: x => x,
-  onclose: x => x,
   //endregion
 
   //region ComputedProperties
@@ -83,37 +83,38 @@ export default Component.extend(MDCComponent, {
    * @returns {MDCTemporaryDrawerFoundation|Object}
    */
   createFoundation() {
-    if (!get(this, 'temporary')) {
+    if (!get(this, 'temporary') && !get(this, 'persistent')) {
       return { init() {}, destroy() {} };
     }
 
-    run(() => get(this, 'mdcClasses').addObject(MDCTemporaryDrawerFoundation.cssClasses.ROOT));
-    const { FOCUSABLE_ELEMENTS, DRAWER_SELECTOR } = MDCTemporaryDrawerFoundation.strings;
+    const Foundation = get(this, 'temporary') ? MDCTemporaryDrawerFoundation : MDCPersistentDrawerFoundation;
 
-    const TODO = () => {
-      throw new Error('Not Yet Implemented');
-    };
-    return new MDCTemporaryDrawerFoundation({
+    run(() => get(this, 'mdcClasses').addObject(Foundation.cssClasses.ROOT));
+    const { FOCUSABLE_ELEMENTS, DRAWER_SELECTOR, OPACITY_VAR_NAME } = Foundation.strings;
+
+    return new Foundation({
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       hasClass: className => get(this, 'mdcClasses').includes(className),
-      eventTargetHasClass: (target, className) => TODO(),
-      addBodyClass: className => TODO(),
-      removeBodyClass: className => TODO(),
-      hasNecessaryDom: () => Boolean(this.element.querySelector('mdc-drawer__drawer')),
+      eventTargetHasClass: (target, className) => target.classList.contains(className),
+      addBodyClass: className => document.querySelector('body').classList.add(className),
+      removeBodyClass: className => document.querySelector('body').classList.remove(className),
+      hasNecessaryDom: () => Boolean(this.element.querySelector(DRAWER_SELECTOR)),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       registerDrawerInteractionHandler: (type, handler) =>
-        this.registerMdcInteractionHandler(type, handler, '.mdc-drawer__drawer'),
+        this.registerMdcInteractionHandler(type, handler, DRAWER_SELECTOR),
       deregisterDrawerInteractionHandler: (type, handler) =>
-        this.deregisterMdcInteractionHandler(type, handler, '.mdc-drawer__drawer'),
+        this.deregisterMdcInteractionHandler(type, handler, DRAWER_SELECTOR),
       registerTransitionEndHandler: handler => this.registerMdcInteractionHandler('transitionend', handler),
       deregisterTransitionEndHandler: handler => this.deregisterMdcInteractionHandler('transitionend', handler),
       registerDocumentKeydownHandler: handler => run(() => window.document.addEventListener('keydown', handler)),
       deregisterDocumentKeydownHandler: handler => run(() => window.document.removeEventListener('keydown', handler)),
       getDrawerWidth: () => getElementProperty(this, 'getBoundingClientRect', () => ({ width: 0 }))().width,
       setTranslateX: value => run(() => this.setStyleFor('mdcStyles', 'translateX', `${value}px`)),
-      updateCssVariable: value => TODO(),
+      updateCssVariable: value =>
+        util.supportsCssCustomProperties() &&
+        getElementProperty(this, 'style', { setProperty() {} }).setProperty(OPACITY_VAR_NAME, value),
       getFocusableElements: () => getElementProperty(this, 'querySelectorAll', () => [])(FOCUSABLE_ELEMENTS),
       saveElementTabState: el => set(this, 'previousTabState', el.tabIndex),
       restoreElementTabState: el => (el.tabIndex = get(this, 'previousTabState')),

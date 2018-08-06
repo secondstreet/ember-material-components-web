@@ -4,7 +4,7 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { run } from '@ember/runloop';
 import layout from '../templates/components/mdc-toolbar';
-import { MDCToolbarFoundation, util } from '@material/toolbar';
+import { MDCToolbarFoundation } from '@material/toolbar';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import styleComputed from '../utils/style-computed';
@@ -82,8 +82,8 @@ export default Component.extend(MDCComponent, {
       hasClass: className => get(this, 'element').classList.contains(className),
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
-      registerScrollHandler: handler => window.addEventListener('scroll', handler, util.applyPassive()),
-      deregisterScrollHandler: handler => window.removeEventListener('scroll', handler, util.applyPassive()),
+      registerScrollHandler: handler => window.addEventListener('scroll', handler),
+      deregisterScrollHandler: handler => window.removeEventListener('scroll', handler),
       registerResizeHandler: handler => window.addEventListener('resize', handler),
       deregisterResizeHandler: handler => window.removeEventListener('resize', handler),
       getViewportWidth: () => window.innerWidth,

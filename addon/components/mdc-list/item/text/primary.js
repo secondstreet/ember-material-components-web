@@ -1,11 +1,12 @@
 import Component from '@ember/component';
 import events from '../../../../utils/global-event-handlers';
-import layout from '../../../../templates/components/mdc-grid-list/tiles/tile/primary';
+import layout from '../../../../templates/components/mdc-list/item/text/primary';
 
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-grid-tile__primary'],
+  tagName: 'span',
+  classNames: ['mdc-list-item__primary-text'],
   attributeBindings: [...events],
   //endregion
 });

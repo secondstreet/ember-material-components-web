@@ -7,11 +7,10 @@ moduleForComponent('mdc-linear-progress', 'Integration | Component | mdc linear 
 });
 
 test('it renders', function(assert) {
-  assert.expect(5);
+  assert.expect(4);
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.set('isSecondary', false);
   this.set('myProgress', 0.5);
   this.set('isIndeterminate', false);
   this.set('mdcFoundation', {
@@ -19,9 +18,7 @@ test('it renders', function(assert) {
       assert.equal(x, this.get('myProgress'));
     },
   });
-  this.render(
-    hbs`{{mdc-linear-progress secondary=isSecondary progress=myProgress indeterminate=isIndeterminate foundation=mdcFoundation}}`
-  );
+  this.render(hbs`{{mdc-linear-progress progress=myProgress indeterminate=isIndeterminate foundation=mdcFoundation}}`);
 
   assert.equal(find('*').textContent.trim(), '');
 
@@ -32,14 +29,9 @@ test('it renders', function(assert) {
 
   this.set('myProgress', 0.8);
 
-  this.set('isSecondary', true);
   this.set('isIndeterminate', true);
   assert.ok(
     find('.mdc-linear-progress').classList.contains('mdc-linear-progress--indeterminate'),
     'Progress bar is in indeterminate state'
-  );
-  assert.ok(
-    find('.mdc-linear-progress').classList.contains('mdc-linear-progress--accent'),
-    'Progress bar is in secondary variation'
   );
 });

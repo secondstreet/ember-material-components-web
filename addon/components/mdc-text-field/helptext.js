@@ -1,10 +1,8 @@
 import Component from '@ember/component';
 import { computed, get } from '@ember/object';
 import layout from '../../templates/components/mdc-text-field/helptext';
-import { MDCTextFieldFoundation } from '@material/textfield';
 
-const { strings: { ROLE, ARIA_HIDDEN } } = MDCTextFieldFoundation;
-const mdcAttrs = [ROLE, ARIA_HIDDEN];
+const mdcAttrs = ['role', 'aria-hidden'];
 
 const MDCTextFieldHelptextComponent = Component.extend({
   //region Attributes
@@ -17,9 +15,16 @@ const MDCTextFieldHelptextComponent = Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'p',
-  classNames: ['mdc-text-field-helptext'],
+  classNames: ['mdc-text-field-helper-text'],
   classNameBindings: ['class-names'],
-  attributeBindings: mdcAttrs,
+  attributeBindings: [...mdcAttrs],
+  //endregion
+
+  //region Methods
+  createFoundation() {
+    // TODO: Mix in MDCComponent and implement an adapter for MDCTextFieldHelperTextAdapter
+    // https://material.io/develop/web/components/input-controls/text-field/helper-text/#usage-within-web-frameworks
+  },
   //endregion
 });
 

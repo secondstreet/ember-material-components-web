@@ -38,11 +38,11 @@ export default Component.extend(MDCComponent, {
   classNameBindings: [
     'raised:mdc-button--raised',
     'unelevated:mdc-button--unelevated',
-    'dense:mdc-button--dense',
     'outlined:mdc-button--outlined',
+    'dense:mdc-button--dense',
     'mdcClassNames',
   ],
-  attributeBindings: ['disabled', 'type', 'style', ...events],
+  attributeBindings: ['disabled', 'type', 'style', 'aria-label', 'aria-hidden', 'aria-pressed', ...events],
   //endregion
 
   //region Properties

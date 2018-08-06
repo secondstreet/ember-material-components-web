@@ -88,13 +88,13 @@
           {{#fab.label}}Create{{/fab.label}}
         {{/mdc-fab}}
       {{/freestyle-usage}}
-      {{#freestyle-usage "fab-extended" title="Extended (Text First)"}}
+      {{#freestyle-usage "fab-extended-text-first" title="Extended (Text First)"}}
         {{#mdc-fab extended=true as |fab|}}
           {{#fab.label}}Create{{/fab.label}}
           <i class="material-icons {{iconClass}}">add</i>
         {{/mdc-fab}}
       {{/freestyle-usage}}
-      {{#freestyle-usage "fab-extended" title="Extended (Without Icon)"}}
+      {{#freestyle-usage "fab-extended-without-icon" title="Extended (Without Icon)"}}
         {{#mdc-fab extended=true as |fab|}}
           {{#fab.label}}Create{{/fab.label}}
         {{/mdc-fab}}
@@ -103,7 +103,7 @@
         {{#mdc-fab exited=isFabExited as |fab|}}
           <i class="material-icons {{iconClass}}">add</i>
         {{/mdc-fab}}
-        <button onclick={{action (mut isFabExited (not isFabExited))}}>{{if isFabExited "Un-exit" "Exit"}}</button>
+        <button onclick={{action (toggle "isFabExited" this)}}>{{if isFabExited "Un-exit" "Exit"}}</button>
       {{/freestyle-usage}}
     {{/freestyle-section}}
     {{#freestyle-section name="Checkboxes" as |section|}}
@@ -195,109 +195,6 @@
       {{/freestyle-usage}}
       {{#freestyle-usage "elevation-9" title="z=9"}}
         {{#mdc-elevation z=9}}Elevation Depth 9{{/mdc-elevation}}
-      {{/freestyle-usage}}
-    {{/freestyle-section}}
-    {{#freestyle-section name="Grid Lists" as |section|}}
-      {{#freestyle-usage "gl-basic-usage" title="Basic Usage"}}
-        {{#mdc-grid-list as |list|}}
-          {{#list.tiles as |tiles|}}
-            {{#tiles.tile as |tile|}}
-              {{#tile.primary as |primary|}}
-                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
-              {{/tile.primary}}
-              {{#tile.secondary as |secondary|}}
-                {{#secondary.title}}
-                  Title
-                {{/secondary.title}}
-              {{/tile.secondary}}
-            {{/tiles.tile}}
-            {{#tiles.tile as |tile|}}
-              {{#tile.primary as |primary|}}
-                {{primary.primary-content src="http://placekitten.com/g/200/200"}}
-              {{/tile.primary}}
-              {{#tile.secondary as |secondary|}}
-                {{#secondary.title}}
-                  Title
-                {{/secondary.title}}
-              {{/tile.secondary}}
-            {{/tiles.tile}}
-          {{/list.tiles}}
-        {{/mdc-grid-list}}
-      {{/freestyle-usage}}
-      {{#freestyle-usage "gl-secondary-content" title="Add support text to secondary content (caption)"}}
-        {{#mdc-grid-list twoline-caption=true as |list|}}
-          {{#list.tiles as |tiles|}}
-            {{#tiles.tile as |tile|}}
-              {{#tile.primary as |primary|}}
-                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
-              {{/tile.primary}}
-              {{#tile.secondary as |secondary|}}
-                {{#secondary.title}}
-                  Title
-                {{/secondary.title}}
-                {{#secondary.support-text}}
-                  Support Text
-                {{/secondary.support-text}}
-              {{/tile.secondary}}
-            {{/tiles.tile}}
-          {{/list.tiles}}
-        {{/mdc-grid-list}}
-      {{/freestyle-usage}}
-      {{#freestyle-usage "gl-secondary-content-icon" title="Add icon to secondary content (caption)"}}
-        {{#mdc-grid-list icon-align="start" as |list|}}
-          {{#list.tiles as |tiles|}}
-            {{#tiles.tile as |tile|}}
-              {{#tile.primary as |primary|}}
-                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
-              {{/tile.primary}}
-              {{#tile.secondary as |secondary|}}
-                {{#secondary.icon as |class|}}
-                  <i class="material-icons {{class}}">star_border</i>
-                {{/secondary.icon}}
-                {{#secondary.title}}
-                  Title
-                {{/secondary.title}}
-              {{/tile.secondary}}
-            {{/tiles.tile}}
-          {{/list.tiles}}
-        {{/mdc-grid-list}}
-      {{/freestyle-usage}}
-      {{#freestyle-usage "gl-tile-aspect" title="Change aspect ratio of tile"}}
-        {{#mdc-grid-list tile-aspect="16x9" as |list|}}
-          {{#list.tiles as |tiles|}}
-            {{#tiles.tile as |tile|}}
-              {{#tile.primary as |primary|}}
-                {{primary.primary-content src="http://placekitten.com/g/200/250"}}
-              {{/tile.primary}}
-              {{#tile.secondary as |secondary|}}
-                {{#secondary.title}}
-                  16x9
-                {{/secondary.title}}
-              {{/tile.secondary}}
-            {{/tiles.tile}}
-          {{/list.tiles}}
-        {{/mdc-grid-list}}
-      {{/freestyle-usage}}
-      {{#freestyle-usage "gl-div" title="Using a div in place of an img"}}
-        <style>
-          .my-tile-image {
-            background-image: url('http://placekitten.com/g/200/250');
-          }
-        </style>
-        {{#mdc-grid-list as |list|}}
-          {{#list.tiles as |tiles|}}
-            {{#tiles.tile as |tile|}}
-              {{#tile.primary as |primary|}}
-                {{primary.primary-content tagName="div" class="my-tile-image"}}
-              {{/tile.primary}}
-              {{#tile.secondary as |secondary|}}
-                {{#secondary.title}}
-                  Title
-                {{/secondary.title}}
-              {{/tile.secondary}}
-            {{/tiles.tile}}
-          {{/list.tiles}}
-        {{/mdc-grid-list}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
     {{#freestyle-section name="Text Fields" as |section|}}
@@ -468,33 +365,6 @@
         {{/mdc-layout-grid}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Icon Toggles" as |section|}}
-      {{#freestyle-usage 'icon-attrs' title="Attributes"}}
-        TODO: The ripple looks odd here. <br/>
-        {{#mdc-icon-toggle
-          pressed=isFirstTogglePressed
-          onchange=(action (mut isFirstTogglePressed))
-          class="material-icons"
-        }}
-          {{#if isFirstTogglePressed}}
-            star
-          {{else}}
-            star_border
-          {{/if}}
-        {{/mdc-icon-toggle}}
-        {{#if isFirstTogglePressed}}
-          Unstar it.
-        {{else}}
-          Star it!
-        {{/if}}
-      {{/freestyle-usage}}
-      {{#freestyle-usage "icon-disabled" title="Disabled"}}
-        {{#mdc-icon-toggle pressed=true disabled=true class="material-icons" onchange=(action "alert" "Should not see this.")}}
-          star
-        {{/mdc-icon-toggle}}
-        Disabled.
-      {{/freestyle-usage}}
-    {{/freestyle-section}}
     {{#freestyle-section name="Lists" as |section|}}
       {{#section.subsection name="Single-Line List"}}
 
@@ -592,17 +462,17 @@
     {{#freestyle-section name="Menu" as |section|}}
       {{#freestyle-usage "menu"}}
         {{#mdc-menu-anchor as |anchor|}}
-          {{#mdc-icon-toggle class="material-icons" pressed=isMenuOneOpen onchange=(action (mut isMenuOneOpen))}}
+          {{#mdc-button class="material-icons" checked=isMenuOneOpen onclick=(action (toggle "isMenuOneOpen" this))}}
             more_vert
-          {{/mdc-icon-toggle}}
+          {{/mdc-button}}
           {{#mdc-menu anchor=anchor open=isMenuOneOpen cancel=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu canceled"))) as |menu|}}
-            {{#menu.item onclick=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item one clicked!")))}}
+            {{#menu.item selected=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item one selected!")))}}
               Menu Item One
             {{/menu.item}}
-            {{#menu.item onclick=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item two clicked!")))}}
+            {{#menu.item selected=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item two selected!")))}}
               Menu Item Two
             {{/menu.item}}
-            {{#menu.item onclick=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item three clicked!")))}}
+            {{#menu.item selected=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item three selected!")))}}
               Menu Item Three
             {{/menu.item}}
           {{/mdc-menu}}
