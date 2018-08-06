@@ -1,18 +1,20 @@
 import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 import layout from '../../templates/components/mdc-drawer/toolbar-spacer';
 
 export default Component.extend({
-  //region attributes / bindings
-  temporary: false,
-  permanent: false,
-  persistent: false,
-  //endregion
   //region Ember Hooks
+  classNameBindings: ['spacerClass'],
   layout,
-  classNameBindings: [
-    'temporary:mdc-temporary-drawer__toolbar-spacer',
-    'permanent:mdc-permanent-drawer__toolbar-spacer',
-    'persistent:mdc-persistent-drawer__toolbar-spacer',
-  ],
+  //endregion
+
+  //region Computed Properties
+  spacerClass: computed('persistent', 'temporary', 'permanent', function() {
+    return get(this, 'persistent')
+      ? 'mdc-persistent-drawer__toolbar-spacer'
+      : get(this, 'temporary')
+        ? 'mdc-temporary-drawer__toolbar-spacer'
+        : get(this, 'permanent') ? 'mdc-permanent-drawer__toolbar-spacer' : 'mdc-drawer__toolbar-spacer';
+  }),
   //endregion
 });

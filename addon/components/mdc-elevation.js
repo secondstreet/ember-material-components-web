@@ -6,7 +6,7 @@ import layout from '../templates/components/mdc-elevation';
 export default Component.extend({
   //region Attributes
   /*
-   * A number between 0 and 24
+   * Sets the elevation to the (N)dp, where 1 <= N <= 24
    * @type {Number}
    */
   z: 0,

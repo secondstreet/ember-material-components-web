@@ -11,8 +11,6 @@ const materialPackages = [
   { name: '@material/fab', css: true, js: false },
   { name: '@material/card', css: true, js: false },
   { name: '@material/drawer', css: true, js: true },
-  { name: '@material/grid-list', css: true, js: false },
-  { name: '@material/icon-toggle', css: true, js: true },
   { name: '@material/elevation', css: true, js: false },
   { name: '@material/layout-grid', css: true, js: false },
   { name: '@material/list', css: true, js: false },

@@ -1,5 +1,50 @@
 # MDC-Ember Changelog
 
+### 0.38.0 Jet Jindo (August 3, 2018)
+
+#### New Versioning Strategy
+
+Because the `@material/` family of packages now all share a version number, it
+makes sense to align `ember-material-components-web`'s versioning with the
+upstream dependencies. This aligns with the Ember community's common strategy
+of versioning Ember CLI, Ember Data, and many addons based on the version of
+Ember.js they were developed against. Important caveats:
+
+- Only the [semver major and minor](https://semver.org/) numbers will align
+  with MDC-Web; this library may release patch versions without waiting
+  for MDC-Web to release patch versions.
+- Patch version bumps may introduce new features, such as implementing a
+  previously-unimplemented component from MDC-Web.
+- We're still keeping the precious stone + dog breed naming convention
+  because it's fun.
+
+#### New Features
+
+- :sparkles: `{{mdc-fab}}` variant: Extended
+- :sparkles: `{{mdc-fab}}` attribute: `exited`
+- :sparkles: `{{mdc-button}}` variant: Outlined
+- :sparkles: `{{mdc-list}}` attribute: `non-interactive`
+- :sparkles: `{{mdc-list/item}}` attribute: `selected`
+- :sparkles: `{{mdc-list/item}}` attribute: `activated`
+- :sparkles: `{{mdc-list/divider}}` attribute: `padded`
+
+#### Breaking Changes
+
+- :boom: Removes `disabled` attribute from `{{mdc-fab}}` due to [upstream changes](https://github.com/material-components/material-components-web/pull/1198)
+- :boom: Removes `plain` attribute from `{{mdc-fab}}` due to [upstream changes](https://github.com/material-components/material-components-web/pull/12490)
+- :boom: Removes `secondary` attribute from `{{mdc-button}}` due to [upstream changes](https://github.com/material-components/material-components-web/pull/1270)
+- :boom: Removes `secondary` attribute from `{{mdc-linear-progress}}` due to [upstream changes](https://github.com/material-components/material-components-web/issues/1541)
+- :boom: Renames `multiline` attribute to `textarea` for `{{mdc-textfield}}` due to [upstream changes](https://github.com/material-components/material-components-web/pull/998)
+- :boom: Renames `{{mdc-textfield}}` component to `{{mdc-text-field}}` due to [upstream changes](https://github.com/material-components/material-components-web/issues/1485)
+- :boom: Renames `{{mdc-list/item/start-detail}}` component to `{{mdc-list/item/graphic}}` due to [upstream changes]()
+- :boom: Renames `{{mdc-list/item/end-detail}}` component to `{{mdc-list/item/meta}}` due to [upstream changes]()
+- :boom: Removes `{{mdc-card}}` component (to be re-implemented later) due to extensive [upstream changes](https://github.com/material-components/material-components-web/pull/2025)
+- :boom: Removes `compact` attribute from `{{mdc-button}}` due to [upstream changes](https://github.com/material-components/material-components-web/pull/2361)
+- :boom: Removes `{{mdc-icon-toggle}}` component due to [upstream removal](https://github.com/material-components/material-components-web/pull/2766)
+- :boom: Removes `{{mdc-grid-list}}` component due to [upstream deprecation](https://github.com/material-components/material-components-web/pull/2694)
+- :boom: Removes the `.mdc-fab__icon` DOM node from `{{mdc-fab}}`'s template and yields `{{fab.iconClass}}` so you can use your own SVG, `i`, `span`, or `img` icons.
+- :boom: `{{mdc-list/item/text}}` now expects text to be contained in either `{{text.primary}}` or `{{text.secondary}}`, not as a direct text node child of `{{text}}`.
+
 ### 0.0.40 Ivory Irish terrier (March 29, 2018)
 - :bug: Fix issue with destroyed {{mdc-menu}}s (#70)
 - :bug: impure function needs to be wrapped in `Ember.run` (#68)

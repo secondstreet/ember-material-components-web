@@ -1,4 +1,13 @@
-<input class="mdc-radio__native-control" onclick={{action "clicked"}} type="radio" id={{input-id}} name={{name}} onchange={{action "inputChanged"}} checked={{checked}}>
+<input
+  class="mdc-radio__native-control"
+  type="radio"
+  onclick={{action "clicked"}}
+  id={{input-id}}
+  name={{name}}
+  onchange={{action "inputChanged"}}
+  checked={{checked}}
+  disabled={{disabled}}
+/>
 <div class="mdc-radio__background">
   <div class="mdc-radio__outer-circle"></div>
   <div class="mdc-radio__inner-circle"></div>

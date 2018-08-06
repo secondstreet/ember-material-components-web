@@ -5,5 +5,6 @@ export default Divider.extend({
   //region Ember Hooks
   layout,
   tagName: 'hr',
+  classNames: ['.mdc-list-divider'],
   //endregion
 });

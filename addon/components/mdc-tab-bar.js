@@ -56,7 +56,7 @@ export default Component.extend(MDCComponent, {
     'mdcClassNames',
     'dark:mdc-theme--dark',
   ],
-  attributeBindings: ['style'],
+  attributeBindings: ['style', 'role'],
   init() {
     this._super(...arguments);
     set(this, 'tabs', A([]));
@@ -73,6 +73,7 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Properties
+  role: 'tablist',
   /**
    * @type {Ember.Component[]}
    */

@@ -42,7 +42,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
 
   //region Ember Hooks
   classNames: ['mdc-radio'],
-  classNameBindings: ['mdcClassNames'],
+  classNameBindings: ['mdcClassNames', 'disabled:mdc-radio--disabled'],
   attributeBindings: ['style'],
   layout,
   didRender() {
@@ -97,9 +97,9 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    */
   createFoundation() {
     return new MDCRadioFoundation({
+      getNativeControl: () => getElementProperty(this, 'querySelector', () => null)('input'),
       addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
-      getNativeControl: () => this.element.querySelector('input'),
     });
   },
   //endregion

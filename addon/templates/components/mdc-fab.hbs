@@ -1,3 +1,11 @@
-<span class="mdc-fab__icon">
-  {{yield}}
-</span>
+{{#if extended}}
+  {{yield (hash
+    iconClass="mdc-fab__icon"
+    label=(component "mdc-fab/label")
+  )}}
+{{else}}
+  {{yield (hash
+    iconClass="mdc-fab__icon"
+  )}}
+
+{{/if}}

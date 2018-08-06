@@ -1,0 +1,37 @@
+<label class="{{CLASS_NAMES.ROOT}} {{mdcClassNames}} {{unless valid CLASS_NAMES.INVALID}} {{if fullwidth "mdc-text-field--fullwidth"}} {{if disabled CLASS_NAMES.DISABLED}} {{if value CLASS_NAMES.UPGRADED}} {{if textarea "mdc-text-field--textarea"}} {{if box "mdc-text-field--box"}}">
+  {{#if textarea}}
+    {{mdc-text-field/textarea
+      value=value
+      onfocus=(action "handle" "focus")
+      onblur=(action "handle" "blur")
+      oninput=(action "handleInput")
+      onkeydown=(action "handle" "keydown")
+      required=required
+      disabled=disabled
+      rows=rows
+      cols=cols
+    }}
+  {{else}}
+    {{mdc-text-field/input
+      value=value
+      onfocus=(action "handle" "focus")
+      onblur=(action "handle" "blur")
+      oninput=(action "handleInput")
+      onkeydown=(action "handle" "keydown")
+      required=required
+      placeholder=(if label (if isFocused placeholder) placeholder)
+      disabled=disabled
+      readonly=readonly
+      type=type
+    }}
+    {{#if box}}
+      <div class="mdc-text-field__bottom-line"></div>
+    {{/if}}
+  {{/if}}
+  {{#mdc-text-field/label class-names=labelClassnames}}
+    {{label}}
+  {{/mdc-text-field/label}}
+</label>
+{{#mdc-text-field/helptext attribute-pairs=helpTextAttrs class-names=helptextClassnames}}
+  {{helptext}}
+{{/mdc-text-field/helptext}}
