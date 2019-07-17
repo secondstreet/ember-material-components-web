@@ -73,15 +73,15 @@ module.exports = {
         });
       }
     });
-  } /**
+  },
+  /**
    * Returns a Broccoli tree for the addon's `vendor` directory. The `vendor`
    * directory isn't explicitly used for anything, but files can be `import()`ed
    * which we do in the `included` hook above.
    *
    * This is necessary because Ember CLI doesn't currently support `import()`ing
    * anything directly from a `node_modules/` folder.
-   */,
-  treeForVendor: function() {
+   */ treeForVendor: function() {
     const trees = materialPackages.map(function(pkg) {
       const include = [];
       if (pkg.css) {
