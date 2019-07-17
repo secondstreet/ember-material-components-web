@@ -34,7 +34,7 @@
     "add-contrib": "all-contributors add",
     "build": "ember build",
     "generate-contrib": "all-contributors generate",
-    "lint:prettier": "yarn run prettier --list-different {{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}",
+    "lint:prettier": "shopt -s globstar && yarn run prettier --list-different {addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json} *.{js,json}",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
     "test": "ember try:each"
