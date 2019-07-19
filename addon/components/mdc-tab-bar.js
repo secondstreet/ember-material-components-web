@@ -167,18 +167,16 @@ export default Component.extend(MDCComponent, {
       get(this, 'tabs').removeObject(tab);
     },
     switchToTab(tab) {
-      next(
-        () =>
-          get(this, 'tabs.length')
-            ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true)
-            : null
+      next(() =>
+        get(this, 'tabs.length')
+          ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true)
+          : null
       );
     },
     scrollTabIntoView(tab) {
       if (get(this, 'scroll-active-tab-into-view')) {
-        run.next(
-          () =>
-            get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null
+        run.next(() =>
+          get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null
         );
       }
     },

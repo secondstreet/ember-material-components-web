@@ -3,7 +3,9 @@ import { computed, get } from '@ember/object';
 import layout from '../../templates/components/mdc-textfield/helptext';
 import { MDCTextfieldFoundation } from '@material/textfield';
 
-const { strings: { ROLE, ARIA_HIDDEN } } = MDCTextfieldFoundation;
+const {
+  strings: { ROLE, ARIA_HIDDEN },
+} = MDCTextfieldFoundation;
 const mdcAttrs = [ROLE, ARIA_HIDDEN];
 
 const MDCTextfieldHelptextComponent = Component.extend({
