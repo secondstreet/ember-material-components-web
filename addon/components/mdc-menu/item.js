@@ -32,7 +32,7 @@ export default Component.extend({
   layout,
   tagName: 'li',
   classNames: ['mdc-list-item'],
-  attributeBindings: ['role', 'tabindex', 'style', ...events],
+  attributeBindings: ['role', 'tabindex', 'aria-disabled', 'style', ...events],
   //endregion
 
   //region Properties
