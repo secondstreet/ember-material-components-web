@@ -1,3 +1,5 @@
+const { DEFAULT_IGNORED_PROPERTIES } = require('eslint-plugin-ember/lib/rules/avoid-leaking-state-in-ember-objects');
+
 module.exports = {
   root: true,
   parserOptions: {
@@ -11,7 +13,7 @@ module.exports = {
   },
   rules: {
     'ember/no-jquery': 'error',
-    'ember/avoid-leaking-state-in-ember-objects': [1, ['colorPalette']],
+    'ember/avoid-leaking-state-in-ember-objects': [1, [...DEFAULT_IGNORED_PROPERTIES, 'colorPalette']],
   },
   overrides: [
     // node files
