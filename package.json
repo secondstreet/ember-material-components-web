@@ -49,7 +49,7 @@
     "@material/animation": "0.3.1",
     "@material/base": "0.2.5",
     "@material/button": "0.5.0",
-    "@material/card": "0.1.0",
+    "@material/card": "10.0.0",
     "@material/checkbox": "0.4.5",
     "@material/drawer": "0.5.9",
     "@material/elevation": "0.1.11",
