@@ -1,0 +1,30 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: ember-freestyle
+    versions:
+    - 0.12.1
+    - 0.12.10
+    - 0.12.3
+    - 0.12.4
+    - 0.12.5
+    - 0.12.6
+    - 0.12.7
+    - 0.12.8
+    - 0.12.9
+  - dependency-name: "@material/card"
+    versions:
+    - 10.0.0
+    - 9.0.0
+  - dependency-name: lint-staged
+    versions:
+    - 10.5.3
+  - dependency-name: jquery
+    versions:
+    - 3.5.1
