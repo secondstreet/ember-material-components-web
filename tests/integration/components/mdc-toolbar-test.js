@@ -1,23 +1,25 @@
 import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('mdc-toolbar', 'Integration | Component | mdc toolbar', {
-  integration: true,
-});
+module('Integration | Component | mdc toolbar', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  this.render(hbs`
-    {{#mdc-toolbar as |toolbar|}}
-      {{#toolbar.row as |row|}}
-        {{#row.section as |section|}}
-          {{#section.title}}
-            Title text
-          {{/section.title}}
-        {{/row.section}}
-      {{/toolbar.row}}
-    {{/mdc-toolbar}}
-  `);
+  test('it renders', async function(assert) {
+    await render(hbs`
+      {{#mdc-toolbar as |toolbar|}}
+        {{#toolbar.row as |row|}}
+          {{#row.section as |section|}}
+            {{#section.title}}
+              Title text
+            {{/section.title}}
+          {{/row.section}}
+        {{/toolbar.row}}
+      {{/mdc-toolbar}}
+    `);
 
-  assert.equal(find('.mdc-toolbar__title').textContent.trim(), 'Title text');
+    assert.dom('.mdc-toolbar__title').hasText('Title text');
+  });
 });

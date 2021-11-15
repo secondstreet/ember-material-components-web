@@ -1,19 +1,21 @@
 import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('mdc-icon-toggle', 'Integration | Component | mdc icon toggle', {
-  integration: true,
-});
+module('Integration | Component | mdc icon toggle', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(1);
+  test('it renders', async function(assert) {
+    assert.expect(1);
 
-  this.render(hbs`
-    {{#mdc-icon-toggle as |class|}}
-      template block text
-    {{/mdc-icon-toggle}}
-  `);
+    await render(hbs`
+      {{#mdc-icon-toggle as |class|}}
+        template block text
+      {{/mdc-icon-toggle}}
+    `);
 
-  assert.equal(find('*').textContent.trim(), 'template block text');
+    assert.dom('*').hasText('template block text');
+  });
 });

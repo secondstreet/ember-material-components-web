@@ -6,7 +6,7 @@
 
 {{#if isDemoVisible}}
   {{#freestyle-guide title="MDC-Ember Demos"}}
-    {{#freestyle-section name="Repo info" as |section|}}
+    {{#freestyle-section name="Repo info" as |fsection|}}
       <p class="shields">
         <a href="https://travis-ci.org/secondstreet/ember-material-components-web">
           <img alt="Travis branch" src="https://img.shields.io/travis/secondstreet/ember-material-components-web/master.svg" style="max-width:100%;">
@@ -31,7 +31,7 @@
         </a>
       </p>
     {{/freestyle-section}}
-    {{#freestyle-section name="Buttons" as |section|}}
+    {{#freestyle-section name="Buttons" as |fsection|}}
       {{#freestyle-usage "flat" title="Flat Buttons"}}
         {{#mdc-button}}Standard Button{{/mdc-button}}
         {{#mdc-button disabled=true onclick=(action "alert" "Should not see this.")}}Disabled Button{{/mdc-button}}
@@ -54,7 +54,7 @@
         {{#mdc-button unelevated=true dense=true}}Unelevated Dense Button{{/mdc-button}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Floating Action Buttons" as |section|}}
+    {{#freestyle-section name="Floating Action Buttons" as |fsection|}}
       {{#freestyle-usage "fab-bind" title="bind actions"}}
 
         {{#mdc-fab onclick=(action "alert" "Stop clicked")}}
@@ -77,7 +77,7 @@
         {{/mdc-fab}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Cards" as |section|}}
+    {{#freestyle-section name="Cards" as |fsection|}}
 
       {{#freestyle-usage "card"}}
         {{#mdc-card as |card|}}
@@ -107,7 +107,7 @@
         {{/mdc-card}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Checkboxes" as |section|}}
+    {{#freestyle-section name="Checkboxes" as |fsection|}}
       {{#freestyle-usage "cbx-attributes" title="Attributes"}}
         <label>
           {{mdc-checkbox checked=isCheckboxOneChecked onchange=(action (mut isCheckboxOneChecked))}}
@@ -132,7 +132,7 @@
         <button {{action (toggle "isCheckBoxFourChecked" this)}}>Press to Toggle Checkbox</button>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Radios" as |section|}}
+    {{#freestyle-section name="Radios" as |fsection|}}
       {{#freestyle-usage "radio" title="radios"}}
         <label>
           {{mdc-radio checked=isRadioOneChecked onchange=(action (mut isRadioOneChecked))}}
@@ -169,7 +169,7 @@
         <button {{action (toggle "isRadioFiveChecked" this)}}>Press to Toggle Radio</button>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Elevation" as |section|}}
+    {{#freestyle-section name="Elevation" as |fsection|}}
       {{#freestyle-usage "elevation-1" title="z=1"}}
         {{#mdc-elevation z=1}}Elevation Depth 1{{/mdc-elevation}}
       {{/freestyle-usage}}
@@ -198,7 +198,7 @@
         {{#mdc-elevation z=9}}Elevation Depth 9{{/mdc-elevation}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Grid Lists" as |section|}}
+    {{#freestyle-section name="Grid Lists" as |fsection|}}
       {{#freestyle-usage "gl-basic-usage" title="Basic Usage"}}
         {{#mdc-grid-list as |list|}}
           {{#list.tiles as |tiles|}}
@@ -301,7 +301,7 @@
         {{/mdc-grid-list}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Text Fields" as |section|}}
+    {{#freestyle-section name="Text Fields" as |fsection|}}
       {{#freestyle-usage "txt-attrs" title="Attributes"}}
         {{mdc-textfield
           label="Box Textfield"
@@ -381,7 +381,7 @@
         }}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Layout Grids" as |section|}}
+    {{#freestyle-section name="Layout Grids" as |fsection|}}
       {{#freestyle-usage "lg-column-spans" title="Column spans"}}
         {{#mdc-layout-grid as |grid|}}
           {{#grid.inner as |inner|}}
@@ -469,7 +469,7 @@
         {{/mdc-layout-grid}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Icon Toggles" as |section|}}
+    {{#freestyle-section name="Icon Toggles" as |fsection|}}
       {{#freestyle-usage 'icon-attrs' title="Attributes"}}
         TODO: The ripple looks odd here. <br/>
         {{#mdc-icon-toggle
@@ -496,8 +496,8 @@
         Disabled.
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Lists" as |section|}}
-      {{#section.subsection name="Single-Line List"}}
+    {{#freestyle-section name="Lists" as |fsection|}}
+      {{#fsection.subsection name="Single-Line List"}}
 
         {{#freestyle-usage "list-text" title="Text only"}}
           {{#mdc-list theme="dark" as |list|}}
@@ -561,9 +561,9 @@
           {{/mdc-list}}
 
         {{/freestyle-usage}}
-      {{/section.subsection}}
+      {{/fsection.subsection}}
 
-      {{#section.subsection name="Two Line List"}}
+      {{#fsection.subsection name="Two Line List"}}
 
         {{#freestyle-usage "list-two-line-text" title="Text only"}}
           {{#mdc-list two-line=true as |list|}}
@@ -585,9 +585,9 @@
           {{/mdc-list}}
 
         {{/freestyle-usage}}
-      {{/section.subsection}}
+      {{/fsection.subsection}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Menu" as |section|}}
+    {{#freestyle-section name="Menu" as |fsection|}}
       {{#freestyle-usage "menu"}}
         {{#mdc-menu-anchor as |anchor|}}
           {{#mdc-icon-toggle class="material-icons" pressed=isMenuOneOpen onchange=(action (mut isMenuOneOpen))}}
@@ -607,8 +607,8 @@
         {{/mdc-menu-anchor}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Drawers" as |section|}}
-      {{#section.subsection name="Permanent Drawers"}}
+    {{#freestyle-section name="Drawers" as |fsection|}}
+      {{#fsection.subsection name="Permanent Drawers"}}
         {{#freestyle-usage "permanent-drawer-above"}}
           <div class="component-doc flexible">
             {{#mdc-drawer as |drawer|}}
@@ -687,8 +687,8 @@
             </div>
           </div>
         {{/freestyle-usage}}
-      {{/section.subsection}}
-      {{#section.subsection name="Persistent Drawers"}}
+      {{/fsection.subsection}}
+      {{#fsection.subsection name="Persistent Drawers"}}
         {{#freestyle-usage "persistent-drawer"}}
           <div class="component-doc flexible">
             {{#mdc-drawer tagName='aside' persistent=true permanent=false open=isPersistentDrawerOpened as |drawer|}}
@@ -730,8 +730,8 @@
             </div>
           </div>
         {{/freestyle-usage}}
-      {{/section.subsection}}
-      {{#section.subsection name="Temporary Drawers"}}
+      {{/fsection.subsection}}
+      {{#fsection.subsection name="Temporary Drawers"}}
         {{#freestyle-usage "temporary-drawer"}}
           <div class="component-doc flexible">
             {{#mdc-drawer tagName='aside' temporary=true permanent=false open=isTemporaryDrawerOpened as |drawer|}}
@@ -769,9 +769,9 @@
             </div>
           </div>
         {{/freestyle-usage}}
-      {{/section.subsection}}
+      {{/fsection.subsection}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Progress Bar" as |section|}}
+    {{#freestyle-section name="Progress Bar" as |fsection|}}
       {{#freestyle-usage "progress-determinate" name="Progress Determinate"}}
         {{input value=myProgress min=0 max=1}}
         <div>Change this to any decimal value between 0 and 1, and the progress bar will update to show that amount.</div>
@@ -788,7 +788,7 @@
       {{/freestyle-usage}}
 
     {{/freestyle-section}}
-    {{#freestyle-section name="Tab Bar" as |section|}}
+    {{#freestyle-section name="Tab Bar" as |fsection|}}
       {{#freestyle-usage "tab-actions1" name="Action-based tabs"}}
         {{#mdc-tab-bar links=false as |bar|}}
           {{#bar.tab active=isFirstActive become-active=(action (mut isFirstActive))}}
@@ -898,7 +898,7 @@
         </div>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Switch" as |section|}}
+    {{#freestyle-section name="Switch" as |fsection|}}
       {{#freestyle-usage "switch-active" name="Active Switch"}}
         {{mdc-switch checked=isFirstSwitchOn onchange=(action (mut isFirstSwitchOn))}}
         <button {{action (toggle "isFirstSwitchOn" this)}}>Press to Toggle Switch</button>
@@ -920,12 +920,12 @@
         </div>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Toolbar" as |section|}}
+    {{#freestyle-section name="Toolbar" as |fsection|}}
       {{#freestyle-usage "toolbar-basic" name="Basic usage"}}
         {{#mdc-toolbar as |toolbar|}}
           {{#toolbar.row as |row|}}
-            {{#row.section align="start" as |section|}}
-              {{#section.title}}Toolbar{{/section.title}}
+            {{#row.section align="start" as |rsection|}}
+              {{#rsection.title}}Toolbar{{/rsection.title}}
             {{/row.section}}
           {{/toolbar.row}}
         {{/mdc-toolbar}}

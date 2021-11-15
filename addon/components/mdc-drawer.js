@@ -5,7 +5,10 @@ import { run } from '@ember/runloop';
 import { set, getProperties, get, computed } from '@ember/object';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
-import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation } from '@material/drawer';
+import {
+  MDCTemporaryDrawerFoundation,
+  MDCPersistentDrawerFoundation
+} from '@material/drawer';
 import layout from '../templates/components/mdc-drawer';
 
 export default Component.extend(MDCComponent, {

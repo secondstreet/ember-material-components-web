@@ -1,37 +1,39 @@
 import { findAll, find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('mdc-layout-grid/inner/cell', 'Integration | Component | mdc layout grid/inner/cell', {
-  integration: true,
-});
+module('Integration | Component | mdc layout grid/inner/cell', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(8);
+  test('it renders', async function(assert) {
+    assert.expect(8);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#mdc-layout-grid/inner/cell span=6 span-desktop=8 span-tablet=6 span-phone=4 order=3 align="top"}}
-      template block text
-    {{/mdc-layout-grid/inner/cell}}
-  `);
-
-  assert.equal(find('.mdc-layout-grid__cell').textContent.trim(), 'template block text');
-  assert.equal(findAll('.mdc-layout-grid__cell--span-6').length, 1);
-  assert.equal(findAll('.mdc-layout-grid__cell--span-8-desktop').length, 1);
-  assert.equal(findAll('.mdc-layout-grid__cell--span-6-tablet').length, 1);
-  assert.equal(findAll('.mdc-layout-grid__cell--span-4-phone').length, 1);
-  assert.equal(findAll('.mdc-layout-grid__cell--order-3').length, 1);
-  assert.equal(findAll('.mdc-layout-grid__cell--align-top').length, 1);
-
-  // Template block usage:
-  this.render(hbs`
-    {{#mdc-layout-grid/inner/cell as |cell|}}
-      {{#cell.inner}}
+    // Template block usage:
+    await render(hbs`
+      {{#mdc-layout-grid/inner/cell span=6 span-desktop=8 span-tablet=6 span-phone=4 order=3 align="top"}}
         template block text
-      {{/cell.inner}}
-    {{/mdc-layout-grid/inner/cell}}
-  `);
+      {{/mdc-layout-grid/inner/cell}}
+    `);
 
-  assert.equal(find('.mdc-layout-grid__inner').textContent.trim(), 'template block text');
+    assert.dom('.mdc-layout-grid__cell').hasText('template block text');
+    assert.dom('.mdc-layout-grid__cell--span-6').exists({ count: 1 });
+    assert.dom('.mdc-layout-grid__cell--span-8-desktop').exists({ count: 1 });
+    assert.dom('.mdc-layout-grid__cell--span-6-tablet').exists({ count: 1 });
+    assert.dom('.mdc-layout-grid__cell--span-4-phone').exists({ count: 1 });
+    assert.dom('.mdc-layout-grid__cell--order-3').exists({ count: 1 });
+    assert.dom('.mdc-layout-grid__cell--align-top').exists({ count: 1 });
+
+    // Template block usage:
+    await render(hbs`
+      {{#mdc-layout-grid/inner/cell as |cell|}}
+        {{#cell.inner}}
+          template block text
+        {{/cell.inner}}
+      {{/mdc-layout-grid/inner/cell}}
+    `);
+
+    assert.dom('.mdc-layout-grid__inner').hasText('template block text');
+  });
 });

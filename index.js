@@ -48,7 +48,7 @@ const materialPackages = [
  *    Ember's module system.
  */
 module.exports = {
-  name: 'ember-material-components-web',
+  name: require('./package').name,
   /**
    * Invoked at the beginning of the build process, this hook allows us to
    * use the `import()` method to include files from our `vendor` tree into
