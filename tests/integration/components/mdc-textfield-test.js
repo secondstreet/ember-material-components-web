@@ -20,7 +20,7 @@ module('Integration | Component | mdc textfield', function(hooks) {
     const placeholderText = 'Hi I am the placeholder';
     this.set('placeholderText', placeholderText);
 
-    await render(hbs`{{mdc-textfield placeholder=placeholderText label='This is a Label'}}`);
+    await render(hbs`{{mdc-textfield placeholder=placeholderText label="This is a Label"}}`);
 
     assert.notOk(find('input').getAttribute('placeholder'), 'Without focus the placeholder is NOT displayed');
     await triggerEvent('input', 'focusin');

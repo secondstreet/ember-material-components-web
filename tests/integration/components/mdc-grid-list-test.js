@@ -1,4 +1,3 @@
-import { findAll, find } from 'ember-native-dom-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -20,7 +19,7 @@ module('Integration | Component | mdc grid list', function(hooks) {
         tile-aspect="16x9"
         as |list|
       }}
-        {{#list.tiles as |tiles|}}
+        {{#list.tiles}}
           template block text
         {{/list.tiles}}
       {{/mdc-grid-list}}

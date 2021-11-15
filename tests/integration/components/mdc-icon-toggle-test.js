@@ -1,4 +1,3 @@
-import { find } from 'ember-native-dom-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -11,7 +10,7 @@ module('Integration | Component | mdc icon toggle', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#mdc-icon-toggle as |class|}}
+      {{#mdc-icon-toggle}}
         template block text
       {{/mdc-icon-toggle}}
     `);

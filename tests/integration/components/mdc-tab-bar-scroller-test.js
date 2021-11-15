@@ -1,8 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import { find } from 'ember-native-dom-helpers';
-
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | mdc tab bar scroller', function(hooks) {
