@@ -41,7 +41,7 @@ export default Component.extend(MDCComponent, {
 
   //region Ember Hooks
   tagName: 'i',
-  classNames: ['mdc-icon-toggle'],
+  classNames: Object.freeze(['mdc-icon-toggle']),
   layout,
   didRender() {
     this._super(...arguments);
@@ -50,8 +50,16 @@ export default Component.extend(MDCComponent, {
       this.syncPressed();
     });
   },
-  attributeBindings: [DATA_TOGGLE_ON, DATA_TOGGLE_OFF, ARIA_PRESSED, ARIA_DISABLED, ARIA_LABEL, 'tabindex', 'style'],
-  classNameBindings: ['mdcClassNames', 'aria-disabled:mdc-icon-toggle--disabled'],
+  attributeBindings: Object.freeze([
+    DATA_TOGGLE_ON,
+    DATA_TOGGLE_OFF,
+    ARIA_PRESSED,
+    ARIA_DISABLED,
+    ARIA_LABEL,
+    'tabindex',
+    'style',
+  ]),
+  classNameBindings: Object.freeze(['mdcClassNames', 'aria-disabled:mdc-icon-toggle--disabled']),
   //endregion
 
   //region Properties

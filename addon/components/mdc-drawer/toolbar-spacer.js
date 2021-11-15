@@ -9,10 +9,10 @@ export default Component.extend({
   //endregion
   //region Ember Hooks
   layout,
-  classNameBindings: [
+  classNameBindings: Object.freeze([
     'temporary:mdc-temporary-drawer__toolbar-spacer',
     'permanent:mdc-permanent-drawer__toolbar-spacer',
     'persistent:mdc-persistent-drawer__toolbar-spacer',
-  ],
+  ]),
   //endregion
 });

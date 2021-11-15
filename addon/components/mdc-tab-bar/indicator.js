@@ -4,7 +4,7 @@ import layout from '../../templates/components/mdc-tab-bar/indicator';
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-tab-bar__indicator'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-tab-bar__indicator']),
+  attributeBindings: Object.freeze(['style']),
   //endregion
 });

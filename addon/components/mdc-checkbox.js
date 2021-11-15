@@ -50,9 +50,9 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-checkbox'],
-  classNameBindings: ['mdcClassNames'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-checkbox']),
+  classNameBindings: Object.freeze(['mdcClassNames']),
+  attributeBindings: Object.freeze(['style']),
   layout,
   init() {
     this._super(...arguments);

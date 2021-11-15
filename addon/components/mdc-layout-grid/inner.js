@@ -4,8 +4,8 @@ import layout from '../../templates/components/mdc-layout-grid/inner';
 
 export default Component.extend({
   //region Ember Hooks
-  classNames: ['mdc-layout-grid__inner'],
+  classNames: Object.freeze(['mdc-layout-grid__inner']),
   layout,
-  attributeBindings: [...events],
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });

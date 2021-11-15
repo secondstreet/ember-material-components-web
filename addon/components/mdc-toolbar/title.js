@@ -6,8 +6,8 @@ import events from '../../utils/global-event-handlers';
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-toolbar__title'],
-  attributeBindings: ['style', ...events],
+  classNames: Object.freeze(['mdc-toolbar__title']),
+  attributeBindings: Object.freeze(['style', ...events]),
   //endregion
 
   //region Computed Properties

@@ -35,8 +35,8 @@ export default Component.extend(SupportsBubblesFalse, {
   //region Ember Hooks
   layout,
   classNames: 'mdc-switch',
-  classNameBindings: ['disabled:mdc-switch--disabled'],
-  attributeBindings: ['disabled'],
+  classNameBindings: Object.freeze(['disabled:mdc-switch--disabled']),
+  attributeBindings: Object.freeze(['disabled']),
   //endregion
 
   //region Actions

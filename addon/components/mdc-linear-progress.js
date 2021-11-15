@@ -41,14 +41,14 @@ export default Component.extend(MDCComponent, {
 
   //region Ember Hooks
   layout,
-  classNames: ['mdc-linear-progress'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-linear-progress']),
+  classNameBindings: Object.freeze([
     `indeterminate:${cssClasses.INDETERMINATE_CLASS}`,
     `closed:${cssClasses.CLOSED_CLASS}`,
     `reversed:${cssClasses.REVERSED_CLASS}`,
     'secondary:mdc-linear-progress--accent',
-  ],
-  attributeBindings: ['role', ...events],
+  ]),
+  attributeBindings: Object.freeze(['role', ...events]),
   init() {
     this._super(...arguments);
     set(this, 'mdcPrimaryBarStyles', {});

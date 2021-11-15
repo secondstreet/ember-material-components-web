@@ -41,9 +41,9 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-radio'],
-  classNameBindings: ['mdcClassNames'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-radio']),
+  classNameBindings: Object.freeze(['mdcClassNames']),
+  attributeBindings: Object.freeze(['style']),
   layout,
   didRender() {
     this._super(...arguments);

@@ -43,7 +43,7 @@ export default Component.extend(MDCComponent, {
   layout,
   tagName: 'button',
   classNames: 'mdc-button',
-  classNameBindings: [
+  classNameBindings: Object.freeze([
     'secondary:mdc-button--accent',
     'raised:mdc-button--raised',
     'unelevated:mdc-button--unelevated',
@@ -51,8 +51,8 @@ export default Component.extend(MDCComponent, {
     'dense:mdc-button--dense',
     'stroked:mdc-button--stroked',
     'mdcClassNames',
-  ],
-  attributeBindings: ['disabled', 'type', 'style', ...events],
+  ]),
+  attributeBindings: Object.freeze(['disabled', 'type', 'style', ...events]),
   //endregion
 
   //region Properties

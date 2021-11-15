@@ -25,8 +25,12 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'ul',
-  classNameBindings: ['dense:mdc-list--dense', 'two-line:mdc-list--two-line', 'avatar-list:mdc-list--avatar-list'],
-  classNames: ['mdc-list'],
-  attributeBindings: [...events],
+  classNameBindings: Object.freeze([
+    'dense:mdc-list--dense',
+    'two-line:mdc-list--two-line',
+    'avatar-list:mdc-list--avatar-list',
+  ]),
+  classNames: Object.freeze(['mdc-list']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });

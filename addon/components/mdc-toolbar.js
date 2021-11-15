@@ -37,20 +37,20 @@ export default Component.extend(MDCComponent, {
 
   //region Ember Hooks
   layout,
-  classNames: ['mdc-toolbar'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-toolbar']),
+  classNameBindings: Object.freeze([
     `fixed:${cssClasses.FIXED}`,
     'waterfall:mdc-toolbar--waterfall',
     `flexible:${cssClasses.TOOLBAR_ROW_FLEXIBLE}`,
     `fixed-lastrow-only:${cssClasses.FIXED_LASTROW}`,
-  ],
+  ]),
   init() {
     this._super(...arguments);
     set(this, 'mdcTitleStyles', {});
     set(this, 'mdcFirstRowStyles', {});
     set(this, 'rows', A([]));
   },
-  attributeBindings: ['style'],
+  attributeBindings: Object.freeze(['style']),
   //endregion
 
   //region Properties

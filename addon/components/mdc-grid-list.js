@@ -6,16 +6,16 @@ import layout from '../templates/components/mdc-grid-list';
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-grid-list'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-grid-list']),
+  classNameBindings: Object.freeze([
     'tile-gutter-1:mdc-grid-list--tile-gutter-1',
     'header-caption:mdc-grid-list--header-caption',
     'twoline-caption:mdc-grid-list--twoline-caption',
     'tileAspectRatioClass',
     'iconAlignStartClass',
     'iconAlignEndClass',
-  ],
-  attributeBindings: [...events],
+  ]),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 
   //region Attributes

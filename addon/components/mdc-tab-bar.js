@@ -49,14 +49,14 @@ export default Component.extend(MDCComponent, {
 
   //region Ember Hooks
   layout,
-  classNames: ['mdc-tab-bar'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-tab-bar']),
+  classNameBindings: Object.freeze([
     'isIconsOnly:mdc-tab-bar--icon-tab-bar',
     'isIconsWithText:mdc-tab-bar--icons-with-text',
     'mdcClassNames',
     'dark:mdc-theme--dark',
-  ],
-  attributeBindings: ['style'],
+  ]),
+  attributeBindings: Object.freeze(['style']),
   init() {
     this._super(...arguments);
     set(this, 'tabs', A([]));

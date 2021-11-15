@@ -5,8 +5,8 @@ import layout from '../../templates/components/mdc-toolbar/row';
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-toolbar__row'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-toolbar__row']),
+  attributeBindings: Object.freeze(['style']),
   didInsertElement() {
     get(this, 'register-row')(this);
   },

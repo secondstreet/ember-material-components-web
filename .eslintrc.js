@@ -11,7 +11,7 @@ module.exports = {
   },
   rules: {
     'ember/no-jquery': 'error',
-    'ember/avoid-leaking-state-in-ember-objects': [1, ['colorPalette']],
+    'ember/avoid-leaking-state-in-ember-objects': ['error', ['actions', 'colorPalette']],
   },
   overrides: [
     // node files

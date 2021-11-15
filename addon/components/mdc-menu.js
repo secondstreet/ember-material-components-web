@@ -52,9 +52,9 @@ export default Component.extend(MDCComponent, {
     this.updateOpenness();
   },
   layout,
-  classNames: ['mdc-simple-menu'],
-  classNameBindings: ['mdcClassNames', 'open:mdc-simple-menu--open'],
-  attributeBindings: ['style', 'tabindex'],
+  classNames: Object.freeze(['mdc-simple-menu']),
+  classNameBindings: Object.freeze(['mdcClassNames', 'open:mdc-simple-menu--open']),
+  attributeBindings: Object.freeze(['style', 'tabindex']),
   //endregion
 
   //region Properties

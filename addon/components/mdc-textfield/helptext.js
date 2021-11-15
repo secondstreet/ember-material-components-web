@@ -19,8 +19,8 @@ const MDCTextfieldHelptextComponent = Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'p',
-  classNames: ['mdc-textfield-helptext'],
-  classNameBindings: ['class-names'],
+  classNames: Object.freeze(['mdc-textfield-helptext']),
+  classNameBindings: Object.freeze(['class-names']),
   attributeBindings: mdcAttrs,
   //endregion
 });

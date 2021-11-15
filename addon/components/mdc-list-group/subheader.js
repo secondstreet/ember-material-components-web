@@ -6,7 +6,7 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'h3',
-  classNames: ['mdc-list-group__subheader'],
-  attributeBindings: [...events],
+  classNames: Object.freeze(['mdc-list-group__subheader']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });
