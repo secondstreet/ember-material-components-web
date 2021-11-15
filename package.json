@@ -22,12 +22,10 @@
     "test": "tests"
   },
   "lint-staged": {
-    "linters": {
-      "{{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}": [
-        "yarn run prettier --write",
-        "git add"
-      ]
-    }
+    "{{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}": [
+      "yarn run prettier --write",
+      "git add"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
@@ -99,7 +97,7 @@
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0",
+    "lint-staged": "^10.0.0",
     "loader.js": "^4.7.0",
     "prettier": "~1.18.2",
     "qunit-dom": "^0.7.1"
