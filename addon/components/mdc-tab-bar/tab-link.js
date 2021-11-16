@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-observers */
+
 import LinkComponent from '@ember/routing/link-component';
 import { observer, get } from '@ember/object';
 import MDCTabComponent from '../../mixins/mdc-tab-component';

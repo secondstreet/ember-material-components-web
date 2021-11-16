@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-observers */
+
 import { equal } from '@ember/object/computed';
 import { run, next } from '@ember/runloop';
 import { A } from '@ember/array';
