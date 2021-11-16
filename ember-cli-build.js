@@ -10,9 +10,7 @@ module.exports = function(defaults) {
     // Add options here
   };
 
-  if (defaults.project.findAddonByName('ember-native-dom-event-dispatcher')) {
-    options.vendorFiles = { 'jquery.js': null };
-  }
+  options.vendorFiles = { 'jquery.js': null };
 
   let app = new EmberAddon(defaults, options);
 

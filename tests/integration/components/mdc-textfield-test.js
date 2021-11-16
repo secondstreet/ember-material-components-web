@@ -1,4 +1,4 @@
-import { find, triggerEvent } from 'ember-native-dom-helpers';
+import { find, triggerEvent } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
