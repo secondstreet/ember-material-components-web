@@ -10,15 +10,17 @@ module('Integration | Component | mdc grid list/tiles/tile/secondary/icon', func
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{mdc-grid-list/tiles/tile/secondary/icon}}`);
+    await render(hbs`<div>{{mdc-grid-list/tiles/tile/secondary/icon}}</div>`);
 
     assert.dom('*').hasText('');
 
     // Template block usage:
     await render(hbs`
-      {{#mdc-grid-list/tiles/tile/secondary/icon}}
-        template block text
-      {{/mdc-grid-list/tiles/tile/secondary/icon}}
+      <div>
+        {{#mdc-grid-list/tiles/tile/secondary/icon}}
+          template block text
+        {{/mdc-grid-list/tiles/tile/secondary/icon}}
+      </div>
     `);
 
     assert.dom('*').hasText('template block text');

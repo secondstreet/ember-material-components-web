@@ -10,15 +10,17 @@ module('Integration | Component | mdc list/item/start detail', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{mdc-list/item/start-detail}}`);
+    await render(hbs`<div>{{mdc-list/item/start-detail}}</div>`);
 
     assert.dom('*').hasText('');
 
     // Template block usage:
     await render(hbs`
-      {{#mdc-list/item/start-detail}}
-        template block text
-      {{/mdc-list/item/start-detail}}
+      <div>
+        {{#mdc-list/item/start-detail}}
+          template block text
+        {{/mdc-list/item/start-detail}}
+      </div>
     `);
 
     assert.dom('*').hasText('template block text');
