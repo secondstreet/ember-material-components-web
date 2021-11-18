@@ -47,10 +47,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('checked');
-      this.sync('disabled');
-    });
+    scheduleOnce('afterRender', this, this._sync);
   },
   //endregion
 
@@ -101,6 +98,10 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       getNativeControl: () => this.element.querySelector('input'),
     });
+  },
+  _sync() {
+    this.sync('checked');
+    this.sync('disabled');
   },
   //endregion
 

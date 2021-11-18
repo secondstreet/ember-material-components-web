@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-new-mixins */
+
 import { run } from '@ember/runloop';
 import Mixin from '@ember/object/mixin';
 import { get } from '@ember/object';

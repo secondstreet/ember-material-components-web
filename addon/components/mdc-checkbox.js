@@ -3,11 +3,7 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { run, next, scheduleOnce } from '@ember/runloop';
 import layout from '../templates/components/mdc-checkbox';
-import {
-  addClass,
-  removeClass,
-  MDCComponent
-} from '../mixins/mdc-component';
+import { addClass, removeClass, MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCCheckboxFoundation } from '@material/checkbox';
 import SupportsBubblesFalse from '../mixins/supports-bubbles-false';
@@ -64,11 +60,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   },
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('checked');
-      this.sync('indeterminate');
-      this.sync('disabled');
-    });
+    scheduleOnce('afterRender', this, this._sync);
   },
   //endregion
 
@@ -98,6 +90,12 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       forceLayout: () => undefined,
       isAttachedToDOM: () => !!get(this, 'element'),
     });
+  },
+
+  _sync() {
+    this.sync('checked');
+    this.sync('indeterminate');
+    this.sync('disabled');
   },
   //endregion
 

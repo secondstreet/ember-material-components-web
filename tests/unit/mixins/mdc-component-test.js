@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-new-mixins */
+
 import EmberObject from '@ember/object';
 import MdcComponentMixin from 'ember-material-components-web/mixins/mdc-component';
 import { module, test } from 'qunit';

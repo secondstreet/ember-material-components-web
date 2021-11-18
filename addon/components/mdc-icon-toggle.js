@@ -2,11 +2,7 @@ import { scheduleOnce } from '@ember/runloop';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import layout from '../templates/components/mdc-icon-toggle';
-import {
-  MDCComponent,
-  addClass,
-  removeClass
-} from '../mixins/mdc-component';
+import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCIconToggleFoundation } from '@material/icon-toggle';
 
@@ -49,10 +45,7 @@ export default Component.extend(MDCComponent, {
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('disabled');
-      this.syncPressed();
-    });
+    scheduleOnce('afterRender', this, this._sync);
   },
   attributeBindings: Object.freeze([
     DATA_TOGGLE_ON,
@@ -139,6 +132,10 @@ export default Component.extend(MDCComponent, {
     if (foundation && foundation.isOn() !== pressed) {
       foundation.toggle(pressed);
     }
+  },
+  _sync() {
+    this.sync('disabled');
+    this.syncPressed();
   },
   //endregion
 });
