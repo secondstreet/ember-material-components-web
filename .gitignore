@@ -15,6 +15,7 @@
 /.pnp*
 /.sass-cache
 /.idea
+/.eslintcache
 /connect.lock
 /coverage/
 /libpeerconnection.log
