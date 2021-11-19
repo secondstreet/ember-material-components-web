@@ -44,7 +44,11 @@ export default Mixin.create(MDCComponent, {
    * @returns {Boolean}
    */
   get preventDefaultOnClick() {
-    return get(this, 'foundation').preventsDefaultOnClick();
+    const foundation = get(this, 'foundation');
+    if (foundation) {
+      return foundation.preventsDefaultOnClick();
+    }
+    return undefined;
   },
   set preventDefaultOnClick(value) {
     get(this, 'foundation').setPreventDefaultOnClick(value);
