@@ -25,6 +25,8 @@ module('Integration | Component | mdc tab bar', function(hooks) {
     assert.dom('*').hasText('template block text');
     assert.dom('.mdc-tab-bar .mdc-tab-bar__indicator').exists('tab bar indicator appears');
 
-    assert.dom('.mdc-tab-bar .mdc-tab-bar__indicator').hasClass('foo', 'custom class names can be passed into the indicator');
+    assert
+      .dom('.mdc-tab-bar .mdc-tab-bar__indicator')
+      .hasClass('foo', 'custom class names can be passed into the indicator');
   });
 });

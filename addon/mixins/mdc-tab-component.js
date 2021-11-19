@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins */
 /* eslint-disable ember/no-new-mixins */
 
 import { run } from '@ember/runloop';
@@ -47,7 +48,6 @@ export default Mixin.create(MDCComponent, {
   },
   set preventDefaultOnClick(value) {
     get(this, 'foundation').setPreventDefaultOnClick(value);
-    return value;
   },
   /**
    * @returns {Number}

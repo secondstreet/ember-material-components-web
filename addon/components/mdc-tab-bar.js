@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins */
 /* eslint-disable ember/no-observers */
 
 import { equal } from '@ember/object/computed';

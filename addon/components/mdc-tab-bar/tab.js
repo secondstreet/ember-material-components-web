@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import Component from '@ember/component';
 import MDCTabComponent from '../../mixins/mdc-tab-component';
 

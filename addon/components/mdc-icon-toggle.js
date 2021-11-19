@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { scheduleOnce } from '@ember/runloop';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';

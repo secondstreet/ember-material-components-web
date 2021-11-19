@@ -25,19 +25,19 @@ module('Integration | Component | mdc linear progress', function(hooks) {
 
     assert.dom('*').hasText('');
 
-    assert.dom('.mdc-linear-progress').hasNoClass(
-      'mdc-linear-progress--indeterminate',
-      'Progress bar is not in indeterminate state'
-    );
+    assert
+      .dom('.mdc-linear-progress')
+      .hasNoClass('mdc-linear-progress--indeterminate', 'Progress bar is not in indeterminate state');
 
     this.set('myProgress', 0.8);
 
     this.set('isSecondary', true);
     this.set('isIndeterminate', true);
-    assert.dom('.mdc-linear-progress').hasClass(
-      'mdc-linear-progress--indeterminate',
-      'Progress bar is in indeterminate state'
-    );
-    assert.dom('.mdc-linear-progress').hasClass('mdc-linear-progress--accent', 'Progress bar is in secondary variation');
+    assert
+      .dom('.mdc-linear-progress')
+      .hasClass('mdc-linear-progress--indeterminate', 'Progress bar is in indeterminate state');
+    assert
+      .dom('.mdc-linear-progress')
+      .hasClass('mdc-linear-progress--accent', 'Progress bar is in secondary variation');
   });
 });

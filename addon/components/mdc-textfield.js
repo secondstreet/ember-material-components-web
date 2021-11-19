@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { bool } from '@ember/object/computed';
 import { camelize } from '@ember/string';
 import { A } from '@ember/array';
@@ -5,11 +7,7 @@ import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { isPresent } from '@ember/utils';
 import layout from '../templates/components/mdc-textfield';
-import {
-  MDCComponent,
-  addClass,
-  removeClass
-} from '../mixins/mdc-component';
+import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCTextfieldFoundation } from '@material/textfield';
 import { util } from '@material/ripple';
@@ -173,7 +171,7 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Computed Properties
-  isFocused: computed('mdcClassNames', function() {
+  isFocused: computed('CLASS_NAMES.FOCUSED', 'mdcClassNames', function() {
     const mdcClassNames = get(this, 'mdcClassNames').split(' ');
     const focusedClassName = get(this, 'CLASS_NAMES.FOCUSED');
     return mdcClassNames.includes(focusedClassName);

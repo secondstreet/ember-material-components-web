@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import Component from '@ember/component';
 import events from '../utils/global-event-handlers';
 import MDCComponent from '../mixins/mdc-component';

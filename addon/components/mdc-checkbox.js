@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';

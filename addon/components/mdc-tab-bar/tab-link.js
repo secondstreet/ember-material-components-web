@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins */
 /* eslint-disable ember/no-observers */
 
 import LinkComponent from '@ember/routing/link-component';

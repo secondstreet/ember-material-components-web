@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { readOnly } from '@ember/object/computed';
 import { A } from '@ember/array';
 import Component from '@ember/component';

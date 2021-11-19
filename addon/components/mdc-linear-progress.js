@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
 import { set, get } from '@ember/object';

@@ -129,7 +129,7 @@
       {{/freestyle-usage}}
       {{#freestyle-usage "cbx-bindings" title="bindings"}}
         {{mdc-checkbox checked=isCheckBoxFourChecked}}
-        <button {{action (toggle "isCheckBoxFourChecked" this)}}>Press to Toggle Checkbox</button>
+        <button type="button" {{action (toggle "isCheckBoxFourChecked" this)}}>Press to Toggle Checkbox</button>
       {{/freestyle-usage}}
     {{/freestyle-section}}
     {{#freestyle-section name="Radios"}}
@@ -166,7 +166,7 @@
           <div>Radio button event propagation is disableable: click outside of the radio button to test</div>
         </div>
         {{mdc-radio checked=isRadioFiveChecked}}
-        <button {{action (toggle "isRadioFiveChecked" this)}}>Press to Toggle Radio</button>
+        <button type="button" {{action (toggle "isRadioFiveChecked" this)}}>Press to Toggle Radio</button>
       {{/freestyle-usage}}
     {{/freestyle-section}}
     {{#freestyle-section name="Elevation"}}
@@ -718,9 +718,9 @@
                 <div class="mdc-toolbar__row">
                   <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
                     {{#if isPersistentDrawerOpened}}
-                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isPersistentDrawerOpened) false}}>menu</button>
+                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" type="button" {{action (mut isPersistentDrawerOpened) false}}>menu</button>
                     {{else}}
-                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isPersistentDrawerOpened) true}}>menu</button>
+                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" type="button" {{action (mut isPersistentDrawerOpened) true}}>menu</button>
                     {{/if}}
                     <span class="mdc-toolbar__title catalog-title">Persistent Drawer</span>
                   </section>
@@ -760,7 +760,7 @@
               <header class="mdc-toolbar mdc-elevation--z4">
                 <div class="mdc-toolbar__row">
                   <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                    <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isTemporaryDrawerOpened) true}}>menu</button>
+                    <button class="demo-menu material-icons mdc-toolbar__icon--menu" type="button" {{action (mut isTemporaryDrawerOpened) true}}>menu</button>
                     <span class="mdc-toolbar__title catalog-title">Temporary Drawer</span>
                   </section>
                 </div>
@@ -904,7 +904,7 @@
     {{#freestyle-section name="Switch"}}
       {{#freestyle-usage "switch-active" name="Active Switch"}}
         {{mdc-switch checked=isFirstSwitchOn onchange=(action (mut isFirstSwitchOn))}}
-        <button {{action (toggle "isFirstSwitchOn" this)}}>Press to Toggle Switch</button>
+        <button type="button" {{action (toggle "isFirstSwitchOn" this)}}>Press to Toggle Switch</button>
       {{/freestyle-usage}}
       {{#freestyle-usage "switch-toggle" name="Switch with Toggle Label"}}
         <label>
