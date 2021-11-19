@@ -2,7 +2,7 @@
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let options = {
     freestyle: {
       snippetSearchPaths: ['addon', 'tests/dummy/app'],

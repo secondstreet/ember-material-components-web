@@ -20,7 +20,7 @@ export default Component.extend({
   //endregion
 
   //region Computed Properties
-  elevationClass: computed('z', function() {
+  elevationClass: computed('z', function () {
     return `mdc-elevation--z${get(this, 'z')}`;
   }),
   //endregion

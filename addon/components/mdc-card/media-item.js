@@ -45,7 +45,7 @@ export default Component.extend({
   isOneDotFive: equal('size', 1.5),
   isTwo: equal('size', 2),
   isThree: equal('size', 3),
-  height: computed('size', function() {
+  height: computed('size', function () {
     return MDC_1x_PIXELS * get(this, 'size');
   }),
   //endregion

@@ -19,6 +19,11 @@ module.exports = {
     'ember/no-jquery': 'error',
     'ember/avoid-leaking-state-in-ember-objects': ['error', ['actions', 'colorPalette']],
     'ember/no-get': 'off',
+    'ember/no-classic-components': 'off',
+    'ember/no-classic-classes': 'off',
+    'ember/require-tagless-components': 'off',
+    'ember/no-actions-hash': 'off',
+    'ember/no-component-lifecycle-hooks': 'off',
   },
   overrides: [
     // node files

@@ -27,7 +27,7 @@ export default Component.extend(SupportsBubblesFalse, {
    * @type {Function}
    * @param {Boolean} checked
    */
-  onchange: x => x,
+  onchange: (x) => x,
   /**
    * @type {?String}
    */

@@ -51,27 +51,27 @@ export default Component.extend(MDCComponent, {
    * @type {Function}
    * @param {Boolean} checked
    */
-  onchange: x => x,
+  onchange: (x) => x,
   /**
    * @type {Function}
    * @param {jQuery.Event}
    */
-  onfocus: x => x,
+  onfocus: (x) => x,
   /**
    * @type {Function}
    * @param {jQuery.Event}
    */
-  onblur: x => x,
+  onblur: (x) => x,
   /**
    * @type {Function}
    * @param {jQuery.Event}
    */
-  oninput: x => x,
+  oninput: (x) => x,
   /**
    * @type {Function}
    * @param {jQuery.Event}
    */
-  onkeydown: x => x,
+  onkeydown: (x) => x,
   /**
    * @type {Boolean}
    */
@@ -126,7 +126,7 @@ export default Component.extend(MDCComponent, {
       'inputBlurHandlers',
       'inputInputHandlers',
       'inputKeydownHandlers',
-    ].forEach(prop => set(this, prop, A([])));
+    ].forEach((prop) => set(this, prop, A([])));
     this._super(...arguments);
   },
   //endregion
@@ -171,7 +171,7 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Computed Properties
-  isFocused: computed('CLASS_NAMES.FOCUSED', 'mdcClassNames', function() {
+  isFocused: computed('CLASS_NAMES.FOCUSED', 'mdcClassNames', function () {
     const mdcClassNames = get(this, 'mdcClassNames').split(' ');
     const focusedClassName = get(this, 'CLASS_NAMES.FOCUSED');
     return mdcClassNames.includes(focusedClassName);
@@ -181,14 +181,14 @@ export default Component.extend(MDCComponent, {
    * @type {String}
    */
   ripple: bool('box'),
-  labelClassnames: computed('value', 'labelClasses.[]', function() {
+  labelClassnames: computed('value', 'labelClasses.[]', function () {
     const classnames = A([]);
     if (get(this, 'value')) {
       classnames.addObject(cssClasses.LABEL_FLOAT_ABOVE);
     }
     return classnames.concat(get(this, 'labelClasses')).join(' ');
   }),
-  helptextClassnames: computed('helptext-persistent', 'helptext-validation-msg', function() {
+  helptextClassnames: computed('helptext-persistent', 'helptext-validation-msg', function () {
     const classnames = A([]);
     if (get(this, 'helptext-persistent')) {
       classnames.addObject(cssClasses.HELPTEXT_PERSISTENT);
@@ -202,7 +202,7 @@ export default Component.extend(MDCComponent, {
 
   //region Methods
   existingHelpTextAttr(name) {
-    return get(this, 'helpTextAttrs').find(attr => attr[0] === name);
+    return get(this, 'helpTextAttrs').find((attr) => attr[0] === name);
   },
   createFoundation() {
     const component = this;
@@ -220,9 +220,7 @@ export default Component.extend(MDCComponent, {
         get(component, 'labelClasses').removeObject(className);
       },
       helptextHasClass(className) {
-        return get(component, 'helptextClassnames')
-          .split(' ')
-          .includes(className);
+        return get(component, 'helptextClassnames').split(' ').includes(className);
       },
       setHelptextAttr(name, value) {
         const existing = component.existingHelpTextAttr(name);
@@ -278,7 +276,7 @@ export default Component.extend(MDCComponent, {
       if (isPresent(eventHandler)) {
         eventHandler(ev);
       }
-      get(this, camelize(`input ${type} handlers`)).forEach(handler => handler(ev));
+      get(this, camelize(`input ${type} handlers`)).forEach((handler) => handler(ev));
     },
     handleInput(ev) {
       this.send('handle', 'input', ev);

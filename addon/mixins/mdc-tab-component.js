@@ -11,9 +11,9 @@ import layout from '../templates/components/mdc-tab-bar/tab';
 export default Mixin.create(MDCComponent, {
   //region Ember Hooks
   layout,
-  classNames: ['mdc-tab'],
-  classNameBindings: ['has-icon-and-text:mdc-tab--with-icon-and-text', 'mdcClassNames'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-tab']),
+  classNameBindings: Object.freeze(['has-icon-and-text:mdc-tab--with-icon-and-text', 'mdcClassNames']),
+  attributeBindings: Object.freeze(['style']),
   didInsertElement() {
     this._super(...arguments);
     get(this, 'register-tab')(this);
@@ -78,8 +78,8 @@ export default Mixin.create(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCTabFoundation({
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
       getOffsetWidth: () => get(this, 'element').offsetWidth,

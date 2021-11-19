@@ -34,7 +34,7 @@ export default Component.extend(MDCComponent, {
   /**
    * @type {Function<Object>}
    */
-  onchange: x => x,
+  onchange: (x) => x,
   //endregion
 
   //region Ember Hooks
@@ -81,19 +81,19 @@ export default Component.extend(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCToolbarFoundation({
-      hasClass: className => get(this, 'element').classList.contains(className),
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
-      registerScrollHandler: handler => window.addEventListener('scroll', handler, util.applyPassive()),
-      deregisterScrollHandler: handler => window.removeEventListener('scroll', handler, util.applyPassive()),
-      registerResizeHandler: handler => window.addEventListener('resize', handler),
-      deregisterResizeHandler: handler => window.removeEventListener('resize', handler),
+      hasClass: (className) => get(this, 'element').classList.contains(className),
+      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
+      registerScrollHandler: (handler) => window.addEventListener('scroll', handler, util.applyPassive()),
+      deregisterScrollHandler: (handler) => window.removeEventListener('scroll', handler, util.applyPassive()),
+      registerResizeHandler: (handler) => window.addEventListener('resize', handler),
+      deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
       getViewportWidth: () => window.innerWidth,
       getViewportScrollY: () => window.pageYOffset,
       getOffsetHeight: () => getElementProperty(this, 'offsetHeight', 0),
       getFirstRowElementOffsetHeight: () =>
         getElementProperty(this, 'querySelector', () => ({ offsetHeight: 0 }))(strings.FIRST_ROW_SELECTOR).offsetHeight,
-      notifyChange: evtData => run(() => get(this, 'onchange')(evtData)),
+      notifyChange: (evtData) => run(() => get(this, 'onchange')(evtData)),
       setStyle: (property, value) => run(() => this.setStyleFor('mdcStyles', property, value)),
       setStyleForTitleElement: (property, value) => run(() => this.setStyleFor('mdcTitleStyles', property, value)),
       setStyleForFlexibleRowElement: (property, value) =>
