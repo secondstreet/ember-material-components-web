@@ -112,9 +112,9 @@ export default Component.extend(MDCComponent, {
     return new MDCTabBarFoundation({
       addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
       removeClass: (className) =>
-        run.next(this, function () {
+        next(this, function () {
           get(this, 'mdcClasses').removeObject(className);
-        }), //use non-arrow function for `run.next` since we are passing in the context
+        }), //use non-arrow function for `next` since we are passing in the context
       bindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
       unbindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
       registerResizeHandler: (handler) => window.addEventListener('resize', handler),
@@ -178,7 +178,7 @@ export default Component.extend(MDCComponent, {
     },
     scrollTabIntoView(tab) {
       if (get(this, 'scroll-active-tab-into-view')) {
-        run.next(() =>
+        next(() =>
           get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null
         );
       }
