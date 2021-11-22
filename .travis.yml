@@ -25,10 +25,6 @@ branches:
     - /^v\d+\.\d+\.\d+/
 
 jobs:
-  fast_finish: true
-  allow_failures:
-    - env: EMBER_TRY_SCENARIO=ember-canary
-
   include:
     # runs linting and tests with current locked deps
     - stage: "Tests"
@@ -46,22 +42,18 @@ jobs:
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - stage: "Additional Tests"
-      env: EMBER_TRY_SCENARIO=ember-lts-2.16
-    - env: EMBER_TRY_SCENARIO=ember-lts-2.18
-    - env: EMBER_TRY_SCENARIO=ember-lts-3.4
-    - env: EMBER_TRY_SCENARIO=ember-lts-3.8
     - env: EMBER_TRY_SCENARIO=ember-lts-3.12
     - env: EMBER_TRY_SCENARIO=ember-lts-3.16
     - env: EMBER_TRY_SCENARIO=ember-lts-3.20
     - env: EMBER_TRY_SCENARIO=ember-lts-3.24
-    - env: EMBER_TRY_SCENARIO=ember-release
-    - env: EMBER_TRY_SCENARIO=ember-beta
-    - env: EMBER_TRY_SCENARIO=ember-canary
     - env: EMBER_TRY_SCENARIO=ember-default
     - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
     - env: EMBER_TRY_SCENARIO=ember-classic
+  allow_failures:
+    - stage: "Additional Tests"
+    - env: EMBER_TRY_SCENARIO=ember-release
+    - env: EMBER_TRY_SCENARIO=ember-beta
+    - env: EMBER_TRY_SCENARIO=ember-canary
     - env: EMBER_TRY_SCENARIO=embroider-safe
     - env: EMBER_TRY_SCENARIO=embroider-optimized
 
