@@ -20,7 +20,7 @@ module('Integration | Component | mdc linear progress', function (hooks) {
       },
     });
     await render(
-      hbs`{{mdc-linear-progress secondary=isSecondary progress=myProgress indeterminate=isIndeterminate foundation=mdcFoundation}}`
+      hbs`{{mdc-linear-progress secondary=this.isSecondary progress=this.myProgress indeterminate=this.isIndeterminate foundation=this.mdcFoundation}}`
     );
 
     assert.dom('*').hasText('');

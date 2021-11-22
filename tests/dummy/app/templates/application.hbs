@@ -780,9 +780,7 @@
     {{/freestyle-section}}
     {{#freestyle-section name="Progress Bar"}}
       {{#freestyle-usage "progress-determinate" name="Progress Determinate"}}
-        {{!-- template-lint-disable require-input-label --}}
-        {{input value=this.myProgress min=0 max=1}}
-        {{!-- template-lint-enable require-input-label --}}
+        <Input @value={{this.myProgress}} min="0" max="1" aria-label="My Progress Bar" />
         <div>Change this to any decimal value between 0 and 1, and the progress bar will update to show that amount.</div>
         <br>
         {{mdc-linear-progress progress=this.myProgress}}
