@@ -1,5 +1,20 @@
 # MDC-Ember Changelog
 
+### 0.1.0 Kerry Blue Terrier (November 22, 2021)
+- Use github actions instead of travis
+- Replace ember-cli-github-pages with ember-cli-deploy-github
+- Drop support for Ember < 3.12
+- :arrow_up: Upgrade Dependencies
+- :arrow_up: Upgrade Ember-CLI to 3.28
+
+### 0.0.41 Jade Jack Russell Terrier (August 23, 2019)
+- :bug: Add missing 'aria-disabled' attribute binding (#93)
+- :arrow_up: Bump lodash.mergewith from 4.6.1 to 4.6.2 (#74)
+- :arrow_up: Bump lodash.merge from 4.6.1 to 4.6.2 (#75)
+- :arrow_up: Bump handlebars from 4.0.11 to 4.1.2 (#73)
+- :arrow_up: Bump lodash.defaultsdeep from 4.6.0 to 4.6.1 (#76)
+- Upgrade prettier (#77)
+
 ### 0.0.40 Ivory Irish terrier (March 29, 2018)
 - :bug: Fix issue with destroyed {{mdc-menu}}s (#70)
 - :bug: impure function needs to be wrapped in `Ember.run` (#68)
