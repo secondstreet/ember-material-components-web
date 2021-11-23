@@ -1,8 +1,8 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { find } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | mdc list', function (hooks) {
   setupRenderingTest(hooks);
