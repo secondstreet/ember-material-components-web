@@ -2,7 +2,6 @@
 
 import Component from '@ember/component';
 import { get } from '@ember/object';
-import layout from '../templates/components/mdc-switch';
 import SupportsBubblesFalse from '../mixins/supports-bubbles-false';
 
 export default Component.extend(SupportsBubblesFalse, {
@@ -35,7 +34,6 @@ export default Component.extend(SupportsBubblesFalse, {
   //endregion
 
   //region Ember Hooks
-  layout,
   classNames: 'mdc-switch',
   classNameBindings: Object.freeze(['disabled:mdc-switch--disabled']),
   attributeBindings: Object.freeze(['disabled']),

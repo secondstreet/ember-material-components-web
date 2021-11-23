@@ -3,7 +3,6 @@
 import Component from '@ember/component';
 import events from '../utils/global-event-handlers';
 import MDCComponent from '../mixins/mdc-component';
-import layout from '../templates/components/mdc-fab';
 
 export default Component.extend(MDCComponent, {
   //region Attributes
@@ -26,7 +25,6 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Ember Hooks
-  layout,
   tagName: 'button',
   classNames: Object.freeze(['mdc-fab']),
   attributeBindings: Object.freeze(['aria-label', 'disabled', 'type', 'style', ...events]),

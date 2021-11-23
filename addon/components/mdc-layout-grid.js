@@ -1,7 +1,6 @@
 import { equal } from '@ember/object/computed';
 import Component from '@ember/component';
 import events from '../utils/global-event-handlers';
-import layout from '../templates/components/mdc-layout-grid';
 
 export default Component.extend({
   //region Attributes
@@ -24,7 +23,6 @@ export default Component.extend({
     'isAlignRight:mdc-layout-grid--align-right',
   ]),
   attributeBindings: Object.freeze([...events]),
-  layout,
   //endregion
 
   //region Computed Properties

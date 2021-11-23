@@ -2,7 +2,6 @@ import { equal } from '@ember/object/computed';
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import events from '../../../utils/global-event-handlers';
-import layout from '../../../templates/components/mdc-layout-grid/inner/cell';
 
 export default Component.extend({
   //region Attributes
@@ -46,7 +45,6 @@ export default Component.extend({
     'spanPhoneClass',
   ]),
   attributeBindings: Object.freeze([...events]),
-  layout,
   //endregion
 
   //region Computed Properties

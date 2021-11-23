@@ -1,9 +1,7 @@
 import Component from '@ember/component';
-import layout from '../../../templates/components/mdc-list/item/start-detail';
 
 export default Component.extend({
   //region Ember Hooks
-  layout,
   /**
    * This is currently a tagless component, meant only to yield the correct CSS class.
    * @type {String}

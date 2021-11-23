@@ -1,11 +1,9 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import events from '../utils/global-event-handlers';
-import layout from '../templates/components/mdc-grid-list';
 
 export default Component.extend({
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-grid-list']),
   classNameBindings: Object.freeze([
     'tile-gutter-1:mdc-grid-list--tile-gutter-1',

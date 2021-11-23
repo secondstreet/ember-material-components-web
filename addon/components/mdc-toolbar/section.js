@@ -1,6 +1,5 @@
 import { equal } from '@ember/object/computed';
 import Component from '@ember/component';
-import layout from '../../templates/components/mdc-toolbar/section';
 
 export default Component.extend({
   //region Attributes
@@ -16,7 +15,6 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-toolbar__section']),
   classNameBindings: Object.freeze([
     'isAlignStart:mdc-toolbar__section--align-start',

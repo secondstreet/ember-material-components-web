@@ -7,7 +7,6 @@ import { set, get, computed } from '@ember/object';
 import { MDCTabBarScrollerFoundation } from '@material/tabs';
 import { getCorrectPropertyName } from '@material/animation';
 import { MDCComponent } from '../mixins/mdc-component';
-import layout from '../templates/components/mdc-tab-bar-scroller';
 import getElementProperty from '../utils/get-element-property';
 import getComponentProperty from '../utils/get-component-property';
 import styleComputed from '../utils/style-computed';
@@ -26,7 +25,6 @@ export default Component.extend(MDCComponent, {
   //region Ember Hooks
   classNames: Object.freeze(['mdc-tab-bar-scroller']),
   classNameBindings: Object.freeze(['dark:mdc-theme--dark']),
-  layout,
   init() {
     this._super(...arguments);
     set(this, 'backIndicatorClasses', A([]));

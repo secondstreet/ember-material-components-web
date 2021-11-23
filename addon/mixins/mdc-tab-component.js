@@ -6,11 +6,9 @@ import Mixin from '@ember/object/mixin';
 import { get } from '@ember/object';
 import { MDCTabFoundation } from '@material/tabs';
 import { MDCComponent } from '../mixins/mdc-component';
-import layout from '../templates/components/mdc-tab-bar/tab';
 
 export default Mixin.create(MDCComponent, {
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-tab']),
   classNameBindings: Object.freeze(['has-icon-and-text:mdc-tab--with-icon-and-text', 'mdcClassNames']),
   attributeBindings: Object.freeze(['style']),

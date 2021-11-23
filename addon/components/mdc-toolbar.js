@@ -5,7 +5,6 @@ import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { run } from '@ember/runloop';
-import layout from '../templates/components/mdc-toolbar';
 import { MDCToolbarFoundation, util } from '@material/toolbar';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
@@ -38,7 +37,6 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-toolbar']),
   classNameBindings: Object.freeze([
     `fixed:${cssClasses.FIXED}`,

@@ -4,7 +4,6 @@ import { A } from '@ember/array';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
 import { set, get } from '@ember/object';
-import layout from '../templates/components/mdc-menu';
 import { MDCComponent } from '../mixins/mdc-component';
 import styleComputed from '../utils/style-computed';
 import { MDCSimpleMenuFoundation, util } from '@material/menu';
@@ -53,7 +52,6 @@ export default Component.extend(MDCComponent, {
     this._super(...arguments);
     this.updateOpenness();
   },
-  layout,
   classNames: Object.freeze(['mdc-simple-menu']),
   classNameBindings: Object.freeze(['mdcClassNames', 'open:mdc-simple-menu--open']),
   attributeBindings: Object.freeze(['style', 'tabindex']),

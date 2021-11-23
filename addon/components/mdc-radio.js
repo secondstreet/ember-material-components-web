@@ -3,7 +3,6 @@
 import Component from '@ember/component';
 import { get } from '@ember/object';
 import { run, scheduleOnce } from '@ember/runloop';
-import layout from '../templates/components/mdc-radio';
 import getElementProperty from '../utils/get-element-property';
 import { MDCComponent } from '../mixins/mdc-component';
 import { MDCRadioFoundation } from '@material/radio';
@@ -46,7 +45,6 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   classNames: Object.freeze(['mdc-radio']),
   classNameBindings: Object.freeze(['mdcClassNames']),
   attributeBindings: Object.freeze(['style']),
-  layout,
   didRender() {
     this._super(...arguments);
     scheduleOnce('afterRender', this, this._sync);

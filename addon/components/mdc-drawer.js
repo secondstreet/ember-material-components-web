@@ -8,11 +8,9 @@ import { set, getProperties, get, computed } from '@ember/object';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCTemporaryDrawerFoundation, MDCPersistentDrawerFoundation } from '@material/drawer';
-import layout from '../templates/components/mdc-drawer';
 
 export default Component.extend(MDCComponent, {
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-drawer']),
   classNameBindings: Object.freeze(['mdcClassNames', 'isPermanent:mdc-permanent-drawer']),
 

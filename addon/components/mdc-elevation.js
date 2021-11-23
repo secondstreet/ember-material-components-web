@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { computed, get } from '@ember/object';
 import events from '../utils/global-event-handlers';
-import layout from '../templates/components/mdc-elevation';
 
 export default Component.extend({
   //region Attributes
@@ -13,7 +12,6 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  layout,
   classNameBindings: Object.freeze(['elevationClass']),
   classNames: Object.freeze(['mdc-elevation-transition']),
   attributeBindings: Object.freeze([...events]),

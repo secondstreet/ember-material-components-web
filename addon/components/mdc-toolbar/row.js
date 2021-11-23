@@ -1,10 +1,8 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
-import layout from '../../templates/components/mdc-toolbar/row';
 
 export default Component.extend({
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-toolbar__row']),
   attributeBindings: Object.freeze(['style']),
   didInsertElement() {

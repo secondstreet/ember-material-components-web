@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { computed, get } from '@ember/object';
-import layout from '../../templates/components/mdc-textfield/helptext';
 import { MDCTextfieldFoundation } from '@material/textfield';
 
 const {
@@ -17,7 +16,6 @@ const MDCTextfieldHelptextComponent = Component.extend({
   //endregion
 
   //region Ember Hooks
-  layout,
   tagName: 'p',
   classNames: Object.freeze(['mdc-textfield-helptext']),
   classNameBindings: Object.freeze(['class-names']),

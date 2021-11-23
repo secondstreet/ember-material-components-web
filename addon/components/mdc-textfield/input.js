@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { get } from '@ember/object';
-import layout from '../../templates/components/mdc-textfield/input';
 
 export default Component.extend({
   //region Attributes
@@ -27,7 +26,6 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  layout,
   tagName: 'input',
   attributeBindings: Object.freeze([
     'required',

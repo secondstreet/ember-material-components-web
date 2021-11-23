@@ -4,7 +4,6 @@ import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { run, next, scheduleOnce } from '@ember/runloop';
-import layout from '../templates/components/mdc-checkbox';
 import { addClass, removeClass, MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCCheckboxFoundation } from '@material/checkbox';
@@ -55,7 +54,6 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   classNames: Object.freeze(['mdc-checkbox']),
   classNameBindings: Object.freeze(['mdcClassNames']),
   attributeBindings: Object.freeze(['style']),
-  layout,
   init() {
     this._super(...arguments);
     set(this, 'changeHandlers', A([]));

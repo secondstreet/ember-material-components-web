@@ -3,7 +3,6 @@
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
 import { set, get } from '@ember/object';
-import layout from '../templates/components/mdc-linear-progress';
 import { MDCLinearProgressFoundation } from '@material/linear-progress';
 import { MDCComponent } from '../mixins/mdc-component';
 import events from '../utils/global-event-handlers';
@@ -42,7 +41,6 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-linear-progress']),
   classNameBindings: Object.freeze([
     `indeterminate:${cssClasses.INDETERMINATE_CLASS}`,

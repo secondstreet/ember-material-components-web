@@ -6,7 +6,6 @@ import { run, next } from '@ember/runloop';
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, observer, getProperties, get } from '@ember/object';
-import layout from '../templates/components/mdc-tab-bar';
 import { MDCTabBarFoundation } from '@material/tabs';
 import { MDCComponent } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
@@ -51,7 +50,6 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Ember Hooks
-  layout,
   classNames: Object.freeze(['mdc-tab-bar']),
   classNameBindings: Object.freeze([
     'isIconsOnly:mdc-tab-bar--icon-tab-bar',
@@ -123,7 +121,7 @@ export default Component.extend(MDCComponent, {
       setStyleForIndicator: (propertyName, value) =>
         run(() => this.setStyleFor('mdcIndicatorStyles', propertyName, value)),
       getOffsetWidthForIndicator: () =>
-        getElementProperty(this, 'querySelector', () => ({ offsetWidth: 0 }))(strings.INDICATOR_SELECTOR).offsetWidth,
+        getElementProperty(this, 'querySelector', () => ({ offsetWidth: 0 }(strings.INDICATOR_SELECTOR).offsetWidth)),
       notifyChange: (evtData) => get(this, 'onchange')(evtData), // TODO
       getNumberOfTabs: () => get(this, 'tabs.length'),
       isTabActiveAtIndex: (index) => this.isTabActiveAtIndex(index),

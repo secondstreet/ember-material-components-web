@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import layout from '../../templates/components/mdc-list/divider';
 
 export default Component.extend({
   //region Attributes
@@ -10,7 +9,6 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  layout,
   tagName: 'li',
   classNames: Object.freeze(['mdc-list-divider']),
   classNameBindings: Object.freeze(['inset:mdc-list-divider--inset']),

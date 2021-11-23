@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { get } from '@ember/object';
-import layout from '../../templates/components/mdc-menu/item';
 import events from '../../utils/global-event-handlers';
 
 /**
@@ -29,7 +28,6 @@ export default Component.extend({
     this._super(...arguments);
     this.unregisterWithMenu();
   },
-  layout,
   tagName: 'li',
   classNames: Object.freeze(['mdc-list-item']),
   attributeBindings: Object.freeze(['role', 'tabindex', 'aria-disabled', 'style', ...events]),

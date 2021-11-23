@@ -3,7 +3,6 @@
 import { scheduleOnce } from '@ember/runloop';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
-import layout from '../templates/components/mdc-icon-toggle';
 import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCIconToggleFoundation } from '@material/icon-toggle';
@@ -44,7 +43,6 @@ export default Component.extend(MDCComponent, {
   //region Ember Hooks
   tagName: 'i',
   classNames: Object.freeze(['mdc-icon-toggle']),
-  layout,
   didRender() {
     this._super(...arguments);
     scheduleOnce('afterRender', this, this._sync);

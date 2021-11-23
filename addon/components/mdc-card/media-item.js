@@ -2,7 +2,6 @@ import { equal } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed, get } from '@ember/object';
 import events from '../../utils/global-event-handlers';
-import layout from '../../templates/components/mdc-card/media-item';
 
 const MDC_1x_PIXELS = 80;
 
@@ -28,7 +27,6 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  layout,
   tagName: 'img',
   attributeBindings: Object.freeze(['src', 'alt', 'width', 'height', ...events]),
   classNames: Object.freeze(['mdc-card__media-item']),

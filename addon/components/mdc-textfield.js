@@ -6,7 +6,6 @@ import { A } from '@ember/array';
 import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { isPresent } from '@ember/utils';
-import layout from '../templates/components/mdc-textfield';
 import { MDCComponent, addClass, removeClass } from '../mixins/mdc-component';
 import getElementProperty from '../utils/get-element-property';
 import { MDCTextfieldFoundation } from '@material/textfield';
@@ -117,7 +116,6 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Ember Hooks
-  layout,
   init() {
     [
       'labelClasses',
