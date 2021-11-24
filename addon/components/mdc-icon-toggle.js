@@ -47,7 +47,7 @@ export default Component.extend(MDCComponent, {
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, this._sync);
+    scheduleOnce('afterRender', this, this._syncToggleState);
   },
   attributeBindings: Object.freeze([
     DATA_TOGGLE_ON,
@@ -135,7 +135,7 @@ export default Component.extend(MDCComponent, {
       foundation.toggle(pressed);
     }
   },
-  _sync() {
+  _syncToggleState() {
     this.sync('disabled');
     this.syncPressed();
   },

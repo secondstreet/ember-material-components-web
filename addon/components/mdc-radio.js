@@ -49,7 +49,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, this._sync);
+    scheduleOnce('afterRender', this, this._syncRadioState);
   },
   //endregion
 
@@ -101,7 +101,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       getNativeControl: () => this.element.querySelector('input'),
     });
   },
-  _sync() {
+  _syncRadioState() {
     this.sync('checked');
     this.sync('disabled');
   },

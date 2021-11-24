@@ -110,6 +110,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "Gaurav0",
+      "name": "Gaurav Munjal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/313960?v=4",
+      "profile": "http://gaurav0.github.io",
+      "contributions": [
+        "code"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }

@@ -62,7 +62,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   },
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, this._sync);
+    scheduleOnce('afterRender', this, this._syncCheckboxState);
   },
   //endregion
 
@@ -94,7 +94,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
     });
   },
 
-  _sync() {
+  _syncCheckboxState() {
     this.sync('checked');
     this.sync('indeterminate');
     this.sync('disabled');
