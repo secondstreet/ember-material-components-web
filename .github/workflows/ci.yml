@@ -46,12 +46,11 @@ jobs:
           - ember-lts-3.24
           - ember-lts-3.20
           - ember-lts-3.16
-          # temporarily disabled until we've fixed support for Ember.js v4
-          # - ember-release
-          # - ember-beta
-          # - ember-canary
-          # - embroider-safe
-          # - embroider-optimized
+          - ember-release
+          - ember-beta
+          - ember-canary
+          - embroider-safe
+          - embroider-optimized
 
     steps:
       - uses: actions/checkout@v2
