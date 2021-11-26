@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@ember/legacy-built-in-components": "^0.4.0",
+    "@embroider/util": "^0.47.2",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^6.0.0",
     "material-design-icons": "^3.0.1"
