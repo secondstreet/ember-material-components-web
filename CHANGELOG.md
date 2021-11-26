@@ -3,7 +3,7 @@
 ### 0.1.0 Kerry Blue Terrier (November 22, 2021)
 - Use github actions instead of travis
 - Replace ember-cli-github-pages with ember-cli-deploy-github
-- Drop support for Ember < 3.12
+- Drop support for Ember < 3.16
 - :arrow_up: Upgrade Dependencies
 - :arrow_up: Upgrade Ember-CLI to 3.28
 

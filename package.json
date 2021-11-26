@@ -132,7 +132,7 @@
     "configPath": "tests/dummy/config",
     "demoURL": "https://secondstreet.github.io/ember-material-components-web/",
     "versionCompatibility": {
-      "ember": ">=3.12.0"
+      "ember": ">=6.0"
     }
   },
   "volta": {
