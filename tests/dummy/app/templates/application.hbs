@@ -843,13 +843,13 @@
       {{/freestyle-usage}}
       {{#freestyle-usage "tab-code" name="Tabs as <code>\{{link-to}}</code>"}}
         {{#mdc-tab-bar as |bar|}}
-          {{#bar.tab "application"}}
+          {{#bar.tab route="application"}}
             Index
           {{/bar.tab}}
-          {{#bar.tab "one"}}
+          {{#bar.tab route="one"}}
             One
           {{/bar.tab}}
-          {{#bar.tab "two"}}
+          {{#bar.tab route="two"}}
             Two
           {{/bar.tab}}
         {{/mdc-tab-bar}}
