@@ -1,6 +1,8 @@
 # MDC-Ember Changelog
 
-### 0.1.0 Kerry Blue Terrier (November 22, 2021)
+### 0.1.0 Kunzite Kerry Blue Terrier (November 29, 2021)
+- Make compatible with Ember 4
+- Requires webpack 5 in app's devDependencies
 - Use github actions instead of travis
 - Replace ember-cli-github-pages with ember-cli-deploy-github
 - Drop support for Ember < 3.16

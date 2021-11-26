@@ -23,8 +23,7 @@
   },
   "lint-staged": {
     "{{addon,app,src,tests,config,blueprints}/**/*.{js,ts,css,json},*.{js,json}}": [
-      "yarn run prettier --write",
-      "git add"
+      "yarn run prettier --write"
     ]
   },
   "scripts": {
