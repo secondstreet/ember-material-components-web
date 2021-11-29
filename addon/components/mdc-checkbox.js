@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
@@ -50,9 +52,9 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-checkbox'],
-  classNameBindings: ['mdcClassNames'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-checkbox']),
+  classNameBindings: Object.freeze(['mdcClassNames']),
+  attributeBindings: Object.freeze(['style']),
   layout,
   init() {
     this._super(...arguments);
@@ -60,11 +62,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   },
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('checked');
-      this.sync('indeterminate');
-      this.sync('disabled');
-    });
+    scheduleOnce('afterRender', this, this._syncCheckboxState);
   },
   //endregion
 
@@ -94,6 +92,12 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       forceLayout: () => undefined,
       isAttachedToDOM: () => !!get(this, 'element'),
     });
+  },
+
+  _syncCheckboxState() {
+    this.sync('checked');
+    this.sync('indeterminate');
+    this.sync('disabled');
   },
   //endregion
 

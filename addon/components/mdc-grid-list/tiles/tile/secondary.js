@@ -6,7 +6,7 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'span',
-  classNames: ['mdc-grid-tile__secondary'],
-  attributeBindings: [...events],
+  classNames: Object.freeze(['mdc-grid-tile__secondary']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });

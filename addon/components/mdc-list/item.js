@@ -6,7 +6,7 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'li',
-  classNames: ['mdc-list-item'],
-  attributeBindings: [...events],
+  classNames: Object.freeze(['mdc-list-item']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });

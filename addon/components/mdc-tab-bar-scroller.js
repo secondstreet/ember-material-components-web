@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
@@ -22,8 +24,8 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-tab-bar-scroller'],
-  classNameBindings: ['dark:mdc-theme--dark'],
+  classNames: Object.freeze(['mdc-tab-bar-scroller']),
+  classNameBindings: Object.freeze(['dark:mdc-theme--dark']),
   layout,
   init() {
     this._super(...arguments);

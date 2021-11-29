@@ -1,0 +1,63 @@
+name: CI Build
+
+on:
+  [ 'push', 'pull_request' ]
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    env:
+      JOBS: 1
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: yarn install --frozen-lockfile --network-concurrency=1
+      - run: yarn lint
+      - run: yarn test:ember
+
+  floating-dependencies:
+    name: "Floating Dependencies"
+    runs-on: ubuntu-latest
+    env:
+      JOBS: 1
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: yarn install --no-lockfile --network-concurrency=1
+      - run: yarn test:ember
+
+  try-scenarios:
+    name: "${{ matrix.ember-try-scenario }}"
+    runs-on: ubuntu-latest
+    env:
+      JOBS: 1
+
+    needs: test
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ember-try-scenario:
+          - ember-default-with-jquery
+          - ember-classic
+          - ember-lts-3.24
+          - ember-lts-3.20
+          - ember-lts-3.16
+          - ember-release
+          - ember-beta
+          - ember-canary
+          - embroider-safe
+          - embroider-optimized
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+        with:
+          node-version: 12.x
+      - name: install dependencies
+        run: yarn install --frozen-lockfile --network-concurrency=1
+      - name: test
+        run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup

@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-new-mixins */
+
 import { capitalize } from '@ember/string';
 import { scheduleOnce, next } from '@ember/runloop';
 import { A } from '@ember/array';
@@ -34,20 +36,7 @@ export const MDCComponent = Mixin.create({
     // many components rely on child components registering themselves, which
     // tend to happen in their own didInsertElement hooks that run _after_ the
     // parent's didInsertElement.
-    scheduleOnce('afterRender', this, () => {
-      this._attachMdcInteractionHandlers();
-      if (get(this, 'createFoundation') && !get(this, 'isDestroyed')) {
-        const foundation = this.createFoundation();
-        set(this, 'foundation', foundation);
-        foundation.init();
-        this.afterFoundationCreation(foundation);
-      }
-      if (get(this, 'ripple')) {
-        const rippleFoundation = new MDCRippleFoundation(createRippleAdapter(this, this.rippleOptions()));
-        set(this, 'rippleFoundation', rippleFoundation);
-        rippleFoundation.init();
-      }
-    });
+    scheduleOnce('afterRender', this, this._initFoundation);
   },
 
   willDestroyElement() {
@@ -180,6 +169,21 @@ export const MDCComponent = Mixin.create({
       get(this, 'mdcInteractionHandlers').removeObject([type, handler]);
       this._attachMdcInteractionHandlers();
     });
+  },
+
+  _initFoundation() {
+    this._attachMdcInteractionHandlers();
+    if (get(this, 'createFoundation') && !get(this, 'isDestroyed')) {
+      const foundation = this.createFoundation();
+      set(this, 'foundation', foundation);
+      foundation.init();
+      this.afterFoundationCreation(foundation);
+    }
+    if (get(this, 'ripple')) {
+      const rippleFoundation = new MDCRippleFoundation(createRippleAdapter(this, this.rippleOptions()));
+      set(this, 'rippleFoundation', rippleFoundation);
+      rippleFoundation.init();
+    }
   },
   //endregion
 });

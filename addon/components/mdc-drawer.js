@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import EmberError from '@ember/error';
 import { A } from '@ember/array';
 import Component from '@ember/component';
@@ -11,8 +13,8 @@ import layout from '../templates/components/mdc-drawer';
 export default Component.extend(MDCComponent, {
   //region Ember Hooks
   layout,
-  classNames: ['mdc-drawer'],
-  classNameBindings: ['mdcClassNames', 'isPermanent:mdc-permanent-drawer'],
+  classNames: Object.freeze(['mdc-drawer']),
+  classNameBindings: Object.freeze(['mdcClassNames', 'isPermanent:mdc-permanent-drawer']),
 
   init() {
     this._super(...arguments);

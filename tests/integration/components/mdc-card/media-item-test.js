@@ -1,25 +1,26 @@
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 
-moduleForComponent('mdc-card/media-item', 'Integration | Component | mdc card/media item', {
-  integration: true,
-});
+module('Integration | Component | mdc card/media item', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('it renders', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{mdc-card/media-item}}`);
+    await render(hbs`{{mdc-card/media-item}}`);
 
-  assert.equal(find('*').textContent.trim(), '');
+    assert.dom('*').hasText('');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#mdc-card/media-item}}
-      template block text
-    {{/mdc-card/media-item}}
-  `);
+    // Template block usage:
+    await render(hbs`
+      {{#mdc-card/media-item}}
+        template block text
+      {{/mdc-card/media-item}}
+    `);
 
-  assert.equal(find('*').textContent.trim(), 'template block text');
+    assert.dom('*').hasText('template block text');
+  });
 });

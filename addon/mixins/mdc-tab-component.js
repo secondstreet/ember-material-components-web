@@ -1,6 +1,9 @@
+/* eslint-disable ember/no-mixins */
+/* eslint-disable ember/no-new-mixins */
+
 import { run } from '@ember/runloop';
 import Mixin from '@ember/object/mixin';
-import { get, computed } from '@ember/object';
+import { get } from '@ember/object';
 import { MDCTabFoundation } from '@material/tabs';
 import { MDCComponent } from '../mixins/mdc-component';
 import layout from '../templates/components/mdc-tab-bar/tab';
@@ -8,9 +11,9 @@ import layout from '../templates/components/mdc-tab-bar/tab';
 export default Mixin.create(MDCComponent, {
   //region Ember Hooks
   layout,
-  classNames: ['mdc-tab'],
-  classNameBindings: ['has-icon-and-text:mdc-tab--with-icon-and-text', 'mdcClassNames'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-tab']),
+  classNameBindings: Object.freeze(['has-icon-and-text:mdc-tab--with-icon-and-text', 'mdcClassNames']),
+  attributeBindings: Object.freeze(['style']),
   didInsertElement() {
     this._super(...arguments);
     get(this, 'register-tab')(this);
@@ -40,33 +43,36 @@ export default Mixin.create(MDCComponent, {
   /**
    * @returns {Boolean}
    */
-  preventDefaultOnClick: computed({
-    get() {
-      return get(this, 'foundation').preventsDefaultOnClick();
-    },
-    set(key, value) {
-      get(this, 'foundation').setPreventDefaultOnClick(value);
-      return value;
-    },
-  }).volatile(),
+  get preventDefaultOnClick() {
+    const foundation = get(this, 'foundation');
+    if (foundation) {
+      return foundation.preventsDefaultOnClick();
+    }
+    return undefined;
+  },
+  set preventDefaultOnClick(value) {
+    get(this, 'foundation').setPreventDefaultOnClick(value);
+  },
   /**
    * @returns {Number}
    */
-  computedWidth: computed(function() {
+  get computedWidth() {
     const foundation = get(this, 'foundation');
     if (foundation) {
       return foundation.getComputedWidth();
     }
-  }).volatile(),
+    return undefined;
+  },
   /**
    * @returns {Number}
    */
-  computedLeft: computed(function() {
+  get computedLeft() {
     const foundation = get(this, 'foundation');
     if (foundation) {
       return foundation.getComputedLeft();
     }
-  }).volatile(),
+    return undefined;
+  },
   //endregion
 
   //region Methods

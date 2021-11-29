@@ -34,8 +34,8 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-layout-grid__cell'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-layout-grid__cell']),
+  classNameBindings: Object.freeze([
     'orderClass',
     'isAlignTop:mdc-layout-grid__cell--align-top',
     'isAlignMiddle:mdc-layout-grid__cell--align-middle',
@@ -44,8 +44,8 @@ export default Component.extend({
     'spanDesktopClass',
     'spanTabletClass',
     'spanPhoneClass',
-  ],
-  attributeBindings: [...events],
+  ]),
+  attributeBindings: Object.freeze([...events]),
   layout,
   //endregion
 

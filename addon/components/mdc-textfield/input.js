@@ -29,7 +29,7 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'input',
-  attributeBindings: [
+  attributeBindings: Object.freeze([
     'required',
     'disabled',
     'readonly',
@@ -57,8 +57,8 @@ export default Component.extend({
     'type',
     'value',
     'width',
-  ],
-  classNames: ['mdc-textfield__input'],
+  ]),
+  classNames: Object.freeze(['mdc-textfield__input']),
   focusIn(ev) {
     get(this, 'onfocus')(ev);
   },

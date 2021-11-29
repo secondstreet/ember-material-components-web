@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
@@ -52,9 +54,9 @@ export default Component.extend(MDCComponent, {
     this.updateOpenness();
   },
   layout,
-  classNames: ['mdc-simple-menu'],
-  classNameBindings: ['mdcClassNames', 'open:mdc-simple-menu--open'],
-  attributeBindings: ['style', 'tabindex'],
+  classNames: Object.freeze(['mdc-simple-menu']),
+  classNameBindings: Object.freeze(['mdcClassNames', 'open:mdc-simple-menu--open']),
+  attributeBindings: Object.freeze(['style', 'tabindex']),
   //endregion
 
   //region Properties

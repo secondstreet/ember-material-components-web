@@ -1,7 +1,7 @@
 {{yield (hash
   tab=(component
-    (if links "mdc-tab-bar/tab-link" "mdc-tab-bar/tab")
-    has-icon-and-text=isIconsWithText
+    (ensure-safe-component (if this.links (component "mdc-tab-bar/tab-link") (component "mdc-tab-bar/tab")))
+    has-icon-and-text=this.isIconsWithText
     tab-selected=(action "tabSelected")
     register-tab=(action "registerTab")
     deregister-tab=(action "deregisterTab")
@@ -9,4 +9,4 @@
     scroll-into-view=(action "scrollTabIntoView")
   )
 )}}
-{{mdc-tab-bar/indicator class=additional-indicator-classes style=indicatorStyle}}
+{{mdc-tab-bar/indicator class=this.additional-indicator-classes style=this.indicatorStyle}}

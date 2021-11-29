@@ -48,13 +48,15 @@ const materialPackages = [
  *    Ember's module system.
  */
 module.exports = {
-  name: 'ember-material-components-web',
+  name: require('./package').name,
   /**
    * Invoked at the beginning of the build process, this hook allows us to
    * use the `import()` method to include files from our `vendor` tree into
    * the built app.
    */
   included: function(app) {
+    this._super.included.apply(this, arguments);
+
     materialPackages.forEach(function(pkg) {
       const pkgBaseName = pkg.name.replace('@material/', '');
       if (pkg.js) {
@@ -81,7 +83,7 @@ module.exports = {
    *
    * This is necessary because Ember CLI doesn't currently support `import()`ing
    * anything directly from a `node_modules/` folder.
-   */ treeForVendor: function() {
+   */ treeForVendor: function(tree) {
     const trees = materialPackages.map(function(pkg) {
       const include = [];
       if (pkg.css) {
@@ -92,6 +94,7 @@ module.exports = {
       }
       return new Funnel(`node_modules/${pkg.name}`, { destDir: 'ember-material-components-web', include: include });
     });
+    trees.unshift(tree);
 
     return this._super(mergeTrees(trees, { overwrite: true }));
   },

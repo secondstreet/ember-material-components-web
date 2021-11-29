@@ -13,8 +13,8 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'section',
-  classNames: ['mdc-card__actions'],
-  classNameBindings: ['vertical:mdc-card__actions--vertical'],
-  attributeBindings: [...events],
+  classNames: Object.freeze(['mdc-card__actions']),
+  classNameBindings: Object.freeze(['vertical:mdc-card__actions--vertical']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });

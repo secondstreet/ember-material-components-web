@@ -12,8 +12,8 @@ export default Component.extend({
 
   //region Ember Hooks
   layout,
-  classNames: ['mdc-card'],
-  classNameBindings: ['horizontal-block:mdc-card__horizontal-block'],
-  attributeBindings: [...events],
+  classNames: Object.freeze(['mdc-card']),
+  classNameBindings: Object.freeze(['horizontal-block:mdc-card__horizontal-block']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });

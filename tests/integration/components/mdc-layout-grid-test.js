@@ -1,23 +1,24 @@
-import { findAll, find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 
-moduleForComponent('mdc-layout-grid', 'Integration | Component | mdc layout grid', {
-  integration: true,
-});
+module('Integration | Component | mdc layout grid', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(2);
+  test('it renders', async function(assert) {
+    assert.expect(2);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#mdc-layout-grid as |grid|}}
-      {{#grid.inner}}
-        template block text
-      {{/grid.inner}}
-    {{/mdc-layout-grid}}
-  `);
+    // Template block usage:
+    await render(hbs`
+      {{#mdc-layout-grid as |grid|}}
+        {{#grid.inner}}
+          template block text
+        {{/grid.inner}}
+      {{/mdc-layout-grid}}
+    `);
 
-  assert.equal(findAll('.mdc-layout-grid').length, 1);
-  assert.equal(find('.mdc-layout-grid__inner').textContent.trim(), 'template block text');
+    assert.dom('.mdc-layout-grid').exists({ count: 1 });
+    assert.dom('.mdc-layout-grid__inner').hasText('template block text');
+  });
 });

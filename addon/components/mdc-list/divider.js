@@ -12,9 +12,9 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'li',
-  classNames: ['mdc-list-divider'],
-  classNameBindings: ['inset:mdc-list-divider--inset'],
-  attributeBindings: ['role'],
+  classNames: Object.freeze(['mdc-list-divider']),
+  classNameBindings: Object.freeze(['inset:mdc-list-divider--inset']),
+  attributeBindings: Object.freeze(['role']),
   //endregion
 
   //region Properties

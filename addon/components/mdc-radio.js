@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import Component from '@ember/component';
 import { get } from '@ember/object';
 import { run, scheduleOnce } from '@ember/runloop';
@@ -41,16 +43,13 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-radio'],
-  classNameBindings: ['mdcClassNames'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-radio']),
+  classNameBindings: Object.freeze(['mdcClassNames']),
+  attributeBindings: Object.freeze(['style']),
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('checked');
-      this.sync('disabled');
-    });
+    scheduleOnce('afterRender', this, this._syncRadioState);
   },
   //endregion
 
@@ -101,6 +100,10 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
       removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       getNativeControl: () => this.element.querySelector('input'),
     });
+  },
+  _syncRadioState() {
+    this.sync('checked');
+    this.sync('disabled');
   },
   //endregion
 

@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { bool } from '@ember/object/computed';
 import { camelize } from '@ember/string';
 import { A } from '@ember/array';
@@ -169,7 +171,7 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Computed Properties
-  isFocused: computed('mdcClassNames', function() {
+  isFocused: computed('CLASS_NAMES.FOCUSED', 'mdcClassNames', function() {
     const mdcClassNames = get(this, 'mdcClassNames').split(' ');
     const focusedClassName = get(this, 'CLASS_NAMES.FOCUSED');
     return mdcClassNames.includes(focusedClassName);

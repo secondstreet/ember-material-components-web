@@ -30,14 +30,14 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'img',
-  attributeBindings: ['src', 'alt', 'width', 'height', ...events],
-  classNames: ['mdc-card__media-item'],
-  classNameBindings: [
+  attributeBindings: Object.freeze(['src', 'alt', 'width', 'height', ...events]),
+  classNames: Object.freeze(['mdc-card__media-item']),
+  classNameBindings: Object.freeze([
     'isOne:mdc-card__media-item--1x',
     'isOneDotFive:mdc-card__media-item--1dot5x',
     'isTwo:mdc-card__media-item--2x',
     'isThree:mdc-card__media-item--3x',
-  ],
+  ]),
   //endregion
 
   //region Computed Properties
