@@ -34,7 +34,7 @@ export default Component.extend(MDCComponent, {
    * @type {Function}
    * @param {Boolean} isOn
    */
-  onchange: (x) => x,
+  onchange: x => x,
   /**
    * @type {?String}
    */

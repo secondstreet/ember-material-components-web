@@ -101,47 +101,45 @@ export default Component.extend(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCTabBarScrollerFoundation({
-      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       eventTargetHasClass: (target, className) => target.classList.contains(className),
-      addClassToForwardIndicator: (className) => run(() => get(this, 'forwardIndicatorClasses').addObject(className)),
-      removeClassFromForwardIndicator: (className) =>
+      addClassToForwardIndicator: className => run(() => get(this, 'forwardIndicatorClasses').addObject(className)),
+      removeClassFromForwardIndicator: className =>
         run(() => get(this, 'forwardIndicatorClasses').removeObject(className)),
-      addClassToBackIndicator: (className) => run(() => get(this, 'backIndicatorClasses').addObject(className)),
-      removeClassFromBackIndicator: (className) => run(() => get(this, 'backIndicatorClasses').removeObject(className)),
+      addClassToBackIndicator: className => run(() => get(this, 'backIndicatorClasses').addObject(className)),
+      removeClassFromBackIndicator: className => run(() => get(this, 'backIndicatorClasses').removeObject(className)),
       isRTL: () =>
         !!this &&
         !get(this, 'isDestroyed') &&
         !!get(this, 'element') &&
         getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
-      registerBackIndicatorClickHandler: (handler) =>
+      registerBackIndicatorClickHandler: handler =>
         get(this, 'backIndicatorElement').addEventListener('click', handler),
-      deregisterBackIndicatorClickHandler: (handler) =>
+      deregisterBackIndicatorClickHandler: handler =>
         get(this, 'backIndicatorElement').removeEventListener('click', handler),
-      registerForwardIndicatorClickHandler: (handler) =>
+      registerForwardIndicatorClickHandler: handler =>
         get(this, 'forwardIndicatorElement').addEventListener('click', handler),
-      deregisterForwardIndicatorClickHandler: (handler) =>
+      deregisterForwardIndicatorClickHandler: handler =>
         get(this, 'forwardIndicatorElement').removeEventListener('click', handler),
       registerCapturedInteractionHandler: (evt, handler) => get(this, 'element').addEventListener(evt, handler, true),
       deregisterCapturedInteractionHandler: (evt, handler) =>
         get(this, 'element').removeEventListener(evt, handler, true),
-      registerWindowResizeHandler: (handler) => window.addEventListener('resize', handler),
-      deregisterWindowResizeHandler: (handler) => window.removeEventListener('resize', handler),
+      registerWindowResizeHandler: handler => window.addEventListener('resize', handler),
+      deregisterWindowResizeHandler: handler => window.removeEventListener('resize', handler),
       getNumberOfTabs: () => get(this, 'tab-bar.tabs.length'),
-      getComputedWidthForTabAtIndex: (index) =>
+      getComputedWidthForTabAtIndex: index =>
         getComponentProperty(get(this, 'tab-bar').tabAt(index), 'computedWidth', 0),
-      getComputedLeftForTabAtIndex: (index) =>
-        getComponentProperty(get(this, 'tab-bar').tabAt(index), 'computedLeft', 0),
+      getComputedLeftForTabAtIndex: index => getComponentProperty(get(this, 'tab-bar').tabAt(index), 'computedLeft', 0),
       getOffsetWidthForScrollFrame: () => get(this, 'scrollFrameElement').offsetWidth,
       getScrollLeftForScrollFrame: () => get(this, 'scrollFrameElement').scrollLeft,
-      setScrollLeftForScrollFrame: (scrollLeftAmount) =>
-        (get(this, 'scrollFrameElement').scrollLeft = scrollLeftAmount),
+      setScrollLeftForScrollFrame: scrollLeftAmount => (get(this, 'scrollFrameElement').scrollLeft = scrollLeftAmount),
       getOffsetWidthForTabBar: () => get(this, 'tabBarElement').offsetWidth,
-      setTransformStyleForTabBar: (value) => {
+      setTransformStyleForTabBar: value => {
         run(() => this.setStyleFor('mdcScrollFrameStyles', getCorrectPropertyName(window, 'transform'), value));
       },
-      getOffsetLeftForEventTarget: (target) => target.offsetLeft,
-      getOffsetWidthForEventTarget: (target) => target.offsetWidth,
+      getOffsetLeftForEventTarget: target => target.offsetLeft,
+      getOffsetWidthForEventTarget: target => target.offsetWidth,
     });
   },
   //endregion
@@ -151,13 +149,13 @@ export default Component.extend(MDCComponent, {
   /**
    * @returns {String}
    */
-  backIndicatorClassNames: computed('backIndicatorClasses.[]', function () {
+  backIndicatorClassNames: computed('backIndicatorClasses.[]', function() {
     return get(this, 'backIndicatorClasses').join(' ');
   }),
   /**
    * @returns {String}
    */
-  forwardIndicatorClassNames: computed('forwardIndicatorClasses.[]', function () {
+  forwardIndicatorClassNames: computed('forwardIndicatorClasses.[]', function() {
     return get(this, 'forwardIndicatorClasses').join(' ');
   }),
   //endregion

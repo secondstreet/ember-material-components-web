@@ -54,10 +54,10 @@ module.exports = {
    * use the `import()` method to include files from our `vendor` tree into
    * the built app.
    */
-  included: function (app) {
+  included: function(app) {
     this._super.included.apply(this, arguments);
 
-    materialPackages.forEach(function (pkg) {
+    materialPackages.forEach(function(pkg) {
       const pkgBaseName = pkg.name.replace('@material/', '');
       if (pkg.js) {
         app.import(
@@ -83,8 +83,8 @@ module.exports = {
    *
    * This is necessary because Ember CLI doesn't currently support `import()`ing
    * anything directly from a `node_modules/` folder.
-   */ treeForVendor: function (tree) {
-    const trees = materialPackages.map(function (pkg) {
+   */ treeForVendor: function(tree) {
+    const trees = materialPackages.map(function(pkg) {
       const include = [];
       if (pkg.css) {
         include.push('dist/mdc.*.css');
@@ -111,10 +111,10 @@ const STRING_CAMELIZE_REGEXP_2 = /(^|\/)([A-Z])/g;
 
 function camelize(str) {
   return str
-    .replace(STRING_CAMELIZE_REGEXP_1, function (match, separator, chr) {
+    .replace(STRING_CAMELIZE_REGEXP_1, function(match, separator, chr) {
       return chr ? chr.toUpperCase() : '';
     })
-    .replace(STRING_CAMELIZE_REGEXP_2, function (match) {
+    .replace(STRING_CAMELIZE_REGEXP_2, function(match) {
       return match.toLowerCase();
     });
 }

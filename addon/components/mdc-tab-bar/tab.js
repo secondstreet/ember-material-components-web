@@ -20,7 +20,7 @@ export default Component.extend(MDCTabComponent, {
    * @type {Function}
    * @param {Boolean} isActive
    */
-  'become-active': (x) => x,
+  'become-active': x => x,
   //endregion
 
   //region Ember Hooks

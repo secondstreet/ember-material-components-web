@@ -31,7 +31,7 @@ export default Component.extend(MDCComponent, {
    * Pass an action to call when the menu is canceled without selection.
    * @type {?Function}
    */
-  cancel: (x) => x,
+  cancel: x => x,
   /**
    * Enabling this is generally a bad idea for accessibility, so think hard about using this attribute.
    * @type {Boolean}
@@ -108,9 +108,9 @@ export default Component.extend(MDCComponent, {
   },
   createFoundation() {
     return new MDCSimpleMenuFoundation({
-      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
-      hasClass: (className) => get(this, 'element.classList').contains(className),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
+      hasClass: className => get(this, 'element.classList').contains(className),
       hasNecessaryDom: () => !!get(this, 'element') && !!this.element.querySelectorAll(strings.ITEMS_SELECTOR).length,
       getInnerDimensions: () => {
         let item = this.element.querySelector(strings.ITEMS_SELECTOR);
@@ -128,23 +128,29 @@ export default Component.extend(MDCComponent, {
       getNumberOfItems: () => get(this, 'items.length'),
       registerInteractionHandler: (type, handler) => this.registerMdcInteractionHandler(type, handler),
       deregisterInteractionHandler: (type, handler) => this.deregisterMdcInteractionHandler(type, handler),
-      registerBodyClickHandler: (handler) => document.body.addEventListener('click', handler),
-      deregisterBodyClickHandler: (handler) => document.body.removeEventListener('click', handler),
-      getYParamsForItemAtIndex: (index) => !get(this, 'isDestroyed') && this.itemAt(index).getYParams(),
+      registerBodyClickHandler: handler => document.body.addEventListener('click', handler),
+      deregisterBodyClickHandler: handler => document.body.removeEventListener('click', handler),
+      getYParamsForItemAtIndex: index => !get(this, 'isDestroyed') && this.itemAt(index).getYParams(),
       setTransitionDelayForItemAtIndex: (index, value) =>
         !get(this, 'isDestroyed') && this.itemAt(index).setTransitionDelay(value),
-      getIndexForEventTarget: (target) => get(this, 'items').mapBy('element').indexOf(target),
+      getIndexForEventTarget: target =>
+        get(this, 'items')
+          .mapBy('element')
+          .indexOf(target),
       notifySelected: ({ index }) => !get(this, 'isDestroyed') && this.itemAt(index).notifySelected(index),
       notifyCancel: () => get(this, 'cancel')(false), // False is provided as a convenience for the {{mut}} helper
       saveFocus: () => set(this, 'previousFocus', document.activeElement),
       restoreFocus: () => get(this, 'previousFocus') && get(this, 'previousFocus').focus(),
       isFocused: () => document.activeElement === get(this, 'element'),
       focus: () => run(() => !get(this, 'disable-focus') && get(this, 'element').focus()),
-      getFocusedItemIndex: () => get(this, 'items').mapBy('element').indexOf(document.activeElement),
-      focusItemAtIndex: (index) =>
+      getFocusedItemIndex: () =>
+        get(this, 'items')
+          .mapBy('element')
+          .indexOf(document.activeElement),
+      focusItemAtIndex: index =>
         !get(this, 'isDestroyed') && !get(this, 'disable-focus') && get(this.itemAt(index), 'element').focus(),
       isRtl: () => window.getComputedStyle(get(this, 'element')).getPropertyValue('direction') === 'rtl',
-      setTransformOrigin: (value) => run(() => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value)),
+      setTransformOrigin: value => run(() => this.setStyleFor('mdcStyles', `${TRANSFORM_PROPERTY}-origin`, value)),
       setPosition: ({ top, right, bottom, left }) => {
         run(() => {
           this.setStyleFor('mdcStyles', 'top', top || null);

@@ -80,9 +80,9 @@ export default Component.extend(MDCComponent, {
   //region Methods
   createFoundation() {
     return new MDCLinearProgressFoundation({
-      hasClass: (className) => get(this, 'mdcClasses').includes(className),
-      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
+      hasClass: className => get(this, 'mdcClasses').includes(className),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       getPrimaryBar: () => getElementProperty(this, 'querySelector')(strings.PRIMARY_BAR_SELECTOR),
       getBuffer: () => getElementProperty(this, 'querySelector')(strings.BUFFER_SELECTOR),
       setStyle: (el, property, value) => {

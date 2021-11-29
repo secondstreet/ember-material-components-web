@@ -3,10 +3,10 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 
-module('Integration | Component | mdc icon toggle', function (hooks) {
+module('Integration | Component | mdc icon toggle', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
+  test('it renders', async function(assert) {
     assert.expect(1);
 
     await render(hbs`

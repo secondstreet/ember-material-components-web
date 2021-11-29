@@ -17,7 +17,7 @@ export default Component.extend({
    * @type {?Function}
    * @param {Number} index
    */
-  selected: (x) => x,
+  selected: x => x,
   //endregion
 
   //region Ember Hooks

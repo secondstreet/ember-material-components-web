@@ -31,7 +31,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    * @type {Function}
    * @param {Boolean} checked
    */
-  onchange: (x) => x,
+  onchange: x => x,
   /**
    * @type {?String}
    */
@@ -96,8 +96,8 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    */
   createFoundation() {
     return new MDCRadioFoundation({
-      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: (className) => run(() => get(this, 'mdcClasses').removeObject(className)),
+      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: className => run(() => get(this, 'mdcClasses').removeObject(className)),
       getNativeControl: () => this.element.querySelector('input'),
     });
   },

@@ -1,8 +1,8 @@
 import { htmlSafe } from '@ember/string';
 import { get, computed } from '@ember/object';
 
-export default (prop) =>
-  computed(`${prop}`, function () {
+export default prop =>
+  computed(`${prop}`, function() {
     const obj = get(this, prop);
     return htmlSafe(
       Object.keys(obj).reduce((acc, key) => {

@@ -18,13 +18,13 @@ export default Component.extend({
   //endregion
 
   //region Computed Properties
-  style: computed('isFirstRow', 'first-row-style', function () {
+  style: computed('isFirstRow', 'first-row-style', function() {
     if (get(this, 'isFirstRow')) {
       return get(this, 'first-row-style');
     }
     return null;
   }),
-  isFirstRow: computed('first-row', function () {
+  isFirstRow: computed('first-row', function() {
     return get(this, 'first-row') === this;
   }),
   //endregion

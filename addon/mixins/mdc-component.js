@@ -93,7 +93,7 @@ export const MDCComponent = Mixin.create({
    * If the MDC Component is _not_ tagless, it should have this in its `classNameBindings`.
    * @returns {String}
    */
-  mdcClassNames: computed('mdcClasses.[]', function () {
+  mdcClassNames: computed('mdcClasses.[]', function() {
     return get(this, 'mdcClasses').join(' ');
   }),
 

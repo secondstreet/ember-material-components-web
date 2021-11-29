@@ -4,10 +4,10 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 
-module('Integration | Component | mdc textfield', function (hooks) {
+module('Integration | Component | mdc textfield', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
+  test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
@@ -16,7 +16,7 @@ module('Integration | Component | mdc textfield', function (hooks) {
     assert.dom('*').hasText('');
   });
 
-  test('it detects if it is focused based upon classnames', async function (assert) {
+  test('it detects if it is focused based upon classnames', async function(assert) {
     const placeholderText = 'Hi I am the placeholder';
     this.set('placeholderText', placeholderText);
 
