@@ -1,27 +1,28 @@
-import { findAll, find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 
-moduleForComponent('mdc-grid-list/tiles/tile', 'Integration | Component | mdc grid list/tiles/tile', {
-  integration: true,
-});
+module('Integration | Component | mdc grid list/tiles/tile', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(3);
+  test('it renders', async function (assert) {
+    assert.expect(3);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#mdc-grid-list/tiles/tile as |tile|}}
-      {{#tile.primary}}
-        template block text
-      {{/tile.primary}}
-      {{#tile.secondary}}
-        template block text
-      {{/tile.secondary}}
-    {{/mdc-grid-list/tiles/tile}}
-  `);
+    // Template block usage:
+    await render(hbs`
+      {{#mdc-grid-list/tiles/tile as |tile|}}
+        {{#tile.primary}}
+          template block text
+        {{/tile.primary}}
+        {{#tile.secondary}}
+          template block text
+        {{/tile.secondary}}
+      {{/mdc-grid-list/tiles/tile}}
+    `);
 
-  assert.equal(findAll('li.mdc-grid-tile').length, 1);
-  assert.equal(find('.mdc-grid-tile__primary').textContent.trim(), 'template block text');
-  assert.equal(find('.mdc-grid-tile__secondary').textContent.trim(), 'template block text');
+    assert.dom('li.mdc-grid-tile').exists({ count: 1 });
+    assert.dom('.mdc-grid-tile__primary').hasText('template block text');
+    assert.dom('.mdc-grid-tile__secondary').hasText('template block text');
+  });
 });

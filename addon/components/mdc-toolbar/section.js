@@ -17,12 +17,12 @@ export default Component.extend({
 
   //region Ember Hooks
   layout,
-  classNames: ['mdc-toolbar__section'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-toolbar__section']),
+  classNameBindings: Object.freeze([
     'isAlignStart:mdc-toolbar__section--align-start',
     'isAlignEnd:mdc-toolbar__section--align-end',
     'shrink-to-fit:mdc-toolbar__section--shrink-to-fit',
-  ],
+  ]),
   //endregion
 
   //region Computed Properties

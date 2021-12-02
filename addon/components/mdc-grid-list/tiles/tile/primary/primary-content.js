@@ -6,8 +6,8 @@ export default Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'img',
-  classNames: ['mdc-grid-tile__primary-content'],
-  attributeBindings: [
+  classNames: Object.freeze(['mdc-grid-tile__primary-content']),
+  attributeBindings: Object.freeze([
     'alt',
     'height',
     'src',
@@ -19,6 +19,6 @@ export default Component.extend({
     'usemap',
     'width',
     ...events,
-  ],
+  ]),
   //endregion
 });

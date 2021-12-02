@@ -6,16 +6,16 @@ import layout from '../templates/components/mdc-grid-list';
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-grid-list'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-grid-list']),
+  classNameBindings: Object.freeze([
     'tile-gutter-1:mdc-grid-list--tile-gutter-1',
     'header-caption:mdc-grid-list--header-caption',
     'twoline-caption:mdc-grid-list--twoline-caption',
     'tileAspectRatioClass',
     'iconAlignStartClass',
     'iconAlignEndClass',
-  ],
-  attributeBindings: [...events],
+  ]),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 
   //region Attributes
@@ -47,14 +47,14 @@ export default Component.extend({
   //endregion
 
   //region Computed Properties
-  tileAspectRatioClass: computed('tile-aspect', function() {
+  tileAspectRatioClass: computed('tile-aspect', function () {
     const aspect = get(this, 'tile-aspect');
     return aspect ? `mdc-grid-list--tile-aspect-${aspect}` : null;
   }),
-  iconAlignStartClass: computed('icon-align', function() {
+  iconAlignStartClass: computed('icon-align', function () {
     return get(this, 'icon-align') === 'start' ? 'mdc-grid-list--with-icon-align-start' : null;
   }),
-  iconAlignEndClass: computed('icon-align', function() {
+  iconAlignEndClass: computed('icon-align', function () {
     return get(this, 'icon-align') === 'end' ? 'mdc-grid-list--with-icon-align-end' : null;
   }),
   //endregion

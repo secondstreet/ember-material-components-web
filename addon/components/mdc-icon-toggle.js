@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { scheduleOnce } from '@ember/runloop';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
@@ -32,7 +34,7 @@ export default Component.extend(MDCComponent, {
    * @type {Function}
    * @param {Boolean} isOn
    */
-  onchange: x => x,
+  onchange: (x) => x,
   /**
    * @type {?String}
    */
@@ -41,17 +43,22 @@ export default Component.extend(MDCComponent, {
 
   //region Ember Hooks
   tagName: 'i',
-  classNames: ['mdc-icon-toggle'],
+  classNames: Object.freeze(['mdc-icon-toggle']),
   layout,
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('disabled');
-      this.syncPressed();
-    });
+    scheduleOnce('afterRender', this, this._syncToggleState);
   },
-  attributeBindings: [DATA_TOGGLE_ON, DATA_TOGGLE_OFF, ARIA_PRESSED, ARIA_DISABLED, ARIA_LABEL, 'tabindex', 'style'],
-  classNameBindings: ['mdcClassNames', 'aria-disabled:mdc-icon-toggle--disabled'],
+  attributeBindings: Object.freeze([
+    DATA_TOGGLE_ON,
+    DATA_TOGGLE_OFF,
+    ARIA_PRESSED,
+    ARIA_DISABLED,
+    ARIA_LABEL,
+    'tabindex',
+    'style',
+  ]),
+  classNameBindings: Object.freeze(['mdcClassNames', 'aria-disabled:mdc-icon-toggle--disabled']),
   //endregion
 
   //region Properties
@@ -127,6 +134,10 @@ export default Component.extend(MDCComponent, {
     if (foundation && foundation.isOn() !== pressed) {
       foundation.toggle(pressed);
     }
+  },
+  _syncToggleState() {
+    this.sync('disabled');
+    this.syncPressed();
   },
   //endregion
 });

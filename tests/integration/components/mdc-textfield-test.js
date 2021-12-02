@@ -1,27 +1,29 @@
-import { find, triggerEvent } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
+import { find, focus } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 
-moduleForComponent('mdc-textfield', 'Integration | Component | mdc textfield', {
-  integration: true,
-});
+module('Integration | Component | mdc textfield', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('it renders', async function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{mdc-textfield}}`);
+    await render(hbs`{{mdc-textfield}}`);
 
-  assert.equal(find('*').textContent.trim(), '');
-});
+    assert.dom('*').hasText('');
+  });
 
-test('it detects if it is focused based upon classnames', async function(assert) {
-  const placeholderText = 'Hi I am the placeholder';
-  this.set('placeholderText', placeholderText);
+  test('it detects if it is focused based upon classnames', async function (assert) {
+    const placeholderText = 'Hi I am the placeholder';
+    this.set('placeholderText', placeholderText);
 
-  this.render(hbs`{{mdc-textfield placeholder=placeholderText label='This is a Label'}}`);
+    await render(hbs`{{mdc-textfield placeholder=this.placeholderText label="This is a Label"}}`);
 
-  assert.notOk(find('input').getAttribute('placeholder'), 'Without focus the placeholder is NOT displayed');
-  await triggerEvent('input', 'focusin');
-  assert.equal(find('input').getAttribute('placeholder'), placeholderText, 'With focus the placeholder IS displayed');
+    assert.notOk(find('input').getAttribute('placeholder'), 'Without focus the placeholder is NOT displayed');
+    await focus('input');
+    assert.dom('input').hasAttribute('placeholder', placeholderText, 'With focus the placeholder IS displayed');
+  });
 });

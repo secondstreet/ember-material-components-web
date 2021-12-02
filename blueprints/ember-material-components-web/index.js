@@ -1,6 +1,6 @@
 module.exports = {
-  normalizeEntityName: function() {}, // no-op since we're just adding dependencies
-  afterInstall: function() {
+  normalizeEntityName: function () {}, // no-op since we're just adding dependencies
+  afterInstall: function () {
     return this.addPackagesToProject([
       { name: '@material/base', target: '0.2.5' },
       { name: '@material/animation', target: '0.3.1' },

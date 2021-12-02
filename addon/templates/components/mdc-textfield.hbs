@@ -1,37 +1,37 @@
-<label class="{{CLASS_NAMES.ROOT}} {{mdcClassNames}} {{unless valid CLASS_NAMES.INVALID}} {{if fullwidth "mdc-textfield--fullwidth"}} {{if disabled CLASS_NAMES.DISABLED}} {{if value CLASS_NAMES.UPGRADED}} {{if multiline "mdc-textfield--multiline"}} {{if box "mdc-textfield--box"}}">
-  {{#if multiline}}
+<label class="{{this.CLASS_NAMES.ROOT}} {{this.mdcClassNames}} {{unless this.valid this.CLASS_NAMES.INVALID}} {{if this.fullwidth "mdc-textfield--fullwidth"}} {{if this.disabled this.CLASS_NAMES.DISABLED}} {{if this.value this.CLASS_NAMES.UPGRADED}} {{if this.multiline "mdc-textfield--multiline"}} {{if this.box "mdc-textfield--box"}}">
+  {{#if this.multiline}}
     {{mdc-textfield/textarea
-      value=value
+      value=this.value
       onfocus=(action "handle" "focus")
       onblur=(action "handle" "blur")
       oninput=(action "handleInput")
       onkeydown=(action "handle" "keydown")
-      required=required
-      disabled=disabled
-      rows=rows
-      cols=cols
+      required=this.required
+      disabled=this.disabled
+      rows=this.rows
+      cols=this.cols
     }}
   {{else}}
     {{mdc-textfield/input
-      value=value
+      value=this.value
       onfocus=(action "handle" "focus")
       onblur=(action "handle" "blur")
       oninput=(action "handleInput")
       onkeydown=(action "handle" "keydown")
-      required=required
-      placeholder=(if label (if isFocused placeholder) placeholder)
-      disabled=disabled
-      readonly=readonly
-      type=type
+      required=this.required
+      placeholder=(if this.label (if this.isFocused this.placeholder) this.placeholder)
+      disabled=this.disabled
+      readonly=this.readonly
+      type=this.type
     }}
-    {{#if box}}
+    {{#if this.box}}
       <div class="mdc-textfield__bottom-line"></div>
     {{/if}}
   {{/if}}
-  {{#mdc-textfield/label class-names=labelClassnames}}
-    {{label}}
+  {{#mdc-textfield/label class-names=this.labelClassnames}}
+    {{@label}}
   {{/mdc-textfield/label}}
 </label>
-{{#mdc-textfield/helptext attribute-pairs=helpTextAttrs class-names=helptextClassnames}}
-  {{helptext}}
+{{#mdc-textfield/helptext attribute-pairs=this.helpTextAttrs class-names=this.helptextClassnames}}
+  {{@helptext}}
 {{/mdc-textfield/helptext}}

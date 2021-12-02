@@ -1,21 +1,22 @@
-import { findAll } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 
-moduleForComponent('mdc-grid-list/tiles/tile/primary', 'Integration | Component | mdc grid list/tiles/tile/primary', {
-  integration: true,
-});
+module('Integration | Component | mdc grid list/tiles/tile/primary', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(2);
+  test('it renders', async function (assert) {
+    assert.expect(2);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#mdc-grid-list/tiles/tile/primary as |primary|}}
-      {{primary.primary-content src="my-image.jpg"}}
-    {{/mdc-grid-list/tiles/tile/primary}}
-  `);
+    // Template block usage:
+    await render(hbs`
+      {{#mdc-grid-list/tiles/tile/primary as |primary|}}
+        {{primary.primary-content src="my-image.jpg"}}
+      {{/mdc-grid-list/tiles/tile/primary}}
+    `);
 
-  assert.equal(findAll('.mdc-grid-tile__primary').length, 1);
-  assert.equal(findAll('img.mdc-grid-tile__primary-content[src="my-image.jpg"]').length, 1);
+    assert.dom('.mdc-grid-tile__primary').exists({ count: 1 });
+    assert.dom('img.mdc-grid-tile__primary-content[src="my-image.jpg"]').exists({ count: 1 });
+  });
 });

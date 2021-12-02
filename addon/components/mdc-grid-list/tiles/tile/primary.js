@@ -5,7 +5,7 @@ import layout from '../../../../templates/components/mdc-grid-list/tiles/tile/pr
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-grid-tile__primary'],
-  attributeBindings: [...events],
+  classNames: Object.freeze(['mdc-grid-tile__primary']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 });

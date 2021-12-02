@@ -17,7 +17,7 @@ export default Component.extend({
    * @type {?Function}
    * @param {Number} index
    */
-  selected: x => x,
+  selected: (x) => x,
   //endregion
 
   //region Ember Hooks
@@ -31,8 +31,8 @@ export default Component.extend({
   },
   layout,
   tagName: 'li',
-  classNames: ['mdc-list-item'],
-  attributeBindings: ['role', 'tabindex', 'aria-disabled', 'style', ...events],
+  classNames: Object.freeze(['mdc-list-item']),
+  attributeBindings: Object.freeze(['role', 'tabindex', 'aria-disabled', 'style', ...events]),
   //endregion
 
   //region Properties

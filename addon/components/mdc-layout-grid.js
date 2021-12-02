@@ -17,13 +17,13 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-layout-grid'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-layout-grid']),
+  classNameBindings: Object.freeze([
     'fixed-column-width:mdc-layout-grid--fixed-column-width',
     'isAlignLeft:mdc-layout-grid--align-left',
     'isAlignRight:mdc-layout-grid--align-right',
-  ],
-  attributeBindings: [...events],
+  ]),
+  attributeBindings: Object.freeze([...events]),
   layout,
   //endregion
 

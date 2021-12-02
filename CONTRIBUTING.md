@@ -63,6 +63,11 @@ If your pull request addresses an issue, then please add the corresponding issue
 * `ember test`
 * `ember test --server`
 
+## Linting
+
+* `yarn lint`
+* `yarn lint:fix`
+
 ## Running the Demo
 
 * `ember server`

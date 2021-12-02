@@ -1,12 +1,14 @@
+{{page-title "Ember Material Components Web"}}
+
 <a href="https://github.com/secondstreet/ember-material-components-web/">
   <img style="position: absolute; top: 0; right: 0; border: 0;"
        src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
        alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png">
 </a>
 
-{{#if isDemoVisible}}
+{{#if this.isDemoVisible}}
   {{#freestyle-guide title="MDC-Ember Demos"}}
-    {{#freestyle-section name="Repo info" as |section|}}
+    {{#freestyle-section name="Repo info"}}
       <p class="shields">
         <a href="https://travis-ci.org/secondstreet/ember-material-components-web">
           <img alt="Travis branch" src="https://img.shields.io/travis/secondstreet/ember-material-components-web/master.svg" style="max-width:100%;">
@@ -31,7 +33,7 @@
         </a>
       </p>
     {{/freestyle-section}}
-    {{#freestyle-section name="Buttons" as |section|}}
+    {{#freestyle-section name="Buttons"}}
       {{#freestyle-usage "flat" title="Flat Buttons"}}
         {{#mdc-button}}Standard Button{{/mdc-button}}
         {{#mdc-button disabled=true onclick=(action "alert" "Should not see this.")}}Disabled Button{{/mdc-button}}
@@ -54,7 +56,7 @@
         {{#mdc-button unelevated=true dense=true}}Unelevated Dense Button{{/mdc-button}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Floating Action Buttons" as |section|}}
+    {{#freestyle-section name="Floating Action Buttons"}}
       {{#freestyle-usage "fab-bind" title="bind actions"}}
 
         {{#mdc-fab onclick=(action "alert" "Stop clicked")}}
@@ -77,7 +79,7 @@
         {{/mdc-fab}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Cards" as |section|}}
+    {{#freestyle-section name="Cards"}}
 
       {{#freestyle-usage "card"}}
         {{#mdc-card as |card|}}
@@ -107,69 +109,69 @@
         {{/mdc-card}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Checkboxes" as |section|}}
+    {{#freestyle-section name="Checkboxes"}}
       {{#freestyle-usage "cbx-attributes" title="Attributes"}}
         <label>
-          {{mdc-checkbox checked=isCheckboxOneChecked onchange=(action (mut isCheckboxOneChecked))}}
+          {{mdc-checkbox checked=this.isCheckboxOneChecked onchange=(action (mut this.isCheckboxOneChecked))}}
           Checkbox
         </label>
         <label>
           {{mdc-checkbox indeterminate=true disabled=true onchange=(action "alert" "Should not see this.")}}
           Disabled Indeterminate Checkbox
         </label>
-        {{mdc-checkbox input-id="checkbox-for" checked=isCheckboxTwoChecked onchange=(action (mut isCheckboxTwoChecked))}}
+        {{mdc-checkbox input-id="checkbox-for" checked=this.isCheckboxTwoChecked onchange=(action (mut this.isCheckboxTwoChecked))}}
         <label for="checkbox-for">Disassociated Label Checkbox</label>
 
       {{/freestyle-usage}}
       {{#freestyle-usage "cbx-bubbling" title="Action Bubbling/Event Propagation"}}
         <div class="test-action-bubbling" {{action "alert" "Stop the bubbling"}}>
-          {{mdc-checkbox input-id="checkbox-for" checked=isCheckboxThreeChecked onchange=(action (mut isCheckboxThreeChecked)) bubbles=false}}
+          {{mdc-checkbox input-id="checkbox-for" checked=this.isCheckboxThreeChecked onchange=(action (mut this.isCheckboxThreeChecked)) bubbles=false}}
           <div>Checkbox event propagation is disableable: click outside of the checkbox to test</div>
         </div>
       {{/freestyle-usage}}
       {{#freestyle-usage "cbx-bindings" title="bindings"}}
-        {{mdc-checkbox checked=isCheckBoxFourChecked}}
-        <button {{action (toggle "isCheckBoxFourChecked" this)}}>Press to Toggle Checkbox</button>
+        {{mdc-checkbox checked=this.isCheckBoxFourChecked}}
+        <button type="button" {{action (toggle "isCheckBoxFourChecked" this)}}>Press to Toggle Checkbox</button>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Radios" as |section|}}
+    {{#freestyle-section name="Radios"}}
       {{#freestyle-usage "radio" title="radios"}}
         <label>
-          {{mdc-radio checked=isRadioOneChecked onchange=(action (mut isRadioOneChecked))}}
+          {{mdc-radio checked=this.isRadioOneChecked onchange=(action (mut this.isRadioOneChecked))}}
           Radio
         </label>
         <label>
           {{mdc-radio disabled=true onchange=(action "alert" "Should not see this.")}}
           Disabled Radio
         </label>
-        {{mdc-radio input-id="radio-for" checked=isRadioTwoChecked onchange=(action (mut isRadioTwoChecked))}}
+        {{mdc-radio input-id="radio-for" checked=this.isRadioTwoChecked onchange=(action (mut this.isRadioTwoChecked))}}
         <label for="radio-for">Disassociated Label Radio</label>
       {{/freestyle-usage}}
       {{#freestyle-usage "radio-group" title="radio Group"}}
         <fieldset>
           Radio group with shared <code>name</code> attribute:
           <label>
-            {{mdc-radio name="radio-three" checked=isRadioThreeAChecked onchange=(action (mut isRadioThreeAChecked))}} A
+            {{mdc-radio name="radio-three" checked=this.isRadioThreeAChecked onchange=(action (mut this.isRadioThreeAChecked))}} A
           </label>
           <label>
-            {{mdc-radio name="radio-three" checked=isRadioThreeBChecked onchange=(action (mut isRadioThreeBChecked))}} B
+            {{mdc-radio name="radio-three" checked=this.isRadioThreeBChecked onchange=(action (mut this.isRadioThreeBChecked))}} B
           </label>
           <label>
-            {{mdc-radio name="radio-three" checked=isRadioThreeCChecked onchange=(action (mut isRadioThreeCChecked))}} C
+            {{mdc-radio name="radio-three" checked=this.isRadioThreeCChecked onchange=(action (mut this.isRadioThreeCChecked))}} C
           </label>
         </fieldset>
 
       {{/freestyle-usage}}
       {{#freestyle-usage "radio-binging" title="bindings"}}
         <div class="test-action-bubbling" {{action "alert" "Stop the bubbling"}}>
-          {{mdc-radio checked=isRadioFourChecked onchange=(action (mut isRadioFourChecked)) bubbles=false}}
+          {{mdc-radio checked=this.isRadioFourChecked onchange=(action (mut this.isRadioFourChecked)) bubbles=false}}
           <div>Radio button event propagation is disableable: click outside of the radio button to test</div>
         </div>
-        {{mdc-radio checked=isRadioFiveChecked}}
-        <button {{action (toggle "isRadioFiveChecked" this)}}>Press to Toggle Radio</button>
+        {{mdc-radio checked=this.isRadioFiveChecked}}
+        <button type="button" {{action (toggle "isRadioFiveChecked" this)}}>Press to Toggle Radio</button>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Elevation" as |section|}}
+    {{#freestyle-section name="Elevation"}}
       {{#freestyle-usage "elevation-1" title="z=1"}}
         {{#mdc-elevation z=1}}Elevation Depth 1{{/mdc-elevation}}
       {{/freestyle-usage}}
@@ -198,7 +200,7 @@
         {{#mdc-elevation z=9}}Elevation Depth 9{{/mdc-elevation}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Grid Lists" as |section|}}
+    {{#freestyle-section name="Grid Lists"}}
       {{#freestyle-usage "gl-basic-usage" title="Basic Usage"}}
         {{#mdc-grid-list as |list|}}
           {{#list.tiles as |tiles|}}
@@ -280,11 +282,13 @@
         {{/mdc-grid-list}}
       {{/freestyle-usage}}
       {{#freestyle-usage "gl-div" title="Using a div in place of an img"}}
+        {{!-- template-lint-disable no-forbidden-elements --}}
         <style>
           .my-tile-image {
             background-image: url('http://placekitten.com/g/200/250');
           }
         </style>
+        {{!-- template-lint-enable no-forbidden-elements --}}
         {{#mdc-grid-list as |list|}}
           {{#list.tiles as |tiles|}}
             {{#tiles.tile as |tile|}}
@@ -301,13 +305,13 @@
         {{/mdc-grid-list}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Text Fields" as |section|}}
+    {{#freestyle-section name="Text Fields"}}
       {{#freestyle-usage "txt-attrs" title="Attributes"}}
         {{mdc-textfield
           label="Box Textfield"
           box=true
-          value=textfieldBoxValue
-          onchange=(action (mut textfieldBoxValue))
+          value=this.textfieldBoxValue
+          onchange=(action (mut this.textfieldBoxValue))
           type="text"
         }}
 
@@ -316,13 +320,13 @@
         {{mdc-textfield
           label="Full width with on event actions"
           fullwidth=true
-          value=fullWidthValue
-          onchange=(action (mut fullWidthValue))
-          onfocus=(action 'logToConsole' 'focus')
-          onblur=(action 'logToConsole' 'blur')
-          onkeydown=(action 'logToConsole' 'keydown')
-          oninput=(action (pipe (action 'logToConsole' 'input')))
-          helptext=(concat "Received event for: " (if eventType eventType 'not triggered yet'))
+          value=this.fullWidthValue
+          onchange=(action (mut this.fullWidthValue))
+          onfocus=(action "logToConsole" "focus")
+          onblur=(action "logToConsole" "blur")
+          onkeydown=(action "logToConsole" "keydown")
+          oninput=(action (pipe (action "logToConsole" "input")))
+          helptext=(concat "Received event for: " (if this.eventType this.eventType "not triggered yet"))
           helptext-persistent=true
           type="text"
         }}
@@ -332,8 +336,8 @@
         {{mdc-textfield
           label="Email Address"
           placeholder="something@example.com"
-          value=textfieldOneValue
-          onchange=(action (mut textfieldOneValue))
+          value=this.textfieldOneValue
+          onchange=(action (mut this.textfieldOneValue))
           type="email"
           helptext="This will not be sent to any server"
         }}
@@ -352,8 +356,8 @@
         {{mdc-textfield
           label="Subject"
           disabled=true
-          value=textfieldThreeValue
-          onchange=(action (mut textfieldThreeValue))
+          value=this.textfieldThreeValue
+          onchange=(action (mut this.textfieldThreeValue))
           helptext="This is persistent help text, and the field is disabled"
           helptext-persistent=true
         }}
@@ -362,8 +366,8 @@
       {{#freestyle-usage "txt-textarea" title="textarea"}}
         {{mdc-textfield
           label="Message Body"
-          value=textfieldTwoValue
-          onchange=(action (mut textfieldTwoValue))
+          value=this.textfieldTwoValue
+          onchange=(action (mut this.textfieldTwoValue))
           multiline=true
           rows=12
           cols=80
@@ -372,16 +376,16 @@
       {{#freestyle-usage "txt-multiline" title="textarea that looks like input"}}
         {{mdc-textfield
           label="Message Body"
-          value=textfieldTwoValue
+          value=this.textfieldTwoValue
           fullwidth=true
-          onchange=(action (mut textfieldTwoValue))
+          onchange=(action (mut this.textfieldTwoValue))
           multiline=true
           rows=3
           cols=80
         }}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Layout Grids" as |section|}}
+    {{#freestyle-section name="Layout Grids"}}
       {{#freestyle-usage "lg-column-spans" title="Column spans"}}
         {{#mdc-layout-grid as |grid|}}
           {{#grid.inner as |inner|}}
@@ -469,21 +473,21 @@
         {{/mdc-layout-grid}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Icon Toggles" as |section|}}
-      {{#freestyle-usage 'icon-attrs' title="Attributes"}}
+    {{#freestyle-section name="Icon Toggles"}}
+      {{#freestyle-usage "icon-attrs" title="Attributes"}}
         TODO: The ripple looks odd here. <br/>
         {{#mdc-icon-toggle
-          pressed=isFirstTogglePressed
-          onchange=(action (mut isFirstTogglePressed))
+          pressed=this.isFirstTogglePressed
+          onchange=(action (mut this.isFirstTogglePressed))
           class="material-icons"
         }}
-          {{#if isFirstTogglePressed}}
+          {{#if this.isFirstTogglePressed}}
             star
           {{else}}
             star_border
           {{/if}}
         {{/mdc-icon-toggle}}
-        {{#if isFirstTogglePressed}}
+        {{#if this.isFirstTogglePressed}}
           Unstar it.
         {{else}}
           Star it!
@@ -496,8 +500,8 @@
         Disabled.
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Lists" as |section|}}
-      {{#section.subsection name="Single-Line List"}}
+    {{#freestyle-section name="Lists" as |fsection|}}
+      {{#fsection.subsection name="Single-Line List"}}
 
         {{#freestyle-usage "list-text" title="Text only"}}
           {{#mdc-list theme="dark" as |list|}}
@@ -561,39 +565,42 @@
           {{/mdc-list}}
 
         {{/freestyle-usage}}
-      {{/section.subsection}}
+      {{/fsection.subsection}}
 
-      {{#section.subsection name="Two Line List"}}
+      {{#fsection.subsection name="Two Line List"}}
 
         {{#freestyle-usage "list-two-line-text" title="Text only"}}
           {{#mdc-list two-line=true as |list|}}
             {{#list.item as |item|}}
-              {{#item.text as |text|}}Two-line item
-              {{#text.secondary}}Secondary text{{/text.secondary}}
+              {{#item.text as |text|}}
+                Two-line item
+                {{#text.secondary}}Secondary text{{/text.secondary}}
               {{/item.text}}
             {{/list.item}}
             {{#list.item as |item|}}
-              {{#item.text as |text|}}Two-line item
-              {{#text.secondary}}Secondary text{{/text.secondary}}
+              {{#item.text as |text|}}
+                Two-line item
+                {{#text.secondary}}Secondary text{{/text.secondary}}
               {{/item.text}}
             {{/list.item}}
             {{#list.item as |item|}}
-              {{#item.text as |text|}}Two-line item
-              {{#text.secondary}}Secondary text{{/text.secondary}}
+              {{#item.text as |text|}}
+                Two-line item
+                {{#text.secondary}}Secondary text{{/text.secondary}}
               {{/item.text}}
             {{/list.item}}
           {{/mdc-list}}
 
         {{/freestyle-usage}}
-      {{/section.subsection}}
+      {{/fsection.subsection}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Menu" as |section|}}
+    {{#freestyle-section name="Menu"}}
       {{#freestyle-usage "menu"}}
         {{#mdc-menu-anchor as |anchor|}}
-          {{#mdc-icon-toggle class="material-icons" pressed=isMenuOneOpen onchange=(action (mut isMenuOneOpen))}}
+          {{#mdc-icon-toggle class="material-icons" pressed=this.isMenuOneOpen onchange=(action (mut this.isMenuOneOpen))}}
             more_vert
           {{/mdc-icon-toggle}}
-          {{#mdc-menu anchor=anchor open=isMenuOneOpen cancel=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu canceled"))) as |menu|}}
+          {{#mdc-menu anchor=anchor open=this.isMenuOneOpen cancel=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu canceled"))) as |menu|}}
             {{#menu.item onclick=(action (queue (toggle "isMenuOneOpen" this) (action "alert" "Menu item one clicked!")))}}
               Menu Item One
             {{/menu.item}}
@@ -607,22 +614,22 @@
         {{/mdc-menu-anchor}}
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Drawers" as |section|}}
-      {{#section.subsection name="Permanent Drawers"}}
+    {{#freestyle-section name="Drawers" as |fsection|}}
+      {{#fsection.subsection name="Permanent Drawers"}}
         {{#freestyle-usage "permanent-drawer-above"}}
           <div class="component-doc flexible">
             {{#mdc-drawer as |drawer|}}
               {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
               {{#drawer.content}}
                 {{#mdc-list-group as |group|}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item class="mdc-permanent-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
                   {{/mdc-list}}
                   {{group.divider}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
@@ -664,14 +671,14 @@
               {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
               {{#drawer.content}}
                 {{#mdc-list-group as |group|}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item class="mdc-permanent-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
                   {{/mdc-list}}
                   {{group.divider}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
@@ -687,22 +694,22 @@
             </div>
           </div>
         {{/freestyle-usage}}
-      {{/section.subsection}}
-      {{#section.subsection name="Persistent Drawers"}}
+      {{/fsection.subsection}}
+      {{#fsection.subsection name="Persistent Drawers"}}
         {{#freestyle-usage "persistent-drawer"}}
           <div class="component-doc flexible">
-            {{#mdc-drawer tagName='aside' persistent=true permanent=false open=isPersistentDrawerOpened as |drawer|}}
+            {{#mdc-drawer tagName="aside" persistent=true permanent=false open=this.isPersistentDrawerOpened as |drawer|}}
               {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
               {{#drawer.content}}
                 {{#mdc-list-group as |group|}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item class="mdc-permanent-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
                   {{/mdc-list}}
                   {{group.divider}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
@@ -714,10 +721,10 @@
               <header class="mdc-toolbar mdc-elevation--z4">
                 <div class="mdc-toolbar__row">
                   <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                    {{#if isPersistentDrawerOpened}}
-                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isPersistentDrawerOpened) false}}>menu</button>
+                    {{#if this.isPersistentDrawerOpened}}
+                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" type="button" {{action (mut this.isPersistentDrawerOpened) false}}>menu</button>
                     {{else}}
-                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isPersistentDrawerOpened) true}}>menu</button>
+                      <button class="demo-menu material-icons mdc-toolbar__icon--menu" type="button" {{action (mut this.isPersistentDrawerOpened) true}}>menu</button>
                     {{/if}}
                     <span class="mdc-toolbar__title catalog-title">Persistent Drawer</span>
                   </section>
@@ -725,27 +732,27 @@
               </header>
               <main class="demo-main">
                 <h1>Persistent Drawer</h1>
-                <p>Click the menu icon above to open and close the drawer. Is the Persistent Drawer is open? {{if isPersistentDrawerOpened "yes" "no"}}</p>
+                <p>Click the menu icon above to open and close the drawer. Is the Persistent Drawer is open? {{if this.isPersistentDrawerOpened "yes" "no"}}</p>
               </main>
             </div>
           </div>
         {{/freestyle-usage}}
-      {{/section.subsection}}
-      {{#section.subsection name="Temporary Drawers"}}
+      {{/fsection.subsection}}
+      {{#fsection.subsection name="Temporary Drawers"}}
         {{#freestyle-usage "temporary-drawer"}}
           <div class="component-doc flexible">
-            {{#mdc-drawer tagName='aside' temporary=true permanent=false open=isTemporaryDrawerOpened as |drawer|}}
+            {{#mdc-drawer tagName="aside" temporary=true permanent=false open=this.isTemporaryDrawerOpened as |drawer|}}
               {{#drawer.toolbar-spacer}}{{/drawer.toolbar-spacer}}
               {{#drawer.content}}
                 {{#mdc-list-group as |group|}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item class="mdc-temporary-drawer--selected"}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts{{/list.item}}
                   {{/mdc-list}}
                   {{group.divider}}
-                  {{#mdc-list tagName='nav' dense=true as |list|}}
+                  {{#mdc-list tagName="nav" dense=true as |list|}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash{{/list.item}}
                     {{#list.item}}<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam{{/list.item}}
@@ -757,26 +764,26 @@
               <header class="mdc-toolbar mdc-elevation--z4">
                 <div class="mdc-toolbar__row">
                   <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                    <button class="demo-menu material-icons mdc-toolbar__icon--menu" {{action (mut isTemporaryDrawerOpened) true}}>menu</button>
+                    <button class="demo-menu material-icons mdc-toolbar__icon--menu" type="button" {{action (mut this.isTemporaryDrawerOpened) true}}>menu</button>
                     <span class="mdc-toolbar__title catalog-title">Temporary Drawer</span>
                   </section>
                 </div>
               </header>
               <main class="demo-main">
                 <h1>Temporary Drawer</h1>
-                <p>Click the menu icon above to open and close the drawer. Is the Temporary Drawer is open? {{if isTemporaryDrawerOpened "yes" "no"}}</p>
+                <p>Click the menu icon above to open and close the drawer. Is the Temporary Drawer is open? {{if this.isTemporaryDrawerOpened "yes" "no"}}</p>
               </main>
             </div>
           </div>
         {{/freestyle-usage}}
-      {{/section.subsection}}
+      {{/fsection.subsection}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Progress Bar" as |section|}}
+    {{#freestyle-section name="Progress Bar"}}
       {{#freestyle-usage "progress-determinate" name="Progress Determinate"}}
-        {{input value=myProgress min=0 max=1}}
+        <Input @value={{this.myProgress}} min="0" max="1" aria-label="My Progress Bar" />
         <div>Change this to any decimal value between 0 and 1, and the progress bar will update to show that amount.</div>
         <br>
-        {{mdc-linear-progress progress=myProgress}}
+        {{mdc-linear-progress progress=this.myProgress}}
       {{/freestyle-usage}}
 
       {{#freestyle-usage "progress-indeterminate" name="Progress Indeterminate"}}
@@ -788,16 +795,16 @@
       {{/freestyle-usage}}
 
     {{/freestyle-section}}
-    {{#freestyle-section name="Tab Bar" as |section|}}
+    {{#freestyle-section name="Tab Bar"}}
       {{#freestyle-usage "tab-actions1" name="Action-based tabs"}}
         {{#mdc-tab-bar links=false as |bar|}}
-          {{#bar.tab active=isFirstActive become-active=(action (mut isFirstActive))}}
+          {{#bar.tab active=this.isFirstActive become-active=(action (mut this.isFirstActive))}}
             Fruits
           {{/bar.tab}}
-          {{#bar.tab active=isSecondActive become-active=(action (mut isSecondActive))}}
+          {{#bar.tab active=this.isSecondActive become-active=(action (mut this.isSecondActive))}}
             Vegetables
           {{/bar.tab}}
-          {{#bar.tab active=isThirdActive become-active=(action (mut isThirdActive))}}
+          {{#bar.tab active=this.isThirdActive become-active=(action (mut this.isThirdActive))}}
             Meats
           {{/bar.tab}}
         {{/mdc-tab-bar}}
@@ -805,15 +812,15 @@
       {{/freestyle-usage}}
       {{#freestyle-usage "tab-icons-lbls" name="Tabs with icons and labels"}}
         {{#mdc-tab-bar icons="with-text" links=false as |bar|}}
-          {{#bar.tab active=isFirstActiveAlt become-active=(action (mut isFirstActiveAlt)) as |tab|}}
+          {{#bar.tab active=this.isFirstActiveAlt become-active=(action (mut this.isFirstActiveAlt)) as |tab|}}
             {{#tab.icon}}<i class="material-icons">people</i>{{/tab.icon}}
             {{#tab.icon-text}}People{{/tab.icon-text}}
           {{/bar.tab}}
-          {{#bar.tab active=isSecondActiveAlt become-active=(action (mut isSecondActiveAlt)) as |tab|}}
+          {{#bar.tab active=this.isSecondActiveAlt become-active=(action (mut this.isSecondActiveAlt)) as |tab|}}
             {{#tab.icon}}<i class="material-icons">credit_card</i>{{/tab.icon}}
             {{#tab.icon-text}}Money{{/tab.icon-text}}
           {{/bar.tab}}
-          {{#bar.tab active=isThirdActiveAlt become-active=(action (mut isThirdActiveAlt)) as |tab|}}
+          {{#bar.tab active=this.isThirdActiveAlt become-active=(action (mut this.isThirdActiveAlt)) as |tab|}}
             {{#tab.icon}}<i class="material-icons">shopping_cart</i>{{/tab.icon}}
             {{#tab.icon-text}}Things{{/tab.icon-text}}
           {{/bar.tab}}
@@ -822,13 +829,13 @@
       {{/freestyle-usage}}
       {{#freestyle-usage "tab-icons" name="Tabs with icons"}}
         {{#mdc-tab-bar icons="only" links=false as |bar|}}
-          {{#bar.tab active=isFirstActiveAlt2 become-active=(action (mut isFirstActiveAlt2)) as |tab|}}
+          {{#bar.tab active=this.isFirstActiveAlt2 become-active=(action (mut this.isFirstActiveAlt2)) as |tab|}}
             {{#tab.icon}}<i class="material-icons">people</i>{{/tab.icon}}
           {{/bar.tab}}
-          {{#bar.tab active=isSecondActiveAlt2 become-active=(action (mut isSecondActiveAlt2)) as |tab|}}
+          {{#bar.tab active=this.isSecondActiveAlt2 become-active=(action (mut this.isSecondActiveAlt2)) as |tab|}}
             {{#tab.icon}}<i class="material-icons">credit_card</i>{{/tab.icon}}
           {{/bar.tab}}
-          {{#bar.tab active=isThirdActiveAlt2 become-active=(action (mut isThirdActiveAlt2)) as |tab|}}
+          {{#bar.tab active=this.isThirdActiveAlt2 become-active=(action (mut this.isThirdActiveAlt2)) as |tab|}}
             {{#tab.icon}}<i class="material-icons">shopping_cart</i>{{/tab.icon}}
           {{/bar.tab}}
         {{/mdc-tab-bar}}
@@ -836,13 +843,13 @@
       {{/freestyle-usage}}
       {{#freestyle-usage "tab-code" name="Tabs as <code>\{{link-to}}</code>"}}
         {{#mdc-tab-bar as |bar|}}
-          {{#bar.tab "application"}}
+          {{#bar.tab route="application"}}
             Index
           {{/bar.tab}}
-          {{#bar.tab "one"}}
+          {{#bar.tab route="one"}}
             One
           {{/bar.tab}}
-          {{#bar.tab "two"}}
+          {{#bar.tab route="two"}}
             Two
           {{/bar.tab}}
         {{/mdc-tab-bar}}
@@ -851,31 +858,31 @@
       {{#freestyle-usage "tab-scroll" name="Tab Bar Scrolling"}}
         {{#mdc-tab-bar-scroller as |scroller|}}
           {{#scroller.tab-bar links=false as |bar|}}
-            {{#bar.tab active=isRedActive become-active=(action (mut isRedActive))}}
+            {{#bar.tab active=this.isRedActive become-active=(action (mut this.isRedActive))}}
               Red
             {{/bar.tab}}
-            {{#bar.tab active=isYellowActive become-active=(action (mut isYellowActive))}}
+            {{#bar.tab active=this.isYellowActive become-active=(action (mut this.isYellowActive))}}
               Yellow
             {{/bar.tab}}
-            {{#bar.tab active=isGreenActive become-active=(action (mut isGreenActive))}}
+            {{#bar.tab active=this.isGreenActive become-active=(action (mut this.isGreenActive))}}
               Green
             {{/bar.tab}}
-            {{#bar.tab active=isWhiteActive become-active=(action (mut isWhiteActive))}}
+            {{#bar.tab active=this.isWhiteActive become-active=(action (mut this.isWhiteActive))}}
               White
             {{/bar.tab}}
-            {{#bar.tab active=isBlueActive become-active=(action (mut isBlueActive))}}
+            {{#bar.tab active=this.isBlueActive become-active=(action (mut this.isBlueActive))}}
               Blue
             {{/bar.tab}}
-            {{#bar.tab active=isBlackActive become-active=(action (mut isBlackActive))}}
+            {{#bar.tab active=this.isBlackActive become-active=(action (mut this.isBlackActive))}}
               Black
             {{/bar.tab}}
-            {{#bar.tab active=isPurpleActive become-active=(action (mut isPurpleActive))}}
+            {{#bar.tab active=this.isPurpleActive become-active=(action (mut this.isPurpleActive))}}
               Purple
             {{/bar.tab}}
-            {{#bar.tab active=isOrangeActive become-active=(action (mut isOrangeActive))}}
+            {{#bar.tab active=this.isOrangeActive become-active=(action (mut this.isOrangeActive))}}
               Orange
             {{/bar.tab}}
-            {{#bar.tab active=isBrownActive become-active=(action (mut isBrownActive))}}
+            {{#bar.tab active=this.isBrownActive become-active=(action (mut this.isBrownActive))}}
               Brown
             {{/bar.tab}}
           {{/scroller.tab-bar}}
@@ -885,27 +892,27 @@
       {{#freestyle-usage "tab-dark" name="Dark-themed tabs"}}
         <div style="background:black">
           {{#mdc-tab-bar dark=true links=false as |bar|}}
-            {{#bar.tab active=isFirstActive become-active=(action (mut isFirstActive))}}
+            {{#bar.tab active=this.isFirstActive become-active=(action (mut this.isFirstActive))}}
               Fruits
             {{/bar.tab}}
-            {{#bar.tab active=isSecondActive become-active=(action (mut isSecondActive))}}
+            {{#bar.tab active=this.isSecondActive become-active=(action (mut this.isSecondActive))}}
               Vegetables
             {{/bar.tab}}
-            {{#bar.tab active=isThirdActive become-active=(action (mut isThirdActive))}}
+            {{#bar.tab active=this.isThirdActive become-active=(action (mut this.isThirdActive))}}
               Meats
             {{/bar.tab}}
           {{/mdc-tab-bar}}
         </div>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Switch" as |section|}}
+    {{#freestyle-section name="Switch"}}
       {{#freestyle-usage "switch-active" name="Active Switch"}}
-        {{mdc-switch checked=isFirstSwitchOn onchange=(action (mut isFirstSwitchOn))}}
-        <button {{action (toggle "isFirstSwitchOn" this)}}>Press to Toggle Switch</button>
+        {{mdc-switch checked=this.isFirstSwitchOn onchange=(action (mut this.isFirstSwitchOn))}}
+        <button type="button" {{action (toggle "isFirstSwitchOn" this)}}>Press to Toggle Switch</button>
       {{/freestyle-usage}}
       {{#freestyle-usage "switch-toggle" name="Switch with Toggle Label"}}
         <label>
-          {{mdc-switch checked=isSecondSwitchOn onchange=(action (mut isSecondSwitchOn))}}
+          {{mdc-switch checked=this.isSecondSwitchOn onchange=(action (mut this.isSecondSwitchOn))}}
           On/Off
         </label>
       {{/freestyle-usage}}
@@ -920,12 +927,12 @@
         </div>
       {{/freestyle-usage}}
     {{/freestyle-section}}
-    {{#freestyle-section name="Toolbar" as |section|}}
+    {{#freestyle-section name="Toolbar"}}
       {{#freestyle-usage "toolbar-basic" name="Basic usage"}}
         {{#mdc-toolbar as |toolbar|}}
           {{#toolbar.row as |row|}}
-            {{#row.section align="start" as |section|}}
-              {{#section.title}}Toolbar{{/section.title}}
+            {{#row.section align="start" as |rsection|}}
+              {{#rsection.title}}Toolbar{{/rsection.title}}
             {{/row.section}}
           {{/toolbar.row}}
         {{/mdc-toolbar}}

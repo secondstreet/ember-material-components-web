@@ -1,4 +1,7 @@
-import LinkComponent from '@ember/routing/link-component';
+/* eslint-disable ember/no-mixins */
+/* eslint-disable ember/no-observers */
+
+import { LinkComponent } from '@ember/legacy-built-in-components';
 import { observer, get } from '@ember/object';
 import MDCTabComponent from '../../mixins/mdc-tab-component';
 
@@ -14,7 +17,7 @@ export default LinkComponent.extend(MDCTabComponent, {
   //endregion
 
   //region Observers
-  activeStateChanged: observer('active', function() {
+  activeStateChanged: observer('active', function () {
     if (get(this, 'active')) {
       get(this, 'switch-to-tab')(this);
     }
