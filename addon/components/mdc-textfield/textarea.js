@@ -8,28 +8,28 @@ export default Component.extend({
    * @type {Function}
    * @param {jQuery.Event}
    */
-  onfocus: x => x,
+  onfocus: (x) => x,
   /**
    * @type {Function}
    * @param {jQuery.Event}
    */
-  onblur: x => x,
+  onblur: (x) => x,
   /**
    * @type {Function}
    * @param {jQuery.Event}
    */
-  oninput: x => x,
+  oninput: (x) => x,
   /**
    * @type {Function}
    * @param {jQuery.Event}
    */
-  onkeydown: x => x,
+  onkeydown: (x) => x,
   //endregion
 
   //region Ember Hooks
   layout,
   tagName: 'textarea',
-  attributeBindings: [
+  attributeBindings: Object.freeze([
     'required',
     'disabled',
     'rows',
@@ -41,8 +41,8 @@ export default Component.extend({
     'lang',
     'dir',
     'value',
-  ],
-  classNames: ['mdc-textfield__input'],
+  ]),
+  classNames: Object.freeze(['mdc-textfield__input']),
   focusIn(ev) {
     get(this, 'onfocus')(ev);
   },

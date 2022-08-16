@@ -14,13 +14,13 @@ export default Component.extend({
 
   //region Ember Hooks
   layout,
-  classNameBindings: ['elevationClass'],
-  classNames: ['mdc-elevation-transition'],
-  attributeBindings: [...events],
+  classNameBindings: Object.freeze(['elevationClass']),
+  classNames: Object.freeze(['mdc-elevation-transition']),
+  attributeBindings: Object.freeze([...events]),
   //endregion
 
   //region Computed Properties
-  elevationClass: computed('z', function() {
+  elevationClass: computed('z', function () {
     return `mdc-elevation--z${get(this, 'z')}`;
   }),
   //endregion

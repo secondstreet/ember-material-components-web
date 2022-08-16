@@ -19,16 +19,16 @@ const MDCTextfieldHelptextComponent = Component.extend({
   //region Ember Hooks
   layout,
   tagName: 'p',
-  classNames: ['mdc-textfield-helptext'],
-  classNameBindings: ['class-names'],
+  classNames: Object.freeze(['mdc-textfield-helptext']),
+  classNameBindings: Object.freeze(['class-names']),
   attributeBindings: mdcAttrs,
   //endregion
 });
 
-mdcAttrs.forEach(attr => {
+mdcAttrs.forEach((attr) => {
   MDCTextfieldHelptextComponent.reopen({
-    [attr]: computed('attribute-pairs.[]', function() {
-      const found = get(this, 'attribute-pairs').find(x => x[0] === attr);
+    [attr]: computed('attribute-pairs.[]', function () {
+      const found = get(this, 'attribute-pairs').find((x) => x[0] === attr);
       if (!found) {
         return null;
       }

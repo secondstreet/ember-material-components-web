@@ -1,16 +1,17 @@
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 
-moduleForComponent('mdc-checkbox', 'Integration | Component | mdc checkbox', {
-  integration: true,
-});
+module('Integration | Component | mdc checkbox', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('it renders', async function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{mdc-checkbox}}`);
+    await render(hbs`{{mdc-checkbox}}`);
 
-  assert.equal(find('*').textContent.trim(), '');
+    assert.dom('*').hasText('');
+  });
 });

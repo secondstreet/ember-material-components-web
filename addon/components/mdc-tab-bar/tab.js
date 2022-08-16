@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import Component from '@ember/component';
 import MDCTabComponent from '../../mixins/mdc-tab-component';
 
@@ -18,10 +20,10 @@ export default Component.extend(MDCTabComponent, {
    * @type {Function}
    * @param {Boolean} isActive
    */
-  'become-active': x => x,
+  'become-active': (x) => x,
   //endregion
 
   //region Ember Hooks
-  classNameBindings: ['active:mdc-tab--active'],
+  classNameBindings: Object.freeze(['active:mdc-tab--active']),
   //endregion
 });

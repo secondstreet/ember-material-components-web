@@ -1,3 +1,6 @@
+/* eslint-disable ember/no-mixins */
+/* eslint-disable ember/no-observers */
+
 import { equal } from '@ember/object/computed';
 import { run, next } from '@ember/runloop';
 import { A } from '@ember/array';
@@ -36,27 +39,27 @@ export default Component.extend(MDCComponent, {
    * @type {Function}
    * @param {Object} evtData
    */
-  onchange: x => x,
+  onchange: (x) => x,
   /**
    * @type {Function}
    */
-  'register-tab-bar': x => x,
+  'register-tab-bar': (x) => x,
   /**
    * @type {Function}
    */
-  'deregister-tab-bar': x => x,
+  'deregister-tab-bar': (x) => x,
   //endregion
 
   //region Ember Hooks
   layout,
-  classNames: ['mdc-tab-bar'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-tab-bar']),
+  classNameBindings: Object.freeze([
     'isIconsOnly:mdc-tab-bar--icon-tab-bar',
     'isIconsWithText:mdc-tab-bar--icons-with-text',
     'mdcClassNames',
     'dark:mdc-theme--dark',
-  ],
-  attributeBindings: ['style'],
+  ]),
+  attributeBindings: Object.freeze(['style']),
   init() {
     this._super(...arguments);
     set(this, 'tabs', A([]));
@@ -91,12 +94,12 @@ export default Component.extend(MDCComponent, {
   //endregion
 
   //region Observers
-  tabsChanged: observer('tabs.@each.foundation', function() {
+  tabsChanged: observer('tabs.@each.foundation', function () {
     // When a tab is first rendered, its computed measurements are zero. It relies on the tab bar to tell it to find
     // its correct measurements. When the tabs swap out however, they don't know to go find their measurements. So
     // we must trigger the tab bar to inform its new tabs of their measurements.
     const { tabs, foundation } = getProperties(this, 'tabs', 'foundation');
-    tabs.forEach(tab => tab.measureSelf());
+    tabs.forEach((tab) => tab.measureSelf());
     // then we need to reset the indicator styles
     if (foundation) {
       foundation.layout();
@@ -107,30 +110,30 @@ export default Component.extend(MDCComponent, {
   //region Method
   createFoundation() {
     return new MDCTabBarFoundation({
-      addClass: className => run(() => get(this, 'mdcClasses').addObject(className)),
-      removeClass: className =>
-        run.next(this, function() {
+      addClass: (className) => run(() => get(this, 'mdcClasses').addObject(className)),
+      removeClass: (className) =>
+        next(this, function () {
           get(this, 'mdcClasses').removeObject(className);
-        }), //use non-arrow function for `run.next` since we are passing in the context
+        }), //use non-arrow function for `next` since we are passing in the context
       bindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
       unbindOnMDCTabSelectedEvent: () => null, // no-op because this is bound with Ember actions
-      registerResizeHandler: handler => window.addEventListener('resize', handler),
-      deregisterResizeHandler: handler => window.removeEventListener('resize', handler),
+      registerResizeHandler: (handler) => window.addEventListener('resize', handler),
+      deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
       getOffsetWidth: () => getElementProperty(this, 'offsetWidth', 0),
       setStyleForIndicator: (propertyName, value) =>
         run(() => this.setStyleFor('mdcIndicatorStyles', propertyName, value)),
       getOffsetWidthForIndicator: () =>
         getElementProperty(this, 'querySelector', () => ({ offsetWidth: 0 }))(strings.INDICATOR_SELECTOR).offsetWidth,
-      notifyChange: evtData => get(this, 'onchange')(evtData), // TODO
+      notifyChange: (evtData) => get(this, 'onchange')(evtData), // TODO
       getNumberOfTabs: () => get(this, 'tabs.length'),
-      isTabActiveAtIndex: index => this.isTabActiveAtIndex(index),
+      isTabActiveAtIndex: (index) => this.isTabActiveAtIndex(index),
       setTabActiveAtIndex: (index, isActive) => run(() => this.setTabActiveAtIndex(index, isActive)),
-      isDefaultPreventedOnClickForTabAtIndex: index => get(this.tabAt(index), 'preventDefaultOnClick'),
+      isDefaultPreventedOnClickForTabAtIndex: (index) => get(this.tabAt(index), 'preventDefaultOnClick'),
       setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) =>
         run(() => set(this.tabAt(index), 'preventDefaultOnClick', preventDefaultOnClick)),
-      measureTabAtIndex: index => this.tabAt(index).measureSelf(),
-      getComputedWidthForTabAtIndex: index => getComponentProperty(this.tabAt(index), 'computedWidth', 0),
-      getComputedLeftForTabAtIndex: index => getComponentProperty(this.tabAt(index), 'computedLeft', 0),
+      measureTabAtIndex: (index) => this.tabAt(index).measureSelf(),
+      getComputedWidthForTabAtIndex: (index) => getComponentProperty(this.tabAt(index), 'computedWidth', 0),
+      getComputedLeftForTabAtIndex: (index) => getComponentProperty(this.tabAt(index), 'computedLeft', 0),
     });
   },
   tabAt(index) {
@@ -175,7 +178,7 @@ export default Component.extend(MDCComponent, {
     },
     scrollTabIntoView(tab) {
       if (get(this, 'scroll-active-tab-into-view')) {
-        run.next(() =>
+        next(() =>
           get(this, 'tabs.length') ? get(this, 'scroll-active-tab-into-view')(get(this, 'tabs').indexOf(tab)) : null
         );
       }

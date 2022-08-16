@@ -5,7 +5,7 @@ import layout from '../templates/components/mdc-menu-anchor';
 export default Component.extend({
   //region Ember Hooks
   layout,
-  classNames: ['mdc-menu-anchor'],
+  classNames: Object.freeze(['mdc-menu-anchor']),
   //endregion
 
   //region Methods

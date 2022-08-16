@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-mixins */
+
 import { A } from '@ember/array';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
@@ -38,7 +40,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    * @type {Function}
    * @param {Boolean} checked
    */
-  onchange: x => x,
+  onchange: (x) => x,
   /**
    * @type {?String}
    */
@@ -50,9 +52,9 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-checkbox'],
-  classNameBindings: ['mdcClassNames'],
-  attributeBindings: ['style'],
+  classNames: Object.freeze(['mdc-checkbox']),
+  classNameBindings: Object.freeze(['mdcClassNames']),
+  attributeBindings: Object.freeze(['style']),
   layout,
   init() {
     this._super(...arguments);
@@ -60,11 +62,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   },
   didRender() {
     this._super(...arguments);
-    scheduleOnce('afterRender', this, () => {
-      this.sync('checked');
-      this.sync('indeterminate');
-      this.sync('disabled');
-    });
+    scheduleOnce('afterRender', this, this._syncCheckboxState);
   },
   //endregion
 
@@ -82,18 +80,24 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
    */
   createFoundation() {
     return new MDCCheckboxFoundation({
-      addClass: className => next(() => addClass(className, this)),
-      removeClass: className => next(() => removeClass(className, this)),
-      registerAnimationEndHandler: handler =>
+      addClass: (className) => next(() => addClass(className, this)),
+      removeClass: (className) => next(() => removeClass(className, this)),
+      registerAnimationEndHandler: (handler) =>
         getElementProperty(this, 'addEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
-      deregisterAnimationEndHandler: handler =>
+      deregisterAnimationEndHandler: (handler) =>
         getElementProperty(this, 'removeEventListener', () => null)(ANIM_END_EVENT_NAME, handler),
-      registerChangeHandler: handler => run(() => get(this, 'changeHandlers').addObject(handler)),
-      deregisterChangeHandler: handler => run(() => get(this, 'changeHandlers').removeObject(handler)),
+      registerChangeHandler: (handler) => run(() => get(this, 'changeHandlers').addObject(handler)),
+      deregisterChangeHandler: (handler) => run(() => get(this, 'changeHandlers').removeObject(handler)),
       getNativeControl: () => this.element.querySelector('input'),
       forceLayout: () => undefined,
       isAttachedToDOM: () => !!get(this, 'element'),
     });
+  },
+
+  _syncCheckboxState() {
+    this.sync('checked');
+    this.sync('indeterminate');
+    this.sync('disabled');
   },
   //endregion
 
@@ -101,7 +105,7 @@ export default Component.extend(MDCComponent, SupportsBubblesFalse, {
   actions: {
     inputChanged(ev) {
       const checked = ev.target.checked;
-      get(this, 'changeHandlers').forEach(handler => handler(ev));
+      get(this, 'changeHandlers').forEach((handler) => handler(ev));
       get(this, 'onchange')(checked);
     },
   },

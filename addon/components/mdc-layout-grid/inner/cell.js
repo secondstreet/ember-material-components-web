@@ -34,8 +34,8 @@ export default Component.extend({
   //endregion
 
   //region Ember Hooks
-  classNames: ['mdc-layout-grid__cell'],
-  classNameBindings: [
+  classNames: Object.freeze(['mdc-layout-grid__cell']),
+  classNameBindings: Object.freeze([
     'orderClass',
     'isAlignTop:mdc-layout-grid__cell--align-top',
     'isAlignMiddle:mdc-layout-grid__cell--align-middle',
@@ -44,29 +44,29 @@ export default Component.extend({
     'spanDesktopClass',
     'spanTabletClass',
     'spanPhoneClass',
-  ],
-  attributeBindings: [...events],
+  ]),
+  attributeBindings: Object.freeze([...events]),
   layout,
   //endregion
 
   //region Computed Properties
-  orderClass: computed('order', function() {
+  orderClass: computed('order', function () {
     const order = get(this, 'order');
     return parseInt(order) ? `mdc-layout-grid__cell--order-${order}` : null;
   }),
-  spanClass: computed('span', function() {
+  spanClass: computed('span', function () {
     const span = get(this, 'span');
     return parseInt(span) ? `mdc-layout-grid__cell--span-${span}` : null;
   }),
-  spanDesktopClass: computed('span-desktop', function() {
+  spanDesktopClass: computed('span-desktop', function () {
     const span = get(this, 'span-desktop');
     return parseInt(span) ? `mdc-layout-grid__cell--span-${span}-desktop` : null;
   }),
-  spanTabletClass: computed('span-tablet', function() {
+  spanTabletClass: computed('span-tablet', function () {
     const span = get(this, 'span-tablet');
     return parseInt(span) ? `mdc-layout-grid__cell--span-${span}-tablet` : null;
   }),
-  spanPhoneClass: computed('span-phone', function() {
+  spanPhoneClass: computed('span-phone', function () {
     const span = get(this, 'span-phone');
     return parseInt(span) ? `mdc-layout-grid__cell--span-${span}-phone` : null;
   }),

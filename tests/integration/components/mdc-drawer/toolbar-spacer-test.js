@@ -1,25 +1,26 @@
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 
-moduleForComponent('mdc-drawer/toolbar-spacer', 'Integration | Component | mdc drawer/toolbar spacer', {
-  integration: true,
-});
+module('Integration | Component | mdc drawer/toolbar spacer', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('it renders', async function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{mdc-drawer/toolbar-spacer}}`);
+    await render(hbs`{{mdc-drawer/toolbar-spacer}}`);
 
-  assert.equal(find('*').textContent.trim(), '');
+    assert.dom('*').hasText('');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#mdc-drawer/toolbar-spacer}}
-      template block text
-    {{/mdc-drawer/toolbar-spacer}}
-  `);
+    // Template block usage:
+    await render(hbs`
+      {{#mdc-drawer/toolbar-spacer}}
+        template block text
+      {{/mdc-drawer/toolbar-spacer}}
+    `);
 
-  assert.equal(find('*').textContent.trim(), 'template block text');
+    assert.dom('*').hasText('template block text');
+  });
 });
