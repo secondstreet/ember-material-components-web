@@ -171,9 +171,7 @@ export default Component.extend(MDCComponent, {
     },
     switchToTab(tab) {
       next(() =>
-        get(this, 'tabs.length')
-          ? get(this, 'foundation').switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true)
-          : null
+        get(this, 'tabs.length') ? this.foundation?.switchToTabAtIndex(get(this, 'tabs').indexOf(tab), true) : null
       );
     },
     scrollTabIntoView(tab) {

@@ -1,5 +1,4 @@
-ember-material-components-web
-==============================================================================
+# ember-material-components-web
 
 [![Travis branch](https://img.shields.io/travis/secondstreet/ember-material-components-web/master.svg)](https://travis-ci.org/secondstreet/ember-material-components-web)
 [![npm](https://img.shields.io/npm/dw/ember-material-components-web.svg)](https://www.npmjs.com/package/ember-material-components-web)
@@ -19,8 +18,7 @@ Until proper documentation can be written, please refer to the extensive JSDoc c
 * Node.js v12 or above
 
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install ember-material-components-web
